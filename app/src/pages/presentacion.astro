@@ -15,7 +15,7 @@ import ArchNode    from '../components/presentacion/ArchNode.astro';
 import RiskBadge   from '../components/presentacion/RiskBadge.astro';
 import PhoneMockup from '../components/presentacion/PhoneMockup.astro';
 
-const TOTAL_SLIDES = 14;
+const TOTAL_SLIDES = 13;
 
 // Títulos de cada diapositiva (para el índice y el título de pestaña)
 const slideTitles = [
@@ -30,7 +30,6 @@ const slideTitles = [
   'Arquitectura',
   'Motor de Decisión',
   'Prototipo Funcional',
-  'Landing Page',
   'Viabilidad y Costes',
   'Conclusión',
 ];
@@ -45,7 +44,7 @@ const slideTitles = [
 
     <!-- Barra de progreso (arriba) -->
     <div class="progress-bar-track" aria-hidden="true">
-      <div class="progress-bar-fill" id="progressFill" style="width: 7.14%"></div>
+      <div class="progress-bar-fill" id="progressFill" style="width: 7.69%"></div>
     </div>
 
     <!-- =====================================================
@@ -109,42 +108,85 @@ const slideTitles = [
         <h2 class="slide-title animate-fade-up delay-1">Estructura de la presentación</h2>
 
         <div class="index-grid animate-fade-up delay-2">
-          <!-- Bloque 1 -->
-          <button class="index-block" data-goto="3" title="Ir al Problema">
-            <span class="index-icon">⚠️</span>
-            <strong>Problema</strong>
+
+          <!-- Bloque 1: Problema -->
+          <button class="index-block" data-goto="3" title="Ir al Problema" aria-label="Ir a Problema">
+            <span class="index-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </span>
+            <strong class="index-title">Problema</strong>
+            <span class="index-sub">El riesgo oculto en los QR</span>
             <span class="index-slides">Diap. 3</span>
           </button>
-          <!-- Bloque 2 -->
-          <button class="index-block" data-goto="4" title="Ir a Investigación de Usuarios">
-            <span class="index-icon">👥</span>
-            <strong>Usuario</strong>
+
+          <!-- Bloque 2: Usuario -->
+          <button class="index-block" data-goto="4" title="Ir a Investigación de Usuarios" aria-label="Ir a Usuario">
+            <span class="index-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </span>
+            <strong class="index-title">Usuario</strong>
+            <span class="index-sub">Investigación y perfil UX</span>
             <span class="index-slides">Diap. 4–6</span>
           </button>
-          <!-- Bloque 3 -->
-          <button class="index-block" data-goto="7" title="Ir a Solución">
-            <span class="index-icon">✅</span>
-            <strong>Solución</strong>
+
+          <!-- Bloque 3: Solución -->
+          <button class="index-block" data-goto="7" title="Ir a Solución" aria-label="Ir a Solución">
+            <span class="index-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2L3 7l9 5 9-5-9-5z"/>
+                <path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/>
+              </svg>
+            </span>
+            <strong class="index-title">Solución</strong>
+            <span class="index-sub">Propuesta, MVP y arquitectura</span>
             <span class="index-slides">Diap. 7–10</span>
           </button>
-          <!-- Bloque 4 -->
-          <button class="index-block" data-goto="11" title="Ir al Prototipo">
-            <span class="index-icon">📱</span>
-            <strong>Prototipo</strong>
-            <span class="index-slides">Diap. 11–12</span>
+
+          <!-- Bloque 4: Prototipo -->
+          <button class="index-block" data-goto="11" title="Ir al Prototipo" aria-label="Ir a Prototipo">
+            <span class="index-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                <line x1="12" y1="18" x2="12.01" y2="18"/>
+              </svg>
+            </span>
+            <strong class="index-title">Prototipo</strong>
+            <span class="index-sub">Demo funcional y flujo de uso</span>
+            <span class="index-slides">Diap. 11</span>
           </button>
-          <!-- Bloque 5 -->
-          <button class="index-block" data-goto="13" title="Ir a Viabilidad">
-            <span class="index-icon">💶</span>
-            <strong>Viabilidad</strong>
+
+          <!-- Bloque 5: Viabilidad -->
+          <button class="index-block" data-goto="12" title="Ir a Viabilidad" aria-label="Ir a Viabilidad">
+            <span class="index-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </span>
+            <strong class="index-title">Viabilidad</strong>
+            <span class="index-sub">Costes y modelo de negocio</span>
+            <span class="index-slides">Diap. 12</span>
+          </button>
+
+          <!-- Bloque 6: Cierre -->
+          <button class="index-block" data-goto="13" title="Ir al Cierre" aria-label="Ir a Cierre">
+            <span class="index-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <strong class="index-title">Cierre</strong>
+            <span class="index-sub">Conclusiones y valoración</span>
             <span class="index-slides">Diap. 13</span>
           </button>
-          <!-- Bloque 6 -->
-          <button class="index-block" data-goto="14" title="Ir al Cierre">
-            <span class="index-icon">🎯</span>
-            <strong>Cierre</strong>
-            <span class="index-slides">Diap. 14</span>
-          </button>
+
         </div>
       </section>
 
@@ -156,32 +198,69 @@ const slideTitles = [
           Un QR oculta la URL hasta que <em>ya lo has escaneado.</em>
         </p>
 
-        <!-- 3 dimensiones del problema -->
-        <div class="problem-cards animate-fade-up delay-2">
+        <!-- Flujo visual: QR → URL oculta → Riesgo -->
+        <div class="problem-flow animate-fade-up delay-2">
+          <div class="prob-flow-step">
+            <div class="prob-flow-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+                <rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/>
+                <rect x="14" y="18" width="3" height="3"/><rect x="18" y="14" width="3" height="3"/>
+              </svg>
+            </div>
+            <span class="prob-flow-label">Escaneas el QR</span>
+            <span class="prob-flow-sub">Sin saber el destino</span>
+          </div>
+          <span class="prob-flow-arrow" aria-hidden="true">→</span>
+          <div class="prob-flow-step warn">
+            <div class="prob-flow-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <span class="prob-flow-label">URL oculta</span>
+            <span class="prob-flow-sub">No visible hasta abrirla</span>
+          </div>
+          <span class="prob-flow-arrow" aria-hidden="true">→</span>
+          <div class="prob-flow-step danger">
+            <div class="prob-flow-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <span class="prob-flow-label">Riesgo real</span>
+            <span class="prob-flow-sub">Phishing, robo, malware</span>
+          </div>
+        </div>
+
+        <!-- 3 tarjetas de dimensión del problema -->
+        <div class="prob-cards animate-fade-up delay-3">
           <div class="prob-card">
             <strong>Sin visibilidad previa</strong>
             <p>No puedes leer el destino antes de escanear.</p>
           </div>
           <div class="prob-card">
             <strong>Quishing activo</strong>
-            <p>QRs falsos que dirigen a phishing, robo de datos o malware.</p>
+            <p>QRs maliciosos en carteles, correos y facturas falsas.</p>
           </div>
           <div class="prob-card">
             <strong>Cualquiera es objetivo</strong>
-            <p>Usuarios sin conocimientos técnicos son el blanco más frecuente.</p>
+            <p>El blanco más frecuente es el usuario sin formación técnica.</p>
           </div>
         </div>
 
         <!-- Dato INCIBE destacado -->
-        <ImpactCard
-          value="+25.000"
-          label="casos de phishing gestionados por INCIBE en España durante 2025 — la principal amenaza de fraude online."
-          source="INCIBE 2025"
-          variant="orange"
-          animDelay={3}
-        />
-
-        <p class="slide-source">Fuente: INCIBE — Instituto Nacional de Ciberseguridad, Informe 2025</p>
+        <div class="incibe-banner animate-fade-up delay-4">
+          <div class="incibe-number">+25.000</div>
+          <div class="incibe-text">
+            <strong>casos de phishing gestionados por INCIBE en España durante 2025</strong>
+            <span>— la principal amenaza de fraude online</span>
+          </div>
+          <div class="incibe-source">Fuente: INCIBE 2025</div>
+        </div>
       </section>
 
       <!-- ─── SLIDE 4: INVESTIGACIÓN DE USUARIOS ───────────── -->
@@ -226,81 +305,205 @@ const slideTitles = [
         <div class="slide-tag animate-fade-in">Usuario</div>
         <h2 class="slide-title animate-fade-up delay-1">Persona Prototipo</h2>
 
-        <PersonaCard
-          initial="U"
-          name="Usuario no técnico"
-          role="Adulto entre 25-55 años · Sin conocimientos de ciberseguridad"
-          tags={['Restaurantes', 'Transporte', 'Comercios', 'Carteles urbanos']}
-          details={[
-            { label: 'Contexto',  value: 'Escanea QR a diario en entornos cotidianos.' },
-            { label: 'Necesidad', value: 'Saber si puede abrir un QR sin entender ciberseguridad.' },
-            { label: 'Dolor',     value: 'No sabe identificar si una URL es fiable.' },
-            { label: 'Objetivo',  value: 'Decidir rápido y con confianza.' },
-          ]}
-          animDelay={2}
-        />
+        <div class="ux-persona animate-fade-up delay-2">
 
-        <p class="quote-support animate-fade-up delay-4">
-          Un resultado claro en segundos, sin tecnicismos.
+          <!-- Columna izquierda: avatar + datos clave -->
+          <div class="ux-persona-left">
+            <div class="ux-avatar" aria-label="Icono de usuario">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <p class="ux-persona-name">Usuario no técnico</p>
+            <p class="ux-persona-role">Adulto 25–55 años<br/>Sin conocimientos de ciberseguridad</p>
+            <div class="ux-tags">
+              <span class="ux-tag">Restaurantes</span>
+              <span class="ux-tag">Transporte</span>
+              <span class="ux-tag">Comercios</span>
+              <span class="ux-tag">Carteles urbanos</span>
+            </div>
+          </div>
+
+          <!-- Columna derecha: tarjetas UX grandes -->
+          <div class="ux-persona-right">
+            <div class="ux-card">
+              <div class="ux-card-label">Contexto</div>
+              <div class="ux-card-value">Escanea QR a diario en entornos cotidianos: restaurantes, transporte y comercios.</div>
+            </div>
+            <div class="ux-card">
+              <div class="ux-card-label">Necesidad</div>
+              <div class="ux-card-value">Saber si puede abrir un QR sin tener que entender de ciberseguridad.</div>
+            </div>
+            <div class="ux-card ux-card-warn">
+              <div class="ux-card-label">Dolor</div>
+              <div class="ux-card-value">No sabe identificar si una URL es fiable. Abre sin pensar porque no tiene otra opción.</div>
+            </div>
+            <div class="ux-card ux-card-goal">
+              <div class="ux-card-label">Objetivo</div>
+              <div class="ux-card-value">Decidir con confianza y rapidez, sin tecnicismos.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="ux-closing-quote animate-fade-up delay-4">
+          "Necesita una señal clara antes de abrir un enlace, sin tecnicismos."
         </p>
       </section>
 
       <!-- ─── SLIDE 7: PROPUESTA DE VALOR ──────────────────── -->
       <section class="slide" id="slide-7" data-slide="7" aria-label="Propuesta de Valor">
         <div class="slide-tag animate-fade-in">Solución</div>
-        <h2 class="slide-title animate-fade-up delay-1">Propuesta de Valor</h2>
-        <p class="slide-subtitle animate-fade-up delay-2">Un escudo antes del navegador</p>
+        <h2 class="slide-title animate-fade-up delay-1">Escanear, analizar y decidir antes de abrir</h2>
 
-        <div class="flow-row animate-fade-up delay-3" style="margin-top: 24px;">
-          <FlowStep label="Escanear" sub="Cámara de la app" animDelay={3} />
-          <span class="flow-arrow animate-fade-in delay-4">→</span>
-          <FlowStep label="Analizar" sub="Motor de decisión" highlight={true} animDelay={4} />
-          <span class="flow-arrow animate-fade-in delay-5">→</span>
-          <FlowStep label="Decidir" sub="Abrir o bloquear" animDelay={5} />
+        <!-- Tres bloques grandes con conectores animados -->
+        <div class="valor-flow animate-fade-up delay-2">
+
+          <!-- Bloque 1: Escanear -->
+          <div class="valor-block">
+            <div class="valor-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+                <rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/>
+                <rect x="14" y="18" width="3" height="3"/><rect x="18" y="14" width="3" height="3"/>
+              </svg>
+            </div>
+            <div class="valor-step-num">01</div>
+            <h3 class="valor-title">Escanear</h3>
+            <p class="valor-desc">El usuario apunta la cámara al QR. ZXing decodifica el contenido al instante.</p>
+          </div>
+
+          <!-- Conector animado -->
+          <div class="valor-connector" aria-hidden="true">
+            <div class="valor-line"></div>
+            <svg class="valor-arrow-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+
+          <!-- Bloque 2: Analizar (destacado) -->
+          <div class="valor-block valor-block-featured">
+            <div class="valor-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+              </svg>
+            </div>
+            <div class="valor-step-num">02</div>
+            <h3 class="valor-title">Analizar</h3>
+            <p class="valor-desc">El backend consulta Google Web Risk, IPQS, OpenPhish y heurísticas locales antes de responder.</p>
+          </div>
+
+          <!-- Conector animado -->
+          <div class="valor-connector" aria-hidden="true">
+            <div class="valor-line"></div>
+            <svg class="valor-arrow-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+
+          <!-- Bloque 3: Decidir -->
+          <div class="valor-block">
+            <div class="valor-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2L3 7l9 5 9-5-9-5z"/>
+                <path d="M3 12l9 5 9-5"/>
+                <line x1="12" y1="17" x2="12" y2="22"/>
+              </svg>
+            </div>
+            <div class="valor-step-num">03</div>
+            <h3 class="valor-title">Decidir</h3>
+            <p class="valor-desc">La app muestra el resultado: seguro, sospechoso o peligroso. El usuario decide con información.</p>
+          </div>
+
         </div>
 
-        <p class="quote-support animate-fade-up delay-6" style="margin-top: 32px;">
-          Cambia el paradigma: de <em>reactivo</em> a <strong>preventivo</strong>.
-        </p>
+        <!-- Banda inferior: paradigma -->
+        <div class="valor-band animate-fade-up delay-5">
+          <span class="valor-band-old">Abrir primero</span>
+          <svg width="32" height="20" viewBox="0 0 32 20" fill="none" aria-hidden="true">
+            <line x1="0" y1="10" x2="24" y2="10" stroke="currentColor" stroke-width="2"/>
+            <polyline points="18,4 26,10 18,16" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+          <span class="valor-band-new">Comprobar antes</span>
+        </div>
       </section>
 
       <!-- ─── SLIDE 8: MVP Y REQUISITOS ────────────────────── -->
       <section class="slide slide-tech" id="slide-8" data-slide="8" aria-label="MVP y Requisitos">
         <div class="slide-tag animate-fade-in">MVP</div>
-        <h2 class="slide-title animate-fade-up delay-1">MVP y Requisitos</h2>
+        <h2 class="slide-title animate-fade-up delay-1">MVP y Requisitos Funcionales</h2>
 
-        <div class="slide-two-col animate-fade-up delay-2" style="margin-top: 20px;">
-          <!-- Bloque Funcional -->
-          <div class="feature-item" style="padding: 24px;">
-            <strong style="margin-bottom: 12px; font-size: 16px;">Requisitos Clave</strong>
-            <div class="feature-list">
-              <div class="feature-row">
-                <span class="check">✓</span> Escaneo rápido
-              </div>
-              <div class="feature-row">
-                <span class="check">✓</span> Análisis en tiempo real
-              </div>
-              <div class="feature-row">
-                <span class="check">✓</span> Resultado comprensible
-              </div>
+        <div class="mvp-grid animate-fade-up delay-2">
+
+          <!-- Columna 1: Funciones del MVP -->
+          <div class="mvp-col">
+            <div class="mvp-col-header">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+              </svg>
+              Funciones del MVP
             </div>
+            <ul class="mvp-list">
+              <li><span class="mvp-check">✓</span> Escaneo QR con cámara</li>
+              <li><span class="mvp-check">✓</span> Entrada manual de URL</li>
+              <li><span class="mvp-check">✓</span> Validación http / https</li>
+              <li><span class="mvp-check">✓</span> Análisis antes de abrir</li>
+              <li><span class="mvp-check">✓</span> Clasificación: seguro / sospechoso / peligroso</li>
+              <li><span class="mvp-check">✓</span> Resumen comprensible para el usuario</li>
+              <li><span class="mvp-check">✓</span> Historial local de análisis</li>
+              <li><span class="mvp-check">✓</span> Reanálisis de URLs guardadas</li>
+              <li><span class="mvp-check">✓</span> Sin apertura automática de enlaces</li>
+            </ul>
           </div>
 
-          <!-- Bloque Técnico -->
-          <div class="feature-item" style="padding: 24px;">
-            <strong style="margin-bottom: 12px; font-size: 16px;">Decisiones Técnicas</strong>
-            <div class="feature-list">
-              <div class="feature-row">
-                <span class="check">✓</span> Kotlin (Nativo)
-              </div>
-              <div class="feature-row">
-                <span class="check">✓</span> ML Kit (Google)
-              </div>
-              <div class="feature-row">
-                <span class="check">✓</span> Arquitectura MVVM
-              </div>
+          <!-- Separador vertical -->
+          <div class="mvp-divider" aria-hidden="true"></div>
+
+          <!-- Columna 2: Requisitos Funcionales -->
+          <div class="mvp-col">
+            <div class="mvp-col-header">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+              </svg>
+              Requisitos Funcionales
             </div>
+            <ul class="mvp-list mvp-req-list">
+              <li>
+                <span class="mvp-req-id">R1-F</span>
+                Acceder a la cámara y escanear un código QR
+              </li>
+              <li>
+                <span class="mvp-req-id">R2-F</span>
+                Evitar la apertura automática de la URL
+              </li>
+              <li>
+                <span class="mvp-req-id">R3-F</span>
+                Introducir una URL manualmente
+              </li>
+              <li>
+                <span class="mvp-req-id">R4-F</span>
+                Validar que la URL sea una web compatible (http/https)
+              </li>
+              <li>
+                <span class="mvp-req-id">R5-F</span>
+                Clasificar la URL analizada por nivel de riesgo
+              </li>
+              <li>
+                <span class="mvp-req-id">R6-F</span>
+                Mostrar un resumen del análisis y los motivos
+              </li>
+              <li>
+                <span class="mvp-req-id">R7-F</span>
+                Guardar historial local y permitir reanálisis
+              </li>
+            </ul>
           </div>
+
         </div>
       </section>
 
@@ -310,17 +513,85 @@ const slideTitles = [
         <h2 class="slide-title animate-fade-up delay-1">Arquitectura</h2>
         <p class="slide-subtitle animate-fade-up delay-2">Flujo de datos y validación</p>
 
-        <div class="arch-diagram" style="margin-top: 24px;">
-          <ArchNode label="Cámara" sub="ML Kit Vision" dataIndex={0} />
-          <span class="arch-arrow arch-arr-0">→</span>
-          <ArchNode label="App" sub="ViewModel" highlight={true} dataIndex={1} />
-          <span class="arch-arrow arch-arr-1">→</span>
-          <ArchNode label="Motor" sub="Reglas + APIs" dataIndex={2} />
-          <span class="arch-arrow arch-arr-2">→</span>
-          
-          <div class="arch-stack">
-            <ArchNode label="Google Safe Browsing" dataIndex={3} />
-            <ArchNode label="VirusTotal" dataIndex={3} />
+        <!-- Diagrama de arquitectura horizontal -->
+        <div class="arch-real-diagram animate-fade-up delay-2">
+
+          <!-- Nodo: Usuario -->
+          <div class="arch-node-real arch-node-user arch-anim" data-arch-index="0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span class="arch-node-label">Usuario</span>
+          </div>
+
+          <div class="arch-real-arrow arch-anim" data-arch-index="1">→</div>
+
+          <!-- Nodo: App Android -->
+          <div class="arch-node-real arch-node-android arch-anim" data-arch-index="2">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+            </svg>
+            <span class="arch-node-label">App Android</span>
+            <div class="arch-node-tech-list">
+              <span>Kotlin</span><span>Jetpack Compose</span>
+              <span>ZXing</span><span>ViewModel + StateFlow</span>
+              <span>Retrofit / OkHttp</span><span>Room</span>
+            </div>
+          </div>
+
+          <div class="arch-real-arrow arch-anim" data-arch-index="3">→</div>
+
+          <!-- Nodo: Backend FastAPI -->
+          <div class="arch-node-real arch-node-backend arch-anim" data-arch-index="4">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            <span class="arch-node-label">Backend FastAPI</span>
+            <div class="arch-node-tech-list">
+              <span>FastAPI</span><span>Docker</span>
+              <span>Validación defensiva</span>
+              <span>Orquestación</span>
+              <span>Decisión final</span>
+            </div>
+          </div>
+
+          <div class="arch-real-arrow arch-anim" data-arch-index="5">→</div>
+
+          <!-- Nodo: Fuentes externas (stack vertical) -->
+          <div class="arch-node-real arch-node-apis arch-anim" data-arch-index="6">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            <span class="arch-node-label">Fuentes externas</span>
+            <div class="arch-node-tech-list">
+              <span>Google Web Risk</span>
+              <span>IPQualityScore</span>
+              <span>OpenPhish</span>
+              <span>Heurísticas locales</span>
+              <span>SnapRender</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Mini tarjetas de principios de seguridad -->
+        <div class="arch-principles animate-fade-up delay-4">
+          <div class="arch-principle">
+            <span class="arch-principle-dot"></span>
+            Las claves API están solo en el backend
+          </div>
+          <div class="arch-principle">
+            <span class="arch-principle-dot"></span>
+            Android no decide el riesgo final
+          </div>
+          <div class="arch-principle">
+            <span class="arch-principle-dot"></span>
+            El backend centraliza el análisis
+          </div>
+          <div class="arch-principle">
+            <span class="arch-principle-dot"></span>
+            Sin apertura automática sin análisis previo
           </div>
         </div>
       </section>
@@ -329,23 +600,94 @@ const slideTitles = [
       <section class="slide" id="slide-10" data-slide="10" aria-label="Motor de Decisión">
         <div class="slide-tag animate-fade-in">Seguridad</div>
         <h2 class="slide-title animate-fade-up delay-1">Motor de Decisión</h2>
-        <p class="slide-subtitle animate-fade-up delay-2">Semáforo de seguridad unificado</p>
 
-        <div class="semaphore-row animate-fade-up delay-3" style="margin-top: 32px;">
-          <div class="semaphore-item">
-            <div class="semaphore-dot green-dot" id="sem-green"></div>
-            <RiskBadge level="safe" label="URL Segura" />
-            <span class="semaphore-label">Permite abrir</span>
+        <div class="decision-layout animate-fade-up delay-2">
+
+          <!-- Columna izquierda: niveles -->
+          <div class="decision-levels">
+
+            <!-- risk_level -->
+            <div class="decision-section">
+              <div class="decision-section-label">risk_level</div>
+              <div class="decision-risk-row">
+                <div class="decision-risk safe">
+                  <span class="decision-dot" style="background:#22c55e"></span>
+                  <span>Seguro</span>
+                </div>
+                <div class="decision-risk warn">
+                  <span class="decision-dot" style="background:#f97316"></span>
+                  <span>Sospechoso</span>
+                </div>
+                <div class="decision-risk danger">
+                  <span class="decision-dot" style="background:#ef4444"></span>
+                  <span>Peligroso</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- analysis_status -->
+            <div class="decision-section">
+              <div class="decision-section-label">analysis_status</div>
+              <div class="decision-status-row">
+                <div class="decision-status status-complete">Completo</div>
+                <div class="decision-status status-partial">Parcial</div>
+                <div class="decision-status status-unavail">No disponible</div>
+              </div>
+            </div>
+
           </div>
-          <div class="semaphore-item">
-            <div class="semaphore-dot orange-dot" id="sem-orange"></div>
-            <RiskBadge level="warn" label="Sospechoso" />
-            <span class="semaphore-label">Requiere confirmación</span>
+
+          <!-- Columna derecha: reglas de actuación -->
+          <div class="decision-rules">
+            <div class="decision-rules-header">Reglas de actuación</div>
+
+            <div class="decision-rule decision-rule-safe">
+              <div class="decision-rule-condition">
+                <span class="drule-badge safe">safe</span>
+                <span class="drule-plus">+</span>
+                <span class="drule-badge complete">complete</span>
+              </div>
+              <div class="decision-rule-action">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Apertura directa permitida
+              </div>
+            </div>
+
+            <div class="decision-rule decision-rule-warn">
+              <div class="decision-rule-condition">
+                <span class="drule-badge warn">suspicious</span>
+                <span class="drule-plus">/</span>
+                <span class="drule-badge partial">partial</span>
+              </div>
+              <div class="decision-rule-action">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                Confirmación explícita del usuario
+              </div>
+            </div>
+
+            <div class="decision-rule decision-rule-danger">
+              <div class="decision-rule-condition">
+                <span class="drule-badge danger">dangerous</span>
+              </div>
+              <div class="decision-rule-action">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                Advertencia fuerte, acceso bloqueado
+              </div>
+            </div>
+
           </div>
-          <div class="semaphore-item">
-            <div class="semaphore-dot red-dot" id="sem-red"></div>
-            <RiskBadge level="danger" label="Bloqueado" />
-            <span class="semaphore-label">Evita el acceso</span>
+        </div>
+
+        <!-- Mensaje fail-secure destacado -->
+        <div class="failsecure-banner animate-fade-up delay-4">
+          <div class="failsecure-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L3 7l9 5 9-5-9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/>
+            </svg>
+          </div>
+          <div class="failsecure-text">
+            <strong>Enfoque fail-secure:</strong>
+            Si el análisis es parcial o no concluyente, nunca se marca como seguro. Ante la duda, se alerta.
           </div>
         </div>
       </section>
@@ -354,66 +696,99 @@ const slideTitles = [
       <section class="slide" id="slide-11" data-slide="11" aria-label="Prototipo Funcional">
         <div class="slide-tag animate-fade-in">Demo</div>
         <h2 class="slide-title animate-fade-up delay-1">Prototipo Funcional</h2>
-        <p class="slide-subtitle animate-fade-up delay-2">Interfaz nativa en Android</p>
+        <p class="slide-subtitle animate-fade-up delay-2">Interfaz nativa desarrollada en Kotlin y Compose</p>
 
         <div class="phones-row animate-fade-up delay-3" style="margin-top: 24px;">
-          <PhoneMockup label="Pantalla principal" placeholder="Escáner" animDelay={3} />
-          <PhoneMockup featured={true} label="Análisis en curso" placeholder="Analizando..." animDelay={4} />
-          <PhoneMockup label="Resultado Seguro" placeholder="Verde" animDelay={5} />
+          
+          <!-- Pantalla 1: Escáner -->
+          <PhoneMockup label="Pantalla Principal" animDelay={3}>
+            <div class="android-screen sc-scanner">
+              <div class="and-top-bar">Scanner Security</div>
+              <div class="and-camera-sim">
+                <div class="and-scanner-guide"></div>
+              </div>
+              <div class="and-bottom-sheet">
+                <div class="and-input-url">https://...</div>
+                <div class="and-fab">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </div>
+              </div>
+            </div>
+          </PhoneMockup>
+
+          <!-- Pantalla 2: Análisis (Destacada) -->
+          <PhoneMockup featured={true} label="Motor de Análisis" animDelay={4}>
+            <div class="android-screen sc-analysis">
+              <div class="and-top-bar">Analizando URL</div>
+              <div class="and-content">
+                <div class="and-loader-circle"></div>
+                <div class="and-analysis-steps">
+                  <div class="and-step done">Google Web Risk</div>
+                  <div class="and-step done">IPQualityScore</div>
+                  <div class="and-step pulse">OpenPhish</div>
+                </div>
+              </div>
+            </div>
+          </PhoneMockup>
+
+          <!-- Pantalla 3: Resultado -->
+          <PhoneMockup label="Resultado de Seguridad" animDelay={5}>
+            <div class="android-screen sc-result safe">
+              <div class="and-top-bar">Resultado</div>
+              <div class="and-result-header">
+                <div class="and-shield-icon">✓</div>
+                <strong class="and-risk-text">URL SEGURA</strong>
+              </div>
+              <div class="and-result-body">
+                <p>No se han detectado amenazas. Puedes acceder con seguridad.</p>
+                <div class="and-btn-primary">ABRIR ENLACE</div>
+                <div class="and-btn-secondary">Guardar en Historial</div>
+              </div>
+            </div>
+          </PhoneMockup>
+
         </div>
       </section>
 
-      <!-- ─── SLIDE 12: LANDING PAGE ───────────────────────── -->
-      <section class="slide" id="slide-12" data-slide="12" aria-label="Landing Page">
-        <div class="slide-tag animate-fade-in">Captación</div>
-        <h2 class="slide-title animate-fade-up delay-1">Landing Page</h2>
-        <p class="slide-subtitle animate-fade-up delay-2">Presencia web para descarga</p>
-
-        <div class="slide-two-col animate-fade-up delay-3" style="margin-top: 24px;">
-          <div style="display: flex; flex-direction: column; gap: 16px;">
-            <p><strong>Diseño Responsivo</strong> adaptado para cualquier dispositivo.</p>
-            <p><strong>SEO Optimizado</strong> para búsquedas relacionadas con "seguridad QR".</p>
-            <p><strong>Llamadas a la acción (CTA)</strong> claras para descargar la app.</p>
-          </div>
-          <div style="background: var(--color-green-bg); border-radius: var(--radius-card); padding: 40px; text-align: center; border: 2px dashed var(--color-green-light);">
-            <p style="color: var(--color-green-dark); font-weight: bold;">Vista previa de Landing Page</p>
-            <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 8px;">(Mockup web o iframe iría aquí)</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ─── SLIDE 13: VIABILIDAD Y COSTES ────────────────── -->
-      <section class="slide" id="slide-13" data-slide="13" aria-label="Viabilidad y Costes">
+      <!-- ─── SLIDE 12: VIABILIDAD Y COSTES ────────────────── -->
+      <section class="slide" id="slide-12" data-slide="12" aria-label="Viabilidad y Costes">
         <div class="slide-tag animate-fade-in">Viabilidad</div>
-        <h2 class="slide-title animate-fade-up delay-1">Viabilidad y Costes</h2>
-        <p class="slide-subtitle animate-fade-up delay-2">Presupuesto inicial para el MVP</p>
+        <h2 class="slide-title animate-fade-up delay-1">Viabilidad y Análisis de Costes</h2>
 
-        <div class="cost-grid animate-fade-up delay-3" style="margin-top: 24px;">
+        <div class="cost-grid animate-fade-up delay-2">
+          <!-- Desarrollo -->
           <div class="cost-card">
-            <span class="cost-label">Desarrollo (Horas estimadas)</span>
-            <span class="cost-value">120h</span>
-            <span class="cost-sub">Diseño, Frontend y Backend MVP</span>
+            <span class="cost-label">Recursos Humanos (TFC)</span>
+            <span class="cost-value">~450h</span>
+            <span class="cost-sub">Desarrollo, documentación y pruebas (20€/h est.)</span>
           </div>
+          <!-- Hardware -->
           <div class="cost-card">
-            <span class="cost-label">Infraestructura (Mensual)</span>
-            <span class="cost-value">0€</span>
-            <span class="cost-sub">Tier gratuito (Firebase, Vercel)</span>
+            <span class="cost-label">Hardware y Licencias</span>
+            <span class="cost-value">~25€</span>
+            <span class="cost-sub">Licencia Google Play (pago único) + Dispositivo testing</span>
           </div>
+          <!-- Infraestructura -->
           <div class="cost-card">
-            <span class="cost-label">Licencias APIs Externas</span>
-            <span class="cost-value">0€</span>
-            <span class="cost-sub">Google Safe Browsing y VirusTotal públicas</span>
+            <span class="cost-label">Operaciones (Mensual)</span>
+            <span class="cost-value">~15€</span>
+            <span class="cost-sub">Hosting VPS (FastAPI/Docker) + APIs (IPQS/Google)</span>
           </div>
-          <div class="cost-card" style="border-color: var(--color-green); background: var(--color-green-bg);">
-            <span class="cost-label">Coste total primer año</span>
-            <span class="cost-value">0€</span>
-            <span class="cost-sub">En gastos fijos de servidores y APIs</span>
+          <!-- Total -->
+          <div class="cost-card cost-featured">
+            <span class="cost-label">Valoración Total Proyecto</span>
+            <span class="cost-value">9.200€</span>
+            <span class="cost-sub">Inversión estimada para salida a producción (MVP)</span>
           </div>
+        </div>
+
+        <div class="cost-note animate-fade-up delay-4">
+          * El modelo es escalable gracias al uso de tecnologías Open Source y arquitecturas ligeras.
         </div>
       </section>
 
-      <!-- ─── SLIDE 14: CONCLUSIÓN ─────────────────────────── -->
-      <section class="slide slide-close" id="slide-14" data-slide="14" aria-label="Conclusión">
+      <!-- ─── SLIDE 13: CONCLUSIÓN ─────────────────────────── -->
+      <section class="slide slide-close" id="slide-13" data-slide="13" aria-label="Conclusión">
         <div class="slide-tag animate-fade-in">Cierre</div>
         <h2 class="slide-title animate-fade-up delay-1">Conclusión</h2>
 
@@ -446,7 +821,7 @@ const slideTitles = [
       </span>
 
       <!-- Contador numérico -->
-      <span class="slide-counter" id="slideCounter" aria-live="polite">1 / 14</span>
+      <span class="slide-counter" id="slideCounter" aria-live="polite">1 / 13</span>
 
       <!-- Título de la slide actual -->
       <span class="slide-current-title" id="slideTitle" aria-hidden="true">Portada</span>
@@ -659,12 +1034,12 @@ const slideTitles = [
     // ─────────────────────────────────────────────────
     // DATOS
     // ─────────────────────────────────────────────────
-    const TOTAL = 14;
+    const TOTAL = 13;
     const SLIDE_TITLES = [
       'Portada', 'Índice', 'El Problema', 'Investigación de Usuarios',
       'Interés del Mercado', 'Persona Prototipo', 'Propuesta de Valor',
       'MVP y Requisitos', 'Arquitectura', 'Motor de Decisión',
-      'Prototipo Funcional', 'Landing Page', 'Viabilidad y Costes', 'Conclusión',
+      'Prototipo Funcional', 'Viabilidad y Costes', 'Conclusión',
     ];
 
     let current = 1;
@@ -802,36 +1177,18 @@ const slideTitles = [
       // SLIDE 9: Arquitectura
       if (slideNum === 9) {
         const archSlide = getSlide(9);
-        const nodes = archSlide.querySelectorAll('.arch-node');
-        const arrows = archSlide.querySelectorAll('.arch-arrow');
+        const nodes = archSlide.querySelectorAll('.arch-anim');
         
         // Reset
         nodes.forEach(n => n.classList.remove('visible'));
-        arrows.forEach(a => a.classList.remove('visible'));
 
         // Delay escalonado
         nodes.forEach((node) => {
           const idx = parseInt(node.dataset.archIndex || '0', 10);
           setTimeout(() => {
             node.classList.add('visible');
-            const arrow = archSlide.querySelector(`.arch-arr-${idx}`);
-            if (arrow) arrow.classList.add('visible');
-          }, 300 + (idx * 500));
+          }, 300 + (idx * 300));
         });
-      }
-
-      // SLIDE 10: Semáforo
-      if (slideNum === 10) {
-        const semSlide = getSlide(10);
-        const dots = semSlide.querySelectorAll('.semaphore-dot');
-        
-        // Reset
-        dots.forEach(d => d.classList.remove('lit'));
-
-        // Secuencia: Verde (500ms) -> Naranja (1500ms) -> Rojo (2500ms)
-        setTimeout(() => semSlide.querySelector('#sem-green')?.classList.add('lit'), 500);
-        setTimeout(() => semSlide.querySelector('#sem-orange')?.classList.add('lit'), 1500);
-        setTimeout(() => semSlide.querySelector('#sem-red')?.classList.add('lit'), 2500);
       }
     }
 
