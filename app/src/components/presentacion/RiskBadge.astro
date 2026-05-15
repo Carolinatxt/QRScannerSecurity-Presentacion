@@ -1,0 +1,52 @@
+---
+/**
+ * RiskBadge.astro — Badge de nivel de riesgo (semáforo inline)
+ *
+ * Props:
+ *   level   {string}  'safe' | 'warn' | 'danger'
+ *   label   {string}  Texto del badge. Ej: "Seguro", "Sospechoso", "Peligroso".
+ *   size    {string}  'sm' | 'md' | 'lg'. Por defecto 'md'.
+ */
+interface Props {
+  level: 'safe' | 'warn' | 'danger';
+  label: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const { level, label, size = 'md' } = Astro.props;
+
+// Mapa de nivel → color del punto
+const dotColors: Record<string, string> = {
+  safe:   '#22c55e',
+  warn:   '#f97316',
+  danger: '#ef4444',
+};
+
+const dotColor = dotColors[level] ?? dotColors['safe'];
+---
+
+<!--
+  .risk-badge.safe / .risk-badge.warn / .risk-badge.danger
+  Los colores de fondo y borde se definen en presentacion.css
+-->
+<span class={`risk-badge ${level} risk-badge--${size}`} role="status" aria-label={`Nivel de riesgo: ${label}`}>
+  <!-- Punto de color (indica el estado visualmente) -->
+  <span
+    class="dot"
+    aria-hidden="true"
+    style={`background: ${dotColor} !important;`}
+  ></span>
+  {label}
+</span>
+
+<style>
+  /* Variantes de tamaño */
+  .risk-badge--sm { font-size: 11px; padding: 3px 10px; gap: 5px; }
+  .risk-badge--md { font-size: 13px; padding: 6px 16px; gap: 7px; }
+  .risk-badge--lg { font-size: 16px; padding: 8px 20px; gap: 8px; }
+
+  .risk-badge--lg .dot {
+    width: 10px !important;
+    height: 10px !important;
+  }
+</style>

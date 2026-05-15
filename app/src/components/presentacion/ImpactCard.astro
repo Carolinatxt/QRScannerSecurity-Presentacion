@@ -1,0 +1,60 @@
+---
+/**
+ * ImpactCard.astro — Tarjeta de métrica de impacto
+ *
+ * Muestra un dato grande con icono, cifra y texto descriptivo.
+ * Usada para métricas de INCIBE, encuestas, etc.
+ *
+ * Props:
+ *   icon       {string}  Emoji/icono a la izquierda.
+ *   value      {string}  Número o cifra destacada. Ej: "+25.000", "84%".
+ *   label      {string}  Descripción del dato.
+ *   source     {string}  Fuente de los datos. Opcional.
+ *   variant    {string}  '' (verde) | 'orange' | 'red'
+ *   animDelay  {number}  Retraso de animación 1-6. Opcional.
+ */
+interface Props {
+  icon?: string;
+  value: string;
+  label: string;
+  source?: string;
+  variant?: '' | 'orange' | 'red';
+  animDelay?: 1 | 2 | 3 | 4 | 5 | 6;
+}
+
+const { icon, value, label, source, variant = '', animDelay } = Astro.props;
+
+const cardClass = [
+  'impact-card',
+  variant,
+  animDelay ? `animate-fade-up delay-${animDelay}` : 'animate-fade-up',
+].filter(Boolean).join(' ');
+---
+
+<div class={cardClass}>
+  <!-- Icono grande a la izquierda -->
+  {icon && <span class="impact-icon" aria-hidden="true" set:html={icon}></span>}
+
+  <div class="impact-body">
+    <!-- Cifra principal -->
+    <div class="impact-number">{value}</div>
+
+    <!-- Descripción -->
+    <div class="impact-label">{label}</div>
+
+    <!-- Fuente (INCIBE, encuesta, etc.) -->
+    {source && (
+      <div class="impact-source">Fuente: {source}</div>
+    )}
+  </div>
+</div>
+
+<style>
+  .impact-source {
+    font-size: 10px;
+    color: var(--color-text-muted);
+    opacity: 0.65;
+    margin-top: 6px;
+    font-style: italic;
+  }
+</style>

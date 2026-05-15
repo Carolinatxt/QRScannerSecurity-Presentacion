@@ -1,0 +1,55 @@
+---
+/**
+ * Slide.astro — Contenedor de diapositiva
+ *
+ * Props:
+ *   n        {number}  Número de diapositiva (1-based). Requerido.
+ *   tag      {string}  Texto de la etiqueta superior (verde pill). Opcional.
+ *   label    {string}  Aria-label accesible. Por defecto usa el tag o "Diapositiva N".
+ *   variant  {string}  '' | 'risk' | 'close' | 'tech'  → aplica fondo temático.
+ *   first    {boolean} Si es true, la slide arranca con clase 'active'.
+ */
+interface Props {
+  n: number;
+  tag?: string;
+  label?: string;
+  variant?: 'risk' | 'close' | 'tech' | '';
+  first?: boolean;
+}
+
+const {
+  n,
+  tag,
+  label,
+  variant = '',
+  first = false,
+} = Astro.props;
+
+// Clases CSS de la slide
+const slideClasses = [
+  'slide',
+  first ? 'active' : '',
+  variant ? `slide-${variant}` : '',
+].filter(Boolean).join(' ');
+
+const ariaLabel = label ?? tag ?? `Diapositiva ${n}`;
+---
+
+<!--
+  .slide — posición absoluta, ocupa el 100% del viewport
+  data-slide — usado por el JS de navegación
+-->
+<section
+  class={slideClasses}
+  id={`slide-${n}`}
+  data-slide={n}
+  aria-label={ariaLabel}
+>
+  <!-- Etiqueta de sección (pill verde) -->
+  {tag && (
+    <div class="slide-tag animate-fade-in">{tag}</div>
+  )}
+
+  <!-- Contenido de la diapositiva (lo que ponga quien la use) -->
+  <slot />
+</section>

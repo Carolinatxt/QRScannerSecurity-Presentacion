@@ -1,0 +1,72 @@
+---
+/**
+ * PersonaCard.astro — Ficha de persona prototipo
+ *
+ * Props:
+ *   emoji      {string}    Emoji para el avatar. Ej: "👤"
+ *   name       {string}    Nombre de la persona (puede ser genérico).
+ *   role       {string}    Descripción del perfil.
+ *   tags       {string[]}  Array de contextos/etiquetas. Ej: ["Restaurantes", "Comercios"]
+ *   details    {{ label: string; value: string }[]}  Filas de detalles.
+ *   animDelay  {number}    Retraso de animación 1-6. Opcional.
+ */
+interface Detail {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  initial?: string;
+  name: string;
+  role: string;
+  tags?: string[];
+  details?: Detail[];
+  animDelay?: 1 | 2 | 3 | 4 | 5 | 6;
+}
+
+const {
+  initial = 'U',
+  name,
+  role,
+  tags = [],
+  details = [],
+  animDelay,
+} = Astro.props;
+
+const cardClass = [
+  'persona-card',
+  animDelay ? `animate-scale delay-${animDelay}` : 'animate-scale',
+].filter(Boolean).join(' ');
+---
+
+<div class={cardClass}>
+  <!-- Avatar (initial) -->
+  <div class="persona-avatar" aria-hidden="true">{initial}</div>
+
+  <div class="persona-info">
+    <!-- Nombre y rol -->
+    <div class="persona-name">{name}</div>
+    <div class="persona-role">{role}</div>
+
+    <!-- Tags de contexto -->
+    {tags.length > 0 && (
+      <div class="persona-tags">
+        {tags.map(tag => (
+          <span class="persona-tag">{tag}</span>
+        ))}
+      </div>
+    )}
+
+    <!-- Filas de detalles (Necesidad, Dolor, Objetivo…) -->
+    {details.length > 0 && (
+      <div class="persona-details">
+        {details.map(({ label, value }) => (
+          <div class="persona-detail-row">
+            <span class="detail-label">{label}</span>
+            <span class="detail-val">{value}</span>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</div>

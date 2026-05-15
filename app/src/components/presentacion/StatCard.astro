@@ -1,0 +1,63 @@
+---
+/**
+ * StatCard.astro — Tarjeta de estadística / dato destacado
+ *
+ * Props:
+ *   value      {string}  Número o valor grande. Ej: "84%", "37", "25.000".
+ *   label      {string}  Descripción del dato.
+ *   sub        {string}  Texto adicional debajo del label. Opcional.
+ *   variant    {string}  '' (verde) | 'orange' | 'red'
+ *   animDelay  {number}  Retraso de animación 1-6. Opcional.
+ *   icon       {string}  Emoji o carácter de icono. Opcional.
+ */
+interface Props {
+  value: string;
+  label: string;
+  sub?: string;
+  variant?: '' | 'orange' | 'red';
+  animDelay?: 1 | 2 | 3 | 4 | 5 | 6;
+  icon?: string;
+}
+
+const {
+  value,
+  label,
+  sub,
+  variant = '',
+  animDelay,
+  icon,
+} = Astro.props;
+
+const cardClass = ['stat-card', variant].filter(Boolean).join(' ');
+const animClass = animDelay
+  ? `animate-fade-up delay-${animDelay}`
+  : 'animate-fade-up';
+---
+
+<div class={`${cardClass} ${animClass}`}>
+  <!-- Icono opcional -->
+  {icon && <span class="stat-icon" aria-hidden="true">{icon}</span>}
+
+  <!-- Número grande -->
+  <div class="stat-number" aria-label={`${value}: ${label}`}>{value}</div>
+
+  <!-- Etiqueta -->
+  <div class="stat-label">{label}</div>
+
+  <!-- Subtexto opcional -->
+  {sub && <div class="stat-sub">{sub}</div>}
+</div>
+
+<style>
+  /* Estilos locales que complementan los globales de presentacion.css */
+  .stat-icon {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+  .stat-sub {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+    opacity: 0.8;
+  }
+</style>

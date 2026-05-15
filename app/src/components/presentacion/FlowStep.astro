@@ -1,0 +1,52 @@
+---
+/**
+ * FlowStep.astro — Paso dentro de un flujo visual
+ *
+ * Uso: colocar varios <FlowStep> dentro de un <div class="flow-row">
+ * separados por <span class="flow-arrow">→</span>
+ *
+ * Props:
+ *   icon       {string}  Emoji o carácter del icono del paso.
+ *   label      {string}  Texto principal del paso.
+ *   sub        {string}  Descripción corta. Opcional.
+ *   animDelay  {number}  Retraso de animación 1-6. Opcional.
+ *   highlight  {boolean} Si true, borde y fondo verde. Opcional.
+ */
+interface Props {
+  icon?: string;
+  label: string;
+  sub?: string;
+  animDelay?: 1 | 2 | 3 | 4 | 5 | 6;
+  highlight?: boolean;
+}
+
+const { icon, label, sub, animDelay, highlight = false } = Astro.props;
+
+const stepClass = [
+  'flow-step',
+  highlight ? 'flow-step--highlight' : '',
+  animDelay ? `animate-fade-up delay-${animDelay}` : 'animate-fade-up',
+].filter(Boolean).join(' ');
+---
+
+<div class={stepClass}>
+  <!-- Icono con fondo redondeado (opcional) -->
+  {icon && <div class="step-icon" aria-hidden="true" set:html={icon}></div>}
+
+  <!-- Texto principal -->
+  <div class="step-label">{label}</div>
+
+  <!-- Descripción corta opcional -->
+  {sub && <div class="step-sub">{sub}</div>}
+</div>
+
+<style>
+  /* Variante destacada — borde y fondo verde */
+  .flow-step--highlight {
+    border-color: var(--color-green) !important;
+    background: var(--color-green-bg) !important;
+  }
+  .flow-step--highlight .step-icon {
+    background: var(--color-green-light);
+  }
+</style>

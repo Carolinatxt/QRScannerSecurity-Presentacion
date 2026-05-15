@@ -1,0 +1,934 @@
+---
+/**
+ * presentacion.astro — Ruta: /presentacion
+ * Presentación web del TFC "QR Scanner Security"
+ * para defensa ante tribunal/inversores.
+ *
+ * Fase 5: diapositivas 3-6 con contenido real.
+ */
+import PresentacionLayout from '../layouts/PresentacionLayout.astro';
+import ImpactCard  from '../components/presentacion/ImpactCard.astro';
+import StatCard    from '../components/presentacion/StatCard.astro';
+import PersonaCard from '../components/presentacion/PersonaCard.astro';
+import FlowStep    from '../components/presentacion/FlowStep.astro';
+import ArchNode    from '../components/presentacion/ArchNode.astro';
+import RiskBadge   from '../components/presentacion/RiskBadge.astro';
+import PhoneMockup from '../components/presentacion/PhoneMockup.astro';
+
+const TOTAL_SLIDES = 14;
+
+// Títulos de cada diapositiva (para el índice y el título de pestaña)
+const slideTitles = [
+  'Portada',
+  'Índice',
+  'El Problema',
+  'Investigación de Usuarios',
+  'Interés del Mercado',
+  'Persona Prototipo',
+  'Propuesta de Valor',
+  'MVP y Requisitos',
+  'Arquitectura',
+  'Motor de Decisión',
+  'Prototipo Funcional',
+  'Landing Page',
+  'Viabilidad y Costes',
+  'Conclusión',
+];
+---
+
+<PresentacionLayout title="QR Scanner Security — Presentación TFC">
+
+  <!-- =====================================================
+       WRAPPER PRINCIPAL DE LA PRESENTACIÓN
+       ===================================================== -->
+  <div class="presentation-wrapper" id="presentacion">
+
+    <!-- Barra de progreso (arriba) -->
+    <div class="progress-bar-track" aria-hidden="true">
+      <div class="progress-bar-fill" id="progressFill" style="width: 7.14%"></div>
+    </div>
+
+    <!-- =====================================================
+         DIAPOSITIVAS
+         ===================================================== -->
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- ─── SLIDE 1: PORTADA ──────────────────────────── -->
+      <section class="slide active" id="slide-1" data-slide="1" aria-label="Portada">
+        <div class="slide-tag animate-fade-in">TFC · Defensa ante Tribunal</div>
+
+        <!-- Icono visual central -->
+        <div class="cover-visual animate-scale delay-1" aria-hidden="true">
+          <div class="cover-shield">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+              <path d="M40 4L8 18v22c0 18.2 13.7 35.2 32 39 18.3-3.8 32-20.8 32-39V18L40 4Z"
+                    fill="var(--color-green-light)" stroke="var(--color-green)" stroke-width="2.5"/>
+              <path d="M30 40l7 7 13-14" stroke="var(--color-green-dark)" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cover-qr" aria-label="Icono QR">
+            <!-- QR decorativo SVG simplificado -->
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+              <rect x="4"  y="4"  width="16" height="16" rx="2" fill="var(--color-green)" opacity=".9"/>
+              <rect x="28" y="4"  width="16" height="16" rx="2" fill="var(--color-green)" opacity=".9"/>
+              <rect x="4"  y="28" width="16" height="16" rx="2" fill="var(--color-green)" opacity=".9"/>
+              <rect x="7"  y="7"  width="10" height="10" rx="1" fill="white"/>
+              <rect x="31" y="7"  width="10" height="10" rx="1" fill="white"/>
+              <rect x="7"  y="31" width="10" height="10" rx="1" fill="white"/>
+              <rect x="28" y="28" width="4"  height="4"  rx="1" fill="var(--color-green)" opacity=".8"/>
+              <rect x="34" y="28" width="4"  height="4"  rx="1" fill="var(--color-green)" opacity=".8"/>
+              <rect x="28" y="34" width="4"  height="4"  rx="1" fill="var(--color-green)" opacity=".8"/>
+              <rect x="34" y="34" width="4"  height="4"  rx="1" fill="var(--color-green)" opacity=".8"/>
+              <rect x="40" y="28" width="4"  height="4"  rx="1" fill="var(--color-green)" opacity=".5"/>
+              <rect x="40" y="40" width="4"  height="4"  rx="1" fill="var(--color-green)" opacity=".5"/>
+            </svg>
+          </div>
+        </div>
+
+        <h1 class="slide-title animate-fade-up delay-2">
+          QR Scanner <span class="accent">Security</span>
+        </h1>
+        <p class="slide-subtitle animate-fade-up delay-3">
+          Analiza antes de abrir
+        </p>
+        <p class="cover-desc animate-fade-up delay-4">
+          Aplicación Android para el análisis preventivo de URLs en códigos QR.
+        </p>
+
+        <div class="cover-meta animate-fade-in delay-5">
+          <span>Trabajo de Fin de Ciclo</span>
+          <span class="sep">·</span>
+          <span>2025 – 2026</span>
+        </div>
+      </section>
+
+      <!-- ─── SLIDE 2: ÍNDICE ──────────────────────────── -->
+      <section class="slide" id="slide-2" data-slide="2" aria-label="Índice">
+        <div class="slide-tag animate-fade-in">Recorrido</div>
+        <h2 class="slide-title animate-fade-up delay-1">Estructura de la presentación</h2>
+
+        <div class="index-grid animate-fade-up delay-2">
+          <!-- Bloque 1 -->
+          <button class="index-block" data-goto="3" title="Ir al Problema">
+            <span class="index-icon">⚠️</span>
+            <strong>Problema</strong>
+            <span class="index-slides">Diap. 3</span>
+          </button>
+          <!-- Bloque 2 -->
+          <button class="index-block" data-goto="4" title="Ir a Investigación de Usuarios">
+            <span class="index-icon">👥</span>
+            <strong>Usuario</strong>
+            <span class="index-slides">Diap. 4–6</span>
+          </button>
+          <!-- Bloque 3 -->
+          <button class="index-block" data-goto="7" title="Ir a Solución">
+            <span class="index-icon">✅</span>
+            <strong>Solución</strong>
+            <span class="index-slides">Diap. 7–10</span>
+          </button>
+          <!-- Bloque 4 -->
+          <button class="index-block" data-goto="11" title="Ir al Prototipo">
+            <span class="index-icon">📱</span>
+            <strong>Prototipo</strong>
+            <span class="index-slides">Diap. 11–12</span>
+          </button>
+          <!-- Bloque 5 -->
+          <button class="index-block" data-goto="13" title="Ir a Viabilidad">
+            <span class="index-icon">💶</span>
+            <strong>Viabilidad</strong>
+            <span class="index-slides">Diap. 13</span>
+          </button>
+          <!-- Bloque 6 -->
+          <button class="index-block" data-goto="14" title="Ir al Cierre">
+            <span class="index-icon">🎯</span>
+            <strong>Cierre</strong>
+            <span class="index-slides">Diap. 14</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ─── SLIDE 3: EL PROBLEMA ──────────────────────── -->
+      <section class="slide slide-risk" id="slide-3" data-slide="3" aria-label="El Problema">
+        <div class="slide-tag animate-fade-in">El Problema</div>
+
+        <p class="big-quote animate-fade-up delay-1">
+          Un QR oculta la URL hasta que <em>ya lo has escaneado.</em>
+        </p>
+
+        <!-- 3 dimensiones del problema -->
+        <div class="problem-cards animate-fade-up delay-2">
+          <div class="prob-card">
+            <strong>Sin visibilidad previa</strong>
+            <p>No puedes leer el destino antes de escanear.</p>
+          </div>
+          <div class="prob-card">
+            <strong>Quishing activo</strong>
+            <p>QRs falsos que dirigen a phishing, robo de datos o malware.</p>
+          </div>
+          <div class="prob-card">
+            <strong>Cualquiera es objetivo</strong>
+            <p>Usuarios sin conocimientos técnicos son el blanco más frecuente.</p>
+          </div>
+        </div>
+
+        <!-- Dato INCIBE destacado -->
+        <ImpactCard
+          value="+25.000"
+          label="casos de phishing gestionados por INCIBE en España durante 2025 — la principal amenaza de fraude online."
+          source="INCIBE 2025"
+          variant="orange"
+          animDelay={3}
+        />
+
+        <p class="slide-source">Fuente: INCIBE — Instituto Nacional de Ciberseguridad, Informe 2025</p>
+      </section>
+
+      <!-- ─── SLIDE 4: INVESTIGACIÓN DE USUARIOS ───────────── -->
+      <section class="slide" id="slide-4" data-slide="4" aria-label="Investigación de Usuarios">
+        <div class="slide-tag animate-fade-in">Investigación</div>
+        <h2 class="slide-title animate-fade-up delay-1">Investigación de Usuarios</h2>
+        <p class="slide-subtitle animate-fade-up delay-2">37 participantes · Cuestionario validado</p>
+
+        <!-- Tarjetas de datos -->
+        <div class="stats-grid animate-fade-up delay-2">
+          <StatCard value="37" label="participantes en el estudio" animDelay={2} />
+          <StatCard value="84%" label="usa QR en restaurantes o cartas digitales" animDelay={3} />
+          <StatCard value="46%" label="no revisa la URL antes de abrirla" variant="orange" animDelay={4} />
+        </div>
+
+        <!-- Mensaje de cierre -->
+        <div class="quote-support animate-fade-up delay-5">
+          "El usuario medio necesita una ayuda clara antes de abrir un enlace."
+        </div>
+      </section>
+
+      <!-- ─── SLIDE 5: INTERÉS DEL MERCADO ─────────────────── -->
+      <section class="slide" id="slide-5" data-slide="5" aria-label="Interés del Mercado">
+        <div class="slide-tag animate-fade-in">Mercado</div>
+        <h2 class="slide-title animate-fade-up delay-1">Interés del Mercado</h2>
+        <p class="slide-subtitle animate-fade-up delay-2">¿Usarías una app así?</p>
+
+        <div class="stats-grid animate-fade-up delay-2">
+          <StatCard value="68%" label="la usaría definitivamente" animDelay={2} />
+          <StatCard value="30%" label="la usaría si es rápida y fácil" animDelay={3} />
+          <StatCard value="49%" label="prioriza velocidad y simplicidad" animDelay={4} />
+        </div>
+
+        <div class="market-insight animate-fade-up delay-5">
+          <span class="insight-bar"></span>
+          <p>"La solución debe ser <strong>rápida, clara y sin tecnicismos.</strong>"</p>
+        </div>
+      </section>
+
+      <!-- ─── SLIDE 6: PERSONA PROTOTIPO ───────────────────── -->
+      <section class="slide" id="slide-6" data-slide="6" aria-label="Persona Prototipo">
+        <div class="slide-tag animate-fade-in">Usuario</div>
+        <h2 class="slide-title animate-fade-up delay-1">Persona Prototipo</h2>
+
+        <PersonaCard
+          initial="U"
+          name="Usuario no técnico"
+          role="Adulto entre 25-55 años · Sin conocimientos de ciberseguridad"
+          tags={['Restaurantes', 'Transporte', 'Comercios', 'Carteles urbanos']}
+          details={[
+            { label: 'Contexto',  value: 'Escanea QR a diario en entornos cotidianos.' },
+            { label: 'Necesidad', value: 'Saber si puede abrir un QR sin entender ciberseguridad.' },
+            { label: 'Dolor',     value: 'No sabe identificar si una URL es fiable.' },
+            { label: 'Objetivo',  value: 'Decidir rápido y con confianza.' },
+          ]}
+          animDelay={2}
+        />
+
+        <p class="quote-support animate-fade-up delay-4">
+          Un resultado claro en segundos, sin tecnicismos.
+        </p>
+      </section>
+
+      <!-- ─── SLIDE 7: PROPUESTA DE VALOR ──────────────────── -->
+      <section class="slide" id="slide-7" data-slide="7" aria-label="Propuesta de Valor">
+        <div class="slide-tag animate-fade-in">Solución</div>
+        <h2 class="slide-title animate-fade-up delay-1">Propuesta de Valor</h2>
+        <p class="slide-subtitle animate-fade-up delay-2">Un escudo antes del navegador</p>
+
+        <div class="flow-row animate-fade-up delay-3" style="margin-top: 24px;">
+          <FlowStep label="Escanear" sub="Cámara de la app" animDelay={3} />
+          <span class="flow-arrow animate-fade-in delay-4">→</span>
+          <FlowStep label="Analizar" sub="Motor de decisión" highlight={true} animDelay={4} />
+          <span class="flow-arrow animate-fade-in delay-5">→</span>
+          <FlowStep label="Decidir" sub="Abrir o bloquear" animDelay={5} />
+        </div>
+
+        <p class="quote-support animate-fade-up delay-6" style="margin-top: 32px;">
+          Cambia el paradigma: de <em>reactivo</em> a <strong>preventivo</strong>.
+        </p>
+      </section>
+
+      <!-- ─── SLIDE 8: MVP Y REQUISITOS ────────────────────── -->
+      <section class="slide slide-tech" id="slide-8" data-slide="8" aria-label="MVP y Requisitos">
+        <div class="slide-tag animate-fade-in">MVP</div>
+        <h2 class="slide-title animate-fade-up delay-1">MVP y Requisitos</h2>
+
+        <div class="slide-two-col animate-fade-up delay-2" style="margin-top: 20px;">
+          <!-- Bloque Funcional -->
+          <div class="feature-item" style="padding: 24px;">
+            <strong style="margin-bottom: 12px; font-size: 16px;">Requisitos Clave</strong>
+            <div class="feature-list">
+              <div class="feature-row">
+                <span class="check">✓</span> Escaneo rápido
+              </div>
+              <div class="feature-row">
+                <span class="check">✓</span> Análisis en tiempo real
+              </div>
+              <div class="feature-row">
+                <span class="check">✓</span> Resultado comprensible
+              </div>
+            </div>
+          </div>
+
+          <!-- Bloque Técnico -->
+          <div class="feature-item" style="padding: 24px;">
+            <strong style="margin-bottom: 12px; font-size: 16px;">Decisiones Técnicas</strong>
+            <div class="feature-list">
+              <div class="feature-row">
+                <span class="check">✓</span> Kotlin (Nativo)
+              </div>
+              <div class="feature-row">
+                <span class="check">✓</span> ML Kit (Google)
+              </div>
+              <div class="feature-row">
+                <span class="check">✓</span> Arquitectura MVVM
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SLIDE 9: ARQUITECTURA ────────────────────────── -->
+      <section class="slide" id="slide-9" data-slide="9" aria-label="Arquitectura">
+        <div class="slide-tag animate-fade-in">Técnico</div>
+        <h2 class="slide-title animate-fade-up delay-1">Arquitectura</h2>
+        <p class="slide-subtitle animate-fade-up delay-2">Flujo de datos y validación</p>
+
+        <div class="arch-diagram" style="margin-top: 24px;">
+          <ArchNode label="Cámara" sub="ML Kit Vision" dataIndex={0} />
+          <span class="arch-arrow arch-arr-0">→</span>
+          <ArchNode label="App" sub="ViewModel" highlight={true} dataIndex={1} />
+          <span class="arch-arrow arch-arr-1">→</span>
+          <ArchNode label="Motor" sub="Reglas + APIs" dataIndex={2} />
+          <span class="arch-arrow arch-arr-2">→</span>
+          
+          <div class="arch-stack">
+            <ArchNode label="Google Safe Browsing" dataIndex={3} />
+            <ArchNode label="VirusTotal" dataIndex={3} />
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SLIDE 10: MOTOR DE DECISIÓN ──────────────────── -->
+      <section class="slide" id="slide-10" data-slide="10" aria-label="Motor de Decisión">
+        <div class="slide-tag animate-fade-in">Seguridad</div>
+        <h2 class="slide-title animate-fade-up delay-1">Motor de Decisión</h2>
+        <p class="slide-subtitle animate-fade-up delay-2">Semáforo de seguridad unificado</p>
+
+        <div class="semaphore-row animate-fade-up delay-3" style="margin-top: 32px;">
+          <div class="semaphore-item">
+            <div class="semaphore-dot green-dot" id="sem-green"></div>
+            <RiskBadge level="safe" label="URL Segura" />
+            <span class="semaphore-label">Permite abrir</span>
+          </div>
+          <div class="semaphore-item">
+            <div class="semaphore-dot orange-dot" id="sem-orange"></div>
+            <RiskBadge level="warn" label="Sospechoso" />
+            <span class="semaphore-label">Requiere confirmación</span>
+          </div>
+          <div class="semaphore-item">
+            <div class="semaphore-dot red-dot" id="sem-red"></div>
+            <RiskBadge level="danger" label="Bloqueado" />
+            <span class="semaphore-label">Evita el acceso</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SLIDE 11: PROTOTIPO FUNCIONAL ────────────────── -->
+      <section class="slide" id="slide-11" data-slide="11" aria-label="Prototipo Funcional">
+        <div class="slide-tag animate-fade-in">Demo</div>
+        <h2 class="slide-title animate-fade-up delay-1">Prototipo Funcional</h2>
+        <p class="slide-subtitle animate-fade-up delay-2">Interfaz nativa en Android</p>
+
+        <div class="phones-row animate-fade-up delay-3" style="margin-top: 24px;">
+          <PhoneMockup label="Pantalla principal" placeholder="Escáner" animDelay={3} />
+          <PhoneMockup featured={true} label="Análisis en curso" placeholder="Analizando..." animDelay={4} />
+          <PhoneMockup label="Resultado Seguro" placeholder="Verde" animDelay={5} />
+        </div>
+      </section>
+
+      <!-- ─── SLIDE 12: LANDING PAGE ───────────────────────── -->
+      <section class="slide" id="slide-12" data-slide="12" aria-label="Landing Page">
+        <div class="slide-tag animate-fade-in">Captación</div>
+        <h2 class="slide-title animate-fade-up delay-1">Landing Page</h2>
+        <p class="slide-subtitle animate-fade-up delay-2">Presencia web para descarga</p>
+
+        <div class="slide-two-col animate-fade-up delay-3" style="margin-top: 24px;">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <p><strong>Diseño Responsivo</strong> adaptado para cualquier dispositivo.</p>
+            <p><strong>SEO Optimizado</strong> para búsquedas relacionadas con "seguridad QR".</p>
+            <p><strong>Llamadas a la acción (CTA)</strong> claras para descargar la app.</p>
+          </div>
+          <div style="background: var(--color-green-bg); border-radius: var(--radius-card); padding: 40px; text-align: center; border: 2px dashed var(--color-green-light);">
+            <p style="color: var(--color-green-dark); font-weight: bold;">Vista previa de Landing Page</p>
+            <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 8px;">(Mockup web o iframe iría aquí)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SLIDE 13: VIABILIDAD Y COSTES ────────────────── -->
+      <section class="slide" id="slide-13" data-slide="13" aria-label="Viabilidad y Costes">
+        <div class="slide-tag animate-fade-in">Viabilidad</div>
+        <h2 class="slide-title animate-fade-up delay-1">Viabilidad y Costes</h2>
+        <p class="slide-subtitle animate-fade-up delay-2">Presupuesto inicial para el MVP</p>
+
+        <div class="cost-grid animate-fade-up delay-3" style="margin-top: 24px;">
+          <div class="cost-card">
+            <span class="cost-label">Desarrollo (Horas estimadas)</span>
+            <span class="cost-value">120h</span>
+            <span class="cost-sub">Diseño, Frontend y Backend MVP</span>
+          </div>
+          <div class="cost-card">
+            <span class="cost-label">Infraestructura (Mensual)</span>
+            <span class="cost-value">0€</span>
+            <span class="cost-sub">Tier gratuito (Firebase, Vercel)</span>
+          </div>
+          <div class="cost-card">
+            <span class="cost-label">Licencias APIs Externas</span>
+            <span class="cost-value">0€</span>
+            <span class="cost-sub">Google Safe Browsing y VirusTotal públicas</span>
+          </div>
+          <div class="cost-card" style="border-color: var(--color-green); background: var(--color-green-bg);">
+            <span class="cost-label">Coste total primer año</span>
+            <span class="cost-value">0€</span>
+            <span class="cost-sub">En gastos fijos de servidores y APIs</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SLIDE 14: CONCLUSIÓN ─────────────────────────── -->
+      <section class="slide slide-close" id="slide-14" data-slide="14" aria-label="Conclusión">
+        <div class="slide-tag animate-fade-in">Cierre</div>
+        <h2 class="slide-title animate-fade-up delay-1">Conclusión</h2>
+
+        <div class="slide-content animate-fade-up delay-2" style="margin-top: 40px;">
+          <p class="big-quote">
+            La seguridad debe ser un derecho, no una habilidad técnica.
+          </p>
+          
+          <p class="quote-support" style="margin-top: 24px;">
+            QR Scanner Security convierte la prevención en algo accesible, rápido y automático para cualquier usuario.
+          </p>
+
+          <div style="margin-top: 48px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <p style="font-weight: bold; font-size: 20px;">Muchas gracias.</p>
+            <p style="color: var(--color-text-muted);">¿Preguntas?</p>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /slides-viewport -->
+
+    <!-- =====================================================
+         CONTROLES DE NAVEGACIÓN (parte inferior)
+         ===================================================== -->
+    <nav class="slide-controls" aria-label="Controles de presentación">
+
+      <!-- Hint de teclado (tooltip al hacer hover) -->
+      <span class="keyboard-hint" aria-hidden="true">
+        ← → para navegar &nbsp;·&nbsp; F para pantalla completa
+      </span>
+
+      <!-- Contador numérico -->
+      <span class="slide-counter" id="slideCounter" aria-live="polite">1 / 14</span>
+
+      <!-- Título de la slide actual -->
+      <span class="slide-current-title" id="slideTitle" aria-hidden="true">Portada</span>
+
+      <!-- Centro: prev → dots → next -->
+      <div class="controls-center">
+        <button class="btn-nav" id="btnPrev" aria-label="Diapositiva anterior" disabled>
+          &#8592;
+        </button>
+
+        <!-- Dots de posición (se generan por JS) -->
+        <div class="dots-track" id="dotsTrack" role="tablist" aria-label="Diapositivas"></div>
+
+        <button class="btn-nav" id="btnNext" aria-label="Diapositiva siguiente">
+          &#8594;
+        </button>
+      </div>
+
+      <!-- Pantalla completa -->
+      <button class="btn-fullscreen" id="btnFullscreen" aria-label="Activar pantalla completa">
+        <!-- Icono expand (visible cuando NO está en fullscreen) -->
+        <svg id="iconExpand" width="15" height="15" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+        <!-- Icono compress (visible cuando ESTÁ en fullscreen) -->
+        <svg id="iconCompress" width="15" height="15" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+             style="display:none">
+          <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
+        </svg>
+        <span>Pantalla completa</span>
+      </button>
+    </nav>
+
+  </div><!-- /presentation-wrapper -->
+
+</PresentacionLayout>
+
+<!-- =====================================================
+     ESTILOS ESPECÍFICOS DE ESTA PÁGINA
+     ===================================================== -->
+<style>
+  /* --- Portada --- */
+  .cover-visual {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .cover-shield {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px; height: 100px;
+    border-radius: 24px;
+    background: var(--color-green-bg);
+    border: 2px solid var(--color-green-light);
+    box-shadow: var(--shadow-lg);
+  }
+  .cover-qr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px; height: 72px;
+    border-radius: 16px;
+    background: var(--color-green-bg);
+    border: 1.5px solid var(--color-green-light);
+    box-shadow: var(--shadow-card);
+  }
+  .cover-desc {
+    font-size: clamp(14px, 1.5vw, 18px);
+    color: var(--color-text-muted);
+    text-align: center;
+    max-width: 540px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .cover-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+  .cover-meta .sep { opacity: 0.4; }
+
+  /* --- Índice --- */
+  .index-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 760px;
+    margin-top: 24px;
+  }
+  .index-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 16px;
+    border-radius: var(--radius-card);
+    border: 1.5px solid var(--color-border);
+    background: var(--color-card);
+    box-shadow: var(--shadow-card);
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s, background 0.2s;
+    font-family: var(--font-main);
+    text-align: center;
+  }
+  .index-block:hover {
+    border-color: var(--color-green);
+    background: var(--color-green-bg);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  .index-icon { font-size: 28px; }
+  .index-block strong {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .index-slides {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  /* --- Slide genérica (fallback fondo alternado) --- */
+  .slide:nth-child(odd)  { background: var(--color-bg); }
+  .slide:nth-child(even) { background: var(--color-white); }
+
+  /* ── FASE 5: Slide 3 — Tarjetas de problema ─────────── */
+  .problem-cards {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    max-width: 840px;
+    justify-content: center;
+  }
+  .prob-card {
+    flex: 1;
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    border: 1.5px solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    padding: 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .prob-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-orange);
+  }
+  .prob-icon { font-size: 26px; }
+  .prob-card strong {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .prob-card p {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── FASE 5: Slide 5 — Market insight ───────────────── */
+  .market-insight {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    border: 1.5px solid var(--color-green-light);
+    box-shadow: var(--shadow-card);
+    padding: 16px 24px;
+    max-width: 600px;
+    width: 100%;
+  }
+  .insight-bar {
+    width: 4px;
+    height: 40px;
+    border-radius: 4px;
+    background: linear-gradient(180deg, var(--color-green) 0%, var(--color-green-light) 100%);
+    flex-shrink: 0;
+  }
+  .market-insight p {
+    font-size: clamp(13px, 1.4vw, 16px);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+  .market-insight p strong {
+    color: var(--color-text);
+    font-weight: 700;
+  }
+</style>
+
+
+<!-- =====================================================
+     JAVASCRIPT DE NAVEGACIÓN — FASE 2
+     Transiciones bidireccionales, dots, swipe táctil,
+     fullscreen dinámico, hint de teclado.
+     ===================================================== -->
+<script>
+  (() => {
+    // ─────────────────────────────────────────────────
+    // DATOS
+    // ─────────────────────────────────────────────────
+    const TOTAL = 14;
+    const SLIDE_TITLES = [
+      'Portada', 'Índice', 'El Problema', 'Investigación de Usuarios',
+      'Interés del Mercado', 'Persona Prototipo', 'Propuesta de Valor',
+      'MVP y Requisitos', 'Arquitectura', 'Motor de Decisión',
+      'Prototipo Funcional', 'Landing Page', 'Viabilidad y Costes', 'Conclusión',
+    ];
+
+    let current = 1;
+    let isAnimating = false; // evita clics rápidos que rompan la animación
+
+    // ─────────────────────────────────────────────────
+    // SELECTORES
+    // ─────────────────────────────────────────────────
+    const counter      = document.getElementById('slideCounter');
+    const titleLabel   = document.getElementById('slideTitle');
+    const progressFill = document.getElementById('progressFill');
+    const btnPrev      = document.getElementById('btnPrev');
+    const btnNext      = document.getElementById('btnNext');
+    const btnFS        = document.getElementById('btnFullscreen');
+    const dotsTrack    = document.getElementById('dotsTrack');
+    const iconExpand   = document.getElementById('iconExpand');
+    const iconCompress = document.getElementById('iconCompress');
+
+    // ─────────────────────────────────────────────────
+    // DOTS — generación dinámica
+    // ─────────────────────────────────────────────────
+    function buildDots() {
+      for (let i = 1; i <= TOTAL; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === 1 ? ' active' : '');
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', `Diapositiva ${i}: ${SLIDE_TITLES[i - 1]}`);
+        dot.setAttribute('aria-selected', i === 1 ? 'true' : 'false');
+        dot.dataset.goto = String(i);
+        dotsTrack.appendChild(dot);
+      }
+    }
+    buildDots();
+
+    // ─────────────────────────────────────────────────
+    // HELPER: obtiene el elemento .slide por número
+    // ─────────────────────────────────────────────────
+    function getSlide(n) {
+      return document.getElementById(`slide-${n}`);
+    }
+
+    // ─────────────────────────────────────────────────
+    // NAVEGACIÓN PRINCIPAL
+    // ─────────────────────────────────────────────────
+    /**
+     * Navega a una diapositiva con transición bidireccional.
+     * @param {number} target     Número destino (1-based)
+     * @param {string} direction  'forward' | 'backward'
+     */
+    function goTo(target, direction = 'forward') {
+      if (target < 1 || target > TOTAL || target === current || isAnimating) return;
+      isAnimating = true;
+
+      const prevSlide = getSlide(current);
+      const nextSlide = getSlide(target);
+
+      // 1. Prepara la slide entrante en la posición correcta (sin transición)
+      nextSlide.style.transition = 'none';
+      if (direction === 'forward') {
+        nextSlide.classList.remove('enter-from-left');
+        nextSlide.style.transform = 'translateX(60px)';
+      } else {
+        nextSlide.classList.add('enter-from-left');
+        nextSlide.style.transform = 'translateX(-60px)';
+      }
+      nextSlide.style.opacity = '0';
+
+      // 2. Fuerza reflow para que el navegador aplique el estado inicial
+      void nextSlide.offsetHeight;
+
+      // 3. Reactiva la transición CSS
+      nextSlide.style.transition = '';
+
+      // 4. Re-dispara las animaciones CSS internas (fade-up, scale, etc.)
+      nextSlide.querySelectorAll('[class*="animate-"]').forEach(el => {
+        el.style.animation = 'none';
+        void el.offsetHeight; // reflow
+        el.style.animation = '';
+      });
+
+      // 5. Aplica clases de salida a la slide actual
+      prevSlide.classList.remove('active');
+      prevSlide.classList.add(direction === 'forward' ? 'exit-left' : 'exit-right');
+
+      // 6. Activa la slide entrante
+      nextSlide.classList.add('active');
+      nextSlide.classList.remove('enter-from-left');
+      nextSlide.style.transform = '';
+      nextSlide.style.opacity = '';
+
+      // 7. Limpieza tras la transición
+      const DURATION = 380; // Sincronizado con --transition-duration (0.35s + buffer)
+      setTimeout(() => {
+        prevSlide.classList.remove('exit-left', 'exit-right');
+        isAnimating = false;
+      }, DURATION);
+
+      current = target;
+      updateUI();
+    }
+
+    // ─────────────────────────────────────────────────
+    // UPDATE UI — contador, progreso, dots, título
+    // ─────────────────────────────────────────────────
+    function updateUI() {
+      // Contador
+      counter.textContent = `${current} / ${TOTAL}`;
+
+      // Título de la slide en la barra y en el documento (A11y)
+      const slideTitle = SLIDE_TITLES[current - 1];
+      titleLabel.textContent = slideTitle;
+      document.title = `${slideTitle} — Presentación TFC`;
+
+      // Barra de progreso
+      progressFill.style.width = `${(current / TOTAL) * 100}%`;
+
+      // Botones anterior / siguiente
+      btnPrev.disabled = current === 1;
+      btnNext.disabled = current === TOTAL;
+
+      // Dots activos
+      dotsTrack.querySelectorAll('.dot').forEach((dot, i) => {
+        const isActive = i + 1 === current;
+        dot.classList.toggle('active', isActive);
+        dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      triggerSlideAnimations(current);
+    }
+
+    // ─────────────────────────────────────────────────
+    // ANIMACIONES ESPECÍFICAS DE SLIDES
+    // ─────────────────────────────────────────────────
+    function triggerSlideAnimations(slideNum) {
+      // SLIDE 9: Arquitectura
+      if (slideNum === 9) {
+        const archSlide = getSlide(9);
+        const nodes = archSlide.querySelectorAll('.arch-node');
+        const arrows = archSlide.querySelectorAll('.arch-arrow');
+        
+        // Reset
+        nodes.forEach(n => n.classList.remove('visible'));
+        arrows.forEach(a => a.classList.remove('visible'));
+
+        // Delay escalonado
+        nodes.forEach((node) => {
+          const idx = parseInt(node.dataset.archIndex || '0', 10);
+          setTimeout(() => {
+            node.classList.add('visible');
+            const arrow = archSlide.querySelector(`.arch-arr-${idx}`);
+            if (arrow) arrow.classList.add('visible');
+          }, 300 + (idx * 500));
+        });
+      }
+
+      // SLIDE 10: Semáforo
+      if (slideNum === 10) {
+        const semSlide = getSlide(10);
+        const dots = semSlide.querySelectorAll('.semaphore-dot');
+        
+        // Reset
+        dots.forEach(d => d.classList.remove('lit'));
+
+        // Secuencia: Verde (500ms) -> Naranja (1500ms) -> Rojo (2500ms)
+        setTimeout(() => semSlide.querySelector('#sem-green')?.classList.add('lit'), 500);
+        setTimeout(() => semSlide.querySelector('#sem-orange')?.classList.add('lit'), 1500);
+        setTimeout(() => semSlide.querySelector('#sem-red')?.classList.add('lit'), 2500);
+      }
+    }
+
+    // ─────────────────────────────────────────────────
+    // EVENTOS DE BOTONES
+    // ─────────────────────────────────────────────────
+    btnPrev.addEventListener('click', () => goTo(current - 1, 'backward'));
+    btnNext.addEventListener('click', () => goTo(current + 1, 'forward'));
+
+    // Dots individuales
+    dotsTrack.addEventListener('click', (e) => {
+      const dot = e.target.closest('.dot');
+      if (!dot) return;
+      const target = parseInt(dot.dataset.goto, 10);
+      goTo(target, target > current ? 'forward' : 'backward');
+    });
+
+    // Índice interactivo (data-goto en cualquier elemento)
+    document.querySelectorAll('[data-goto]').forEach(btn => {
+      // Los dots ya están manejados arriba; evitar duplicados
+      if (btn.classList.contains('dot')) return;
+      btn.addEventListener('click', () => {
+        const target = parseInt(btn.dataset.goto, 10);
+        goTo(target, target > current ? 'forward' : 'backward');
+      });
+    });
+
+    // ─────────────────────────────────────────────────
+    // TECLADO
+    // ─────────────────────────────────────────────────
+    document.addEventListener('keydown', (e) => {
+      // No actuar si el foco está en un input/textarea
+      if (['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)) return;
+
+      switch (e.key) {
+        case 'ArrowRight':
+        case ' ':           e.preventDefault(); goTo(current + 1, 'forward');  break;
+        case 'ArrowLeft':   e.preventDefault(); goTo(current - 1, 'backward'); break;
+        case 'ArrowDown':   e.preventDefault(); goTo(current + 1, 'forward');  break;
+        case 'ArrowUp':     e.preventDefault(); goTo(current - 1, 'backward'); break;
+        case 'Home':        e.preventDefault(); goTo(1, 'backward');            break;
+        case 'End':         e.preventDefault(); goTo(TOTAL, 'forward');         break;
+        case 'f':
+        case 'F':           toggleFullscreen(); break;
+        case 'Escape':      /* el navegador ya sale de FS con Escape */          break;
+      }
+    });
+
+    // ─────────────────────────────────────────────────
+    // PANTALLA COMPLETA
+    // ─────────────────────────────────────────────────
+    function updateFSIcon() {
+      const isFS = !!document.fullscreenElement;
+      iconExpand.style.display   = isFS ? 'none'  : '';
+      iconCompress.style.display = isFS ? ''      : 'none';
+      btnFS.querySelector('span').textContent =
+        isFS ? 'Salir pantalla completa' : 'Pantalla completa';
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen?.().catch(() => {});
+      } else {
+        document.exitFullscreen?.();
+      }
+    }
+
+    btnFS.addEventListener('click', toggleFullscreen);
+    document.addEventListener('fullscreenchange', updateFSIcon);
+    document.addEventListener('webkitfullscreenchange', updateFSIcon);
+
+    // ─────────────────────────────────────────────────
+    // SWIPE TÁCTIL
+    // ─────────────────────────────────────────────────
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const SWIPE_THRESHOLD = 50; // px mínimos para considerar swipe
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+
+      // Solo procesa si el movimiento horizontal es mayor que el vertical
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_THRESHOLD) {
+        if (dx < 0) goTo(current + 1, 'forward');  // swipe izquierda = avanzar
+        else        goTo(current - 1, 'backward'); // swipe derecha  = retroceder
+      }
+    }, { passive: true });
+
+    // ─────────────────────────────────────────────────
+    // INICIO
+    // ─────────────────────────────────────────────────
+    updateUI();
+  })();
+</script>

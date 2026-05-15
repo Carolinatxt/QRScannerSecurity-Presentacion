@@ -1,0 +1,39 @@
+---
+/**
+ * ArchNode.astro — Nodo del diagrama de arquitectura
+ *
+ * Se usa dentro de un <div class="arch-diagram">.
+ * La animación de aparición (izquierda a derecha) se controla
+ * por JS añadiendo la clase '.visible' con un setTimeout escalonado.
+ *
+ * Props:
+ *   icon       {string}  Emoji o carácter del icono.
+ *   label      {string}  Nombre del nodo.
+ *   sub        {string}  Texto secundario (tecnología, descripción). Opcional.
+ *   highlight  {boolean} Si true, borde verde y fondo verde claro.
+ *   dataIndex  {number}  Índice para el delay de animación (0-based).
+ */
+interface Props {
+  icon?: string;
+  label: string;
+  sub?: string;
+  highlight?: boolean;
+  dataIndex?: number;
+}
+
+const { icon, label, sub, highlight = false, dataIndex = 0 } = Astro.props;
+
+const nodeClass = [
+  'arch-node',
+  highlight ? 'highlight' : '',
+].filter(Boolean).join(' ');
+---
+
+<div
+  class={nodeClass}
+  data-arch-index={dataIndex}
+>
+  {icon && <div class="node-icon" aria-hidden="true" set:html={icon}></div>}
+  <div class="node-label">{label}</div>
+  {sub && <div class="node-sub">{sub}</div>}
+</div>

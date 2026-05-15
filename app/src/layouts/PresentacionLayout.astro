@@ -1,0 +1,23 @@
+---
+/**
+ * PresentacionLayout.astro
+ * Layout dedicado para la presentación de TFC.
+ * No afecta al Layout.astro original del proyecto.
+ */
+const { title = 'QR Scanner Security — Presentación TFC' } = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="robots" content="noindex" />
+    <title>{title}</title>
+    <!-- Sistema de estilos de la presentación -->
+    <link rel="stylesheet" href="/presentacion.css" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
