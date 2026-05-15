@@ -2582,3 +2582,50 @@ button:focus-visible,
   font-size: 11px;
   font-weight: 700;
 }
+
+/* ============================================================
+   FASE 12 y 13 — NUEVAS SLIDES (Flujo, Privacidad, Conclusión)
+   ============================================================ */
+
+.styled-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.styled-list li {
+  position: relative;
+  padding-left: 28px;
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.styled-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-green);
+  font-weight: bold;
+}
+
+ol.styled-list {
+  counter-reset: flow-counter;
+}
+
+ol.styled-list li {
+  padding-left: 32px;
+}
+
+ol.styled-list li::before {
+  counter-increment: flow-counter;
+  content: counter(flow-counter) ".";
+  color: var(--color-green);
+  font-weight: 800;
+  font-size: 14px;
+}
+

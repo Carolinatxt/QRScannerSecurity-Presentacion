@@ -15,7 +15,7 @@ import ArchNode    from '../components/presentacion/ArchNode.astro';
 import RiskBadge   from '../components/presentacion/RiskBadge.astro';
 import PhoneMockup from '../components/presentacion/PhoneMockup.astro';
 
-const TOTAL_SLIDES = 13;
+const TOTAL_SLIDES = 14;
 
 // Títulos de cada diapositiva (para el índice y el título de pestaña)
 const slideTitles = [
@@ -30,6 +30,7 @@ const slideTitles = [
   'Arquitectura',
   'Motor de Decisión',
   'Prototipo Funcional',
+  'Flujo de Uso y Privacidad',
   'Viabilidad y Costes',
   'Conclusión',
 ];
@@ -44,7 +45,7 @@ const slideTitles = [
 
     <!-- Barra de progreso (arriba) -->
     <div class="progress-bar-track" aria-hidden="true">
-      <div class="progress-bar-fill" id="progressFill" style="width: 7.69%"></div>
+      <div class="progress-bar-fill" id="progressFill" style="width: 7.14%"></div>
     </div>
 
     <!-- =====================================================
@@ -159,11 +160,11 @@ const slideTitles = [
             </span>
             <strong class="index-title">Prototipo</strong>
             <span class="index-sub">Demo funcional y flujo de uso</span>
-            <span class="index-slides">Diap. 11</span>
+            <span class="index-slides">Diap. 11–12</span>
           </button>
 
           <!-- Bloque 5: Viabilidad -->
-          <button class="index-block" data-goto="12" title="Ir a Viabilidad" aria-label="Ir a Viabilidad">
+          <button class="index-block" data-goto="13" title="Ir a Viabilidad" aria-label="Ir a Viabilidad">
             <span class="index-icon-wrap">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="12" y1="1" x2="12" y2="23"/>
@@ -172,11 +173,11 @@ const slideTitles = [
             </span>
             <strong class="index-title">Viabilidad</strong>
             <span class="index-sub">Costes y modelo de negocio</span>
-            <span class="index-slides">Diap. 12</span>
+            <span class="index-slides">Diap. 13</span>
           </button>
 
           <!-- Bloque 6: Cierre -->
-          <button class="index-block" data-goto="13" title="Ir al Cierre" aria-label="Ir a Cierre">
+          <button class="index-block" data-goto="14" title="Ir al Cierre" aria-label="Ir a Cierre">
             <span class="index-icon-wrap">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="20 6 9 17 4 12"/>
@@ -184,7 +185,7 @@ const slideTitles = [
             </span>
             <strong class="index-title">Cierre</strong>
             <span class="index-sub">Conclusiones y valoración</span>
-            <span class="index-slides">Diap. 13</span>
+            <span class="index-slides">Diap. 14</span>
           </button>
 
         </div>
@@ -696,7 +697,7 @@ const slideTitles = [
       <section class="slide" id="slide-11" data-slide="11" aria-label="Prototipo Funcional">
         <div class="slide-tag animate-fade-in">Demo</div>
         <h2 class="slide-title animate-fade-up delay-1">Prototipo Funcional</h2>
-        <p class="slide-subtitle animate-fade-up delay-2">Interfaz nativa desarrollada en Kotlin y Compose</p>
+        <p class="slide-subtitle animate-fade-up delay-2">La app ya permite escanear, analizar, mostrar resultado, guardar historial y reanalizar.</p>
 
         <div class="phones-row animate-fade-up delay-3" style="margin-top: 24px;">
           
@@ -731,8 +732,8 @@ const slideTitles = [
             </div>
           </PhoneMockup>
 
-          <!-- Pantalla 3: Resultado -->
-          <PhoneMockup label="Resultado de Seguridad" animDelay={5}>
+          <!-- Pantalla 3: Resultado Seguro -->
+          <PhoneMockup label="Resultado Seguro" animDelay={5}>
             <div class="android-screen sc-result safe">
               <div class="and-top-bar">Resultado</div>
               <div class="and-result-header">
@@ -740,9 +741,25 @@ const slideTitles = [
                 <strong class="and-risk-text">URL SEGURA</strong>
               </div>
               <div class="and-result-body">
-                <p>No se han detectado amenazas. Puedes acceder con seguridad.</p>
+                <p>No se detectan amenazas.</p>
                 <div class="and-btn-primary">ABRIR ENLACE</div>
                 <div class="and-btn-secondary">Guardar en Historial</div>
+              </div>
+            </div>
+          </PhoneMockup>
+
+          <!-- Pantalla 4: Resultado Peligroso -->
+          <PhoneMockup label="Resultado Peligroso" animDelay={6}>
+            <div class="android-screen sc-result danger">
+              <div class="and-top-bar" style="background:#fef2f2; border-bottom:1px solid #fca5a5;">Peligro</div>
+              <div class="and-result-header" style="background:#fee2e2;">
+                <div class="and-shield-icon" style="background:#ef4444;">!</div>
+                <strong class="and-risk-text" style="color:#b91c1c;">PELIGROSO</strong>
+              </div>
+              <div class="and-result-body">
+                <p>Se detectó Phishing.</p>
+                <div class="and-btn-primary" style="background:#ef4444;">SALIR</div>
+                <div class="and-btn-secondary" style="border-color:#fca5a5;">Guardar en Historial</div>
               </div>
             </div>
           </PhoneMockup>
@@ -750,55 +767,93 @@ const slideTitles = [
         </div>
       </section>
 
-      <!-- ─── SLIDE 12: VIABILIDAD Y COSTES ────────────────── -->
-      <section class="slide" id="slide-12" data-slide="12" aria-label="Viabilidad y Costes">
+      <!-- ─── SLIDE 12: FLUJO DE USO Y PRIVACIDAD ────────────── -->
+      <section class="slide" id="slide-12" data-slide="12" aria-label="Flujo de uso y privacidad">
+        <div class="slide-tag animate-fade-in">Experiencia de Usuario</div>
+        <h2 class="slide-title animate-fade-up delay-1">Flujo de uso y decisión del usuario</h2>
+
+        <div class="slide-two-col animate-fade-up delay-2" style="margin-top: 32px;">
+          <!-- Flujo de uso -->
+          <div class="flow-list">
+            <h3 style="font-size: 16px; margin-bottom: 16px; color: var(--color-green-dark);">Timeline</h3>
+            <ol class="styled-list">
+              <li>Escanear QR / introducir URL.</li>
+              <li>Validación local.</li>
+              <li>Envío al backend.</li>
+              <li>Análisis de seguridad.</li>
+              <li>Resultado comprensible.</li>
+              <li>Decisión de apertura.</li>
+              <li>Historial local / reanálisis.</li>
+            </ol>
+          </div>
+
+          <!-- Privacidad -->
+          <div class="privacy-block">
+            <h3 style="font-size: 16px; margin-bottom: 16px; color: var(--color-green-dark);">Privacidad por diseño</h3>
+            <ul class="styled-list">
+              <li>Historial local con Room.</li>
+              <li>Sin cuenta obligatoria.</li>
+              <li>Sin sincronización en la nube.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SLIDE 13: VIABILIDAD Y COSTES ────────────────── -->
+      <section class="slide" id="slide-13" data-slide="13" aria-label="Viabilidad y Costes">
         <div class="slide-tag animate-fade-in">Viabilidad</div>
         <h2 class="slide-title animate-fade-up delay-1">Viabilidad y Análisis de Costes</h2>
 
         <div class="cost-grid animate-fade-up delay-2">
-          <!-- Desarrollo -->
-          <div class="cost-card">
-            <span class="cost-label">Recursos Humanos (TFC)</span>
-            <span class="cost-value">~450h</span>
-            <span class="cost-sub">Desarrollo, documentación y pruebas (20€/h est.)</span>
-          </div>
-          <!-- Hardware -->
-          <div class="cost-card">
-            <span class="cost-label">Hardware y Licencias</span>
-            <span class="cost-value">~25€</span>
-            <span class="cost-sub">Licencia Google Play (pago único) + Dispositivo testing</span>
-          </div>
-          <!-- Infraestructura -->
-          <div class="cost-card">
-            <span class="cost-label">Operaciones (Mensual)</span>
-            <span class="cost-value">~15€</span>
-            <span class="cost-sub">Hosting VPS (FastAPI/Docker) + APIs (IPQS/Google)</span>
-          </div>
-          <!-- Total -->
+          <!-- Coste total -->
           <div class="cost-card cost-featured">
-            <span class="cost-label">Valoración Total Proyecto</span>
-            <span class="cost-value">9.200€</span>
-            <span class="cost-sub">Inversión estimada para salida a producción (MVP)</span>
+            <span class="cost-label">Coste total estimado</span>
+            <span class="cost-value">12.190,75 €</span>
+            <span class="cost-sub">Proyecto completo TFC</span>
+          </div>
+          <!-- Personal -->
+          <div class="cost-card">
+            <span class="cost-label">Personal</span>
+            <span class="cost-value">6.080 €</span>
+            <span class="cost-sub">Desarrollo y gestión</span>
+          </div>
+          <!-- Hardware/Mantenimiento -->
+          <div class="cost-card">
+            <span class="cost-label">Mantenimiento (Mes)</span>
+            <span class="cost-value">160–325 €</span>
+            <span class="cost-sub">+ Google Web Risk variable</span>
+          </div>
+          <!-- Modelo de negocio -->
+          <div class="cost-card">
+            <span class="cost-label">Plan Premium</span>
+            <span class="cost-value">3,99 €/mes</span>
+            <span class="cost-sub">Punto de equilibrio: ~82 suscriptores</span>
           </div>
         </div>
 
         <div class="cost-note animate-fade-up delay-4">
-          * El modelo es escalable gracias al uso de tecnologías Open Source y arquitecturas ligeras.
+          Modelos de negocio previstos: Gratuito, Premium B2C, Corporativo B2B. Hardware y materiales estimados en 1.700 €.
         </div>
       </section>
 
-      <!-- ─── SLIDE 13: CONCLUSIÓN ─────────────────────────── -->
-      <section class="slide slide-close" id="slide-13" data-slide="13" aria-label="Conclusión">
+      <!-- ─── SLIDE 14: CONCLUSIÓN ─────────────────────────── -->
+      <section class="slide slide-close" id="slide-14" data-slide="14" aria-label="Conclusión">
         <div class="slide-tag animate-fade-in">Cierre</div>
         <h2 class="slide-title animate-fade-up delay-1">Conclusión</h2>
 
         <div class="slide-content animate-fade-up delay-2" style="margin-top: 40px;">
-          <p class="big-quote">
-            La seguridad debe ser un derecho, no una habilidad técnica.
-          </p>
           
-          <p class="quote-support" style="margin-top: 24px;">
-            QR Scanner Security convierte la prevención en algo accesible, rápido y automático para cualquier usuario.
+          <ul class="styled-list" style="max-width: 600px; margin: 0 auto 32px auto; text-align: left; display: inline-block;">
+            <li>Validación de prototipo funcional.</li>
+            <li>Reduce riesgo antes de abrir QRs.</li>
+            <li>Orientado a usuarios no técnicos.</li>
+            <li>No garantiza seguridad absoluta.</li>
+            <li>Enfoque conservador/fail-secure.</li>
+            <li>Viabilidad técnica y económica.</li>
+          </ul>
+
+          <p class="big-quote" style="margin-top: 24px;">
+            Menos clics a ciegas.<br/>Más seguridad antes de abrir.
           </p>
 
           <div style="margin-top: 48px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
@@ -821,7 +876,7 @@ const slideTitles = [
       </span>
 
       <!-- Contador numérico -->
-      <span class="slide-counter" id="slideCounter" aria-live="polite">1 / 13</span>
+      <span class="slide-counter" id="slideCounter" aria-live="polite">1 / 14</span>
 
       <!-- Título de la slide actual -->
       <span class="slide-current-title" id="slideTitle" aria-hidden="true">Portada</span>
@@ -1034,12 +1089,12 @@ const slideTitles = [
     // ─────────────────────────────────────────────────
     // DATOS
     // ─────────────────────────────────────────────────
-    const TOTAL = 13;
+    const TOTAL = 14;
     const SLIDE_TITLES = [
       'Portada', 'Índice', 'El Problema', 'Investigación de Usuarios',
       'Interés del Mercado', 'Persona Prototipo', 'Propuesta de Valor',
       'MVP y Requisitos', 'Arquitectura', 'Motor de Decisión',
-      'Prototipo Funcional', 'Viabilidad y Costes', 'Conclusión',
+      'Prototipo Funcional', 'Flujo de Uso y Privacidad', 'Viabilidad y Costes', 'Conclusión',
     ];
 
     let current = 1;
