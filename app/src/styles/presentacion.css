@@ -9,18 +9,18 @@
 /* --- Variables de color (sistema de diseño) --- */
 :root {
   /* Primarios */
-  --color-green:       #22c55e;
-  --color-green-dark:  #16a34a;
+  --color-green:       #16a34a;
+  --color-green-dark:  #15803d;
   --color-green-light: #dcfce7;
   --color-green-bg:    #f0fdf4;
 
-  /* Neutros — fondo blanco roto en lugar de blanco puro */
+  /* Neutros — fondo blanco roto */
   --color-white:       #ffffff;
-  --color-bg:          #f4f7f5;   /* blanco roto con tinte verde muy sutil */
+  --color-bg:          #f4f7f5;
   --color-card:        #ffffff;
-  --color-text:        #1a2e1f;   /* gris muy oscuro con tinte verde */
-  --color-text-muted:  #5a7a63;
-  --color-border:      #d1e4d8;
+  --color-text:        #0f172a;
+  --color-text-muted:  #475569;
+  --color-border:      #e2e8f0;
 
   /* Acento riesgo */
   --color-orange:      #f97316;
@@ -32,17 +32,17 @@
   --font-main: 'Inter', system-ui, -apple-system, sans-serif;
 
   /* Espaciado */
-  --radius-card: 18px;
-  --radius-sm:   10px;
-  --shadow-card: 0 2px 20px rgba(34,197,94,0.06), 0 1px 6px rgba(0,0,0,0.05);
-  --shadow-lg:   0 10px 40px rgba(34,197,94,0.10), 0 2px 10px rgba(0,0,0,0.07);
+  --radius-card: 20px;
+  --radius-sm:   12px;
+  --shadow-card: 0 4px 24px rgba(22,163,74,0.06), 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-lg:   0 12px 48px rgba(22,163,74,0.12), 0 4px 16px rgba(0,0,0,0.06);
 
   /* Presentación */
   --slide-bg:    var(--color-bg);
-  --nav-height:  68px;
-  --transition-duration: 0.35s;
+  --nav-height:  72px;
+  --transition-duration: 0.4s;
   --transition-easing:   cubic-bezier(.4,0,.2,1);
-  --content-max-width: 1280px;
+  --content-max-width: 1480px;
 }
 
 /* --- Reset base --- */
@@ -103,7 +103,7 @@ html, body {
   justify-content: center;
   align-items: center;
   padding: 56px 80px;   /* más aire interno */
-  background: var(--slide-bg);
+  background: radial-gradient(circle at center 20%, #ffffff 0%, var(--slide-bg) 100%);
   opacity: 0;
   pointer-events: none;
   transform: translateX(60px);
@@ -2629,3 +2629,103 @@ ol.styled-list li::before {
   font-size: 14px;
 }
 
+/* ============================================================
+   FASE 2 — ÍNDICE PREMIUM Y LÍNEA DE TIEMPO
+   ============================================================ */
+
+.premium-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  position: relative;
+  z-index: 2;
+}
+
+.premium-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 24px;
+  gap: 16px;
+  border-radius: var(--radius-card);
+  text-align: left;
+}
+
+.index-num {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--color-green-light);
+  -webkit-text-stroke: 1px var(--color-green);
+  transition: color 0.3s, transform 0.3s;
+}
+
+.premium-block:hover .index-num {
+  color: var(--color-green);
+  transform: scale(1.1);
+}
+
+.index-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.index-timeline {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: var(--color-border);
+  z-index: 1;
+}
+
+/* ============================================================
+   FASE 3 — BANNER INCIBE
+   ============================================================ */
+
+.incibe-banner {
+  background: var(--color-green-bg);
+  border: 1.5px solid var(--color-green-light);
+  border-radius: var(--radius-card);
+  padding: 24px 40px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin: 32px 0;
+  box-shadow: var(--shadow-card);
+}
+
+.incibe-number {
+  font-size: 64px;
+  font-weight: 900;
+  color: var(--color-green);
+  line-height: 1;
+}
+
+.incibe-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.incibe-text strong {
+  font-size: 20px;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.incibe-text span {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.incibe-source {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+  margin-top: auto;
+  align-self: flex-end;
+}
