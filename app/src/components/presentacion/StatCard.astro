@@ -9,6 +9,8 @@
  *   variant    {string}  '' (verde) | 'orange' | 'red'
  *   animDelay  {number}  Retraso de animación 1-6. Opcional.
  *   icon       {string}  Emoji o carácter de icono. Opcional.
+ *   percentage {number}  Para dibujar micrográfico (barra). Opcional.
+ *   interpretation {string} Texto interpretativo corto. Opcional.
  */
 interface Props {
   value: string;
@@ -17,6 +19,8 @@ interface Props {
   variant?: '' | 'orange' | 'red';
   animDelay?: 1 | 2 | 3 | 4 | 5 | 6;
   icon?: string;
+  percentage?: number;
+  interpretation?: string;
 }
 
 const {
@@ -26,15 +30,21 @@ const {
   variant = '',
   animDelay,
   icon,
+  percentage,
+  interpretation,
 } = Astro.props;
 
 const cardClass = ['stat-card', variant].filter(Boolean).join(' ');
 const animClass = animDelay
   ? `animate-fade-up delay-${animDelay}`
   : 'animate-fade-up';
+
+let barColor = 'var(--color-green)';
+if (variant === 'orange') barColor = 'var(--color-orange)';
+if (variant === 'red') barColor = 'var(--color-red)';
 ---
 
-<div class={`${cardClass} ${animClass}`}>
+<div class={`${cardClass} ${animClass}`} style="display:flex; flex-direction:column; justify-content:center; height:100%;">
   <!-- Icono opcional -->
   {icon && <span class="stat-icon" aria-hidden="true">{icon}</span>}
 
@@ -44,8 +54,22 @@ const animClass = animDelay
   <!-- Etiqueta -->
   <div class="stat-label">{label}</div>
 
+  <!-- Micrográfico (barra) -->
+  {percentage !== undefined && (
+    <div style="width:100%; height:6px; background:var(--color-border); border-radius:3px; margin: 12px 0 8px; overflow:hidden;">
+      <div style={`width:${percentage}%; height:100%; background:${barColor}; border-radius:3px; transition:width 1s ease-out;`}></div>
+    </div>
+  )}
+
   <!-- Subtexto opcional -->
   {sub && <div class="stat-sub">{sub}</div>}
+  
+  <!-- Interpretación -->
+  {interpretation && (
+    <div style="margin-top:auto; padding-top:12px; border-top:1px solid var(--color-border); font-size:12px; font-weight:600; color:var(--color-text-muted);">
+      {interpretation}
+    </div>
+  )}
 </div>
 
 <style>

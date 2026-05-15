@@ -247,9 +247,9 @@ const slideTitles = [
 
         <!-- Tarjetas de datos -->
         <div class="stats-grid animate-fade-up delay-2">
-          <StatCard value="37" label="participantes en el estudio" animDelay={2} />
-          <StatCard value="84%" label="usa QR en restaurantes o cartas digitales" animDelay={3} />
-          <StatCard value="46%" label="no revisa la URL antes de abrirla" variant="orange" animDelay={4} />
+          <StatCard value="37" label="participantes en el estudio" animDelay={2} percentage={100} />
+          <StatCard value="84%" label="usa QR en restaurantes o cartas digitales" animDelay={3} percentage={84} />
+          <StatCard value="46%" label="no revisa la URL antes de abrirla" variant="orange" animDelay={4} percentage={46} interpretation="Casi la mitad actúa sin comprobación previa." />
         </div>
 
         <!-- Mensaje de cierre -->
@@ -265,9 +265,9 @@ const slideTitles = [
         <p class="slide-subtitle animate-fade-up delay-2">¿Usarías una app así?</p>
 
         <div class="stats-grid animate-fade-up delay-2">
-          <StatCard value="68%" label="la usaría definitivamente" animDelay={2} />
-          <StatCard value="30%" label="la usaría si es rápida y fácil" animDelay={3} />
-          <StatCard value="49%" label="prioriza velocidad y simplicidad" animDelay={4} />
+          <StatCard value="68%" label="la usaría definitivamente" animDelay={2} percentage={68} interpretation="Existe interés real en una solución preventiva." />
+          <StatCard value="30%" label="la usaría si es rápida y fácil" animDelay={3} percentage={30} />
+          <StatCard value="49%" label="prioriza velocidad y simplicidad" animDelay={4} percentage={49} interpretation="La rapidez es clave para que el usuario la use." />
         </div>
 
         <div class="market-insight animate-fade-up delay-5">
@@ -409,263 +409,149 @@ const slideTitles = [
 
       <!-- ─── SLIDE 8: MVP Y REQUISITOS ────────────────────── -->
       <section class="slide slide-tech" id="slide-8" data-slide="8" aria-label="MVP y Requisitos">
-        <div class="slide-tag animate-fade-in">MVP</div>
-        <h2 class="slide-title animate-fade-up delay-1">MVP y Requisitos Funcionales</h2>
+        <div class="slide-tag animate-fade-in">MVP Funcional Validado</div>
+        <h2 class="slide-title animate-fade-up delay-1">MVP Operativo y Requisitos</h2>
 
-        <div class="mvp-grid animate-fade-up delay-2">
-
-          <!-- Columna 1: Funciones del MVP -->
-          <div class="mvp-col">
-            <div class="mvp-col-header">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
-              </svg>
-              Funciones del MVP
-            </div>
-            <ul class="mvp-list">
-              <li><span class="mvp-check">✓</span> Escaneo QR con cámara</li>
-              <li><span class="mvp-check">✓</span> Entrada manual de URL</li>
-              <li><span class="mvp-check">✓</span> Validación http / https</li>
-              <li><span class="mvp-check">✓</span> Análisis antes de abrir</li>
-              <li><span class="mvp-check">✓</span> Clasificación: seguro / sospechoso / peligroso</li>
-              <li><span class="mvp-check">✓</span> Resumen comprensible para el usuario</li>
-              <li><span class="mvp-check">✓</span> Historial local de análisis</li>
-              <li><span class="mvp-check">✓</span> Reanálisis de URLs guardadas</li>
-              <li><span class="mvp-check">✓</span> Sin apertura automática de enlaces</li>
+        <div class="mvp-grid animate-fade-up delay-2" style="display:flex; gap:40px; margin-top:32px; width:100%; max-width:1100px;">
+          <!-- Izquierda: Funciones del MVP -->
+          <div style="flex:1; background:#fff; padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card); border:1px solid var(--color-border);">
+            <h3 style="color:var(--color-green-dark); margin-bottom:16px;">MVP Operativo</h3>
+            <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:12px; font-size:14px;">
+              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Escaneo QR con cámara</li>
+              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Entrada manual de URL</li>
+              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Validación http / https</li>
+              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Análisis antes de abrir</li>
+              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Clasificación: seguro / sospechoso / peligroso</li>
+              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Resumen comprensible para el usuario</li>
+              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Historial local de análisis</li>
+              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Reanálisis de URLs guardadas</li>
+              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Sin apertura automática de enlaces</li>
             </ul>
           </div>
-
-          <!-- Separador vertical -->
-          <div class="mvp-divider" aria-hidden="true"></div>
-
-          <!-- Columna 2: Requisitos Funcionales -->
-          <div class="mvp-col">
-            <div class="mvp-col-header">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/>
-                <line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
-              </svg>
-              Requisitos Funcionales
+          
+          <!-- Derecha: Requisitos -->
+          <div style="flex:1; display:flex; flex-direction:column; gap:12px;">
+            <h3 style="color:var(--color-text); margin-bottom:4px;">Requisitos Validados</h3>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:13px;"><strong>R1-F</strong> Cámara</span>
+              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:13px;"><strong>R2-F</strong> No apertura automática</span>
+              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:13px;"><strong>R3-F</strong> URL manual</span>
+              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:13px;"><strong>R4-F</strong> Validación web</span>
+              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:13px;"><strong>R5-F</strong> Clasificación</span>
+              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:13px;"><strong>R6-F</strong> Resumen y motivos</span>
+              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:13px;"><strong>R7-F</strong> Historial y reanálisis</span>
             </div>
-            <ul class="mvp-list mvp-req-list">
-              <li>
-                <span class="mvp-req-id">R1-F</span>
-                Acceder a la cámara y escanear un código QR
-              </li>
-              <li>
-                <span class="mvp-req-id">R2-F</span>
-                Evitar la apertura automática de la URL
-              </li>
-              <li>
-                <span class="mvp-req-id">R3-F</span>
-                Introducir una URL manualmente
-              </li>
-              <li>
-                <span class="mvp-req-id">R4-F</span>
-                Validar que la URL sea una web compatible (http/https)
-              </li>
-              <li>
-                <span class="mvp-req-id">R5-F</span>
-                Clasificar la URL analizada por nivel de riesgo
-              </li>
-              <li>
-                <span class="mvp-req-id">R6-F</span>
-                Mostrar un resumen del análisis y los motivos
-              </li>
-              <li>
-                <span class="mvp-req-id">R7-F</span>
-                Guardar historial local y permitir reanálisis
-              </li>
-            </ul>
+            
+            <div style="margin-top:auto; padding:16px; background:var(--color-green-light); border-radius:12px; color:var(--color-green-dark); font-size:13px; font-weight:600; text-align:center;">
+              Nota: Todos los requisitos funcionales principales se validaron en la evaluación funcional.
+            </div>
           </div>
-
         </div>
       </section>
 
       <!-- ─── SLIDE 9: ARQUITECTURA ────────────────────────── -->
       <section class="slide" id="slide-9" data-slide="9" aria-label="Arquitectura">
         <div class="slide-tag animate-fade-in">Técnico</div>
-        <h2 class="slide-title animate-fade-up delay-1">Arquitectura</h2>
-        <p class="slide-subtitle animate-fade-up delay-2">Flujo de datos y validación</p>
+        <h2 class="slide-title animate-fade-up delay-1">Arquitectura de Validación</h2>
 
-        <!-- Diagrama de arquitectura horizontal -->
-        <div class="arch-real-diagram animate-fade-up delay-2">
-
-          <!-- Nodo: Usuario -->
-          <div class="arch-node-real arch-node-user arch-anim" data-arch-index="0">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-            </svg>
-            <span class="arch-node-label">Usuario</span>
+        <div class="arch-zones animate-fade-up delay-2" style="display: flex; gap: 24px; margin-top: 32px; width: 100%; max-width: 1200px;">
+          <!-- Zona 1: Cliente -->
+          <div class="arch-zone" style="flex:1; background:#fff; border:1.5px solid var(--color-border); border-radius:var(--radius-card); padding:24px; text-align:center;">
+            <h3 style="color:var(--color-green-dark); margin-bottom: 16px;">App Android</h3>
+            <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px;">
+              <li>Kotlin / Jetpack Compose</li>
+              <li>Escaneo con ZXing</li>
+              <li>Peticiones Retrofit</li>
+              <li>Historial local (Room)</li>
+            </ul>
           </div>
-
-          <div class="arch-real-arrow arch-anim" data-arch-index="1">→</div>
-
-          <!-- Nodo: App Android -->
-          <div class="arch-node-real arch-node-android arch-anim" data-arch-index="2">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
-            </svg>
-            <span class="arch-node-label">App Android</span>
-            <div class="arch-node-tech-list">
-              <span>Kotlin</span><span>Jetpack Compose</span>
-              <span>ZXing</span><span>ViewModel + StateFlow</span>
-              <span>Retrofit / OkHttp</span><span>Room</span>
-            </div>
+          <div style="display:flex; align-items:center; color:var(--color-green); font-size:24px; font-weight:bold;">→</div>
+          
+          <!-- Zona 2: Backend -->
+          <div class="arch-zone" style="flex:1.2; background:var(--color-green-bg); border:1.5px solid var(--color-green); border-radius:var(--radius-card); padding:24px; text-align:center; box-shadow:var(--shadow-card);">
+            <h3 style="color:var(--color-green-dark); margin-bottom: 16px;">Backend FastAPI</h3>
+            <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px;">
+              <li>Validación defensiva de URL</li>
+              <li>Orquestación paralela</li>
+              <li>Decisión final de riesgo</li>
+              <li>Gestión de claves API</li>
+            </ul>
           </div>
-
-          <div class="arch-real-arrow arch-anim" data-arch-index="3">→</div>
-
-          <!-- Nodo: Backend FastAPI -->
-          <div class="arch-node-real arch-node-backend arch-anim" data-arch-index="4">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-            </svg>
-            <span class="arch-node-label">Backend FastAPI</span>
-            <div class="arch-node-tech-list">
-              <span>FastAPI</span><span>Docker</span>
-              <span>Validación defensiva</span>
-              <span>Orquestación</span>
-              <span>Decisión final</span>
-            </div>
+          <div style="display:flex; align-items:center; color:var(--color-green); font-size:24px; font-weight:bold;">→</div>
+          
+          <!-- Zona 3: APIs -->
+          <div class="arch-zone" style="flex:1; background:#fff; border:1.5px solid var(--color-border); border-radius:var(--radius-card); padding:24px; text-align:center;">
+            <h3 style="color:var(--color-green-dark); margin-bottom: 16px;">Fuentes Externas</h3>
+            <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; font-size: 14px;">
+              <li>Google Web Risk</li>
+              <li>IPQualityScore</li>
+              <li>OpenPhish</li>
+              <li>Heurísticas y SnapRender</li>
+            </ul>
           </div>
-
-          <div class="arch-real-arrow arch-anim" data-arch-index="5">→</div>
-
-          <!-- Nodo: Fuentes externas (stack vertical) -->
-          <div class="arch-node-real arch-node-apis arch-anim" data-arch-index="6">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            </svg>
-            <span class="arch-node-label">Fuentes externas</span>
-            <div class="arch-node-tech-list">
-              <span>Google Web Risk</span>
-              <span>IPQualityScore</span>
-              <span>OpenPhish</span>
-              <span>Heurísticas locales</span>
-              <span>SnapRender</span>
-            </div>
-          </div>
-
         </div>
 
-        <!-- Mini tarjetas de principios de seguridad -->
-        <div class="arch-principles animate-fade-up delay-4">
-          <div class="arch-principle">
-            <span class="arch-principle-dot"></span>
-            Las claves API están solo en el backend
-          </div>
-          <div class="arch-principle">
-            <span class="arch-principle-dot"></span>
-            Android no decide el riesgo final
-          </div>
-          <div class="arch-principle">
-            <span class="arch-principle-dot"></span>
-            El backend centraliza el análisis
-          </div>
-          <div class="arch-principle">
-            <span class="arch-principle-dot"></span>
-            Sin apertura automática sin análisis previo
-          </div>
+        <div class="arch-principles animate-fade-up delay-4" style="display:flex; gap: 24px; margin-top:32px; justify-content:center;">
+          <div style="background:#fef2f2; border:1px solid #fca5a5; padding:12px 24px; border-radius:12px; color:#b91c1c; font-weight:600;">⚠️ Android nunca decide el riesgo</div>
+          <div style="background:var(--color-green-bg); border:1px solid var(--color-green-light); padding:12px 24px; border-radius:12px; color:var(--color-green-dark); font-weight:600;">🔒 Claves API ocultas en backend</div>
+          <div style="background:var(--color-bg); border:1px solid var(--color-border); padding:12px 24px; border-radius:12px; font-weight:600;">🚫 Sin apertura automática</div>
         </div>
       </section>
 
       <!-- ─── SLIDE 10: MOTOR DE DECISIÓN ──────────────────── -->
       <section class="slide" id="slide-10" data-slide="10" aria-label="Motor de Decisión">
         <div class="slide-tag animate-fade-in">Seguridad</div>
-        <h2 class="slide-title animate-fade-up delay-1">Motor de Decisión</h2>
+        <h2 class="slide-title animate-fade-up delay-1">Motor de Decisión de Riesgo</h2>
 
-        <div class="decision-layout animate-fade-up delay-2">
-
-          <!-- Columna izquierda: niveles -->
-          <div class="decision-levels">
-
-            <!-- risk_level -->
-            <div class="decision-section">
-              <div class="decision-section-label">risk_level</div>
-              <div class="decision-risk-row">
-                <div class="decision-risk safe">
-                  <span class="decision-dot" style="background:#22c55e"></span>
-                  <span>Seguro</span>
-                </div>
-                <div class="decision-risk warn">
-                  <span class="decision-dot" style="background:#f97316"></span>
-                  <span>Sospechoso</span>
-                </div>
-                <div class="decision-risk danger">
-                  <span class="decision-dot" style="background:#ef4444"></span>
-                  <span>Peligroso</span>
-                </div>
-              </div>
+        <div style="display:flex; gap:32px; margin-top:32px; width:100%; max-width:1200px;" class="animate-fade-up delay-2">
+          
+          <!-- Matriz Visual -->
+          <div style="flex:2; background:#fff; border-radius:var(--radius-card); border:1px solid var(--color-border); overflow:hidden; box-shadow:var(--shadow-card);">
+            <div style="display:grid; grid-template-columns:1fr 1fr 1.5fr; background:var(--color-bg); padding:16px 24px; font-weight:bold; border-bottom:2px solid var(--color-border);">
+              <div>Caso (risk + status)</div>
+              <div>Resultado</div>
+              <div>Acción UX</div>
             </div>
-
-            <!-- analysis_status -->
-            <div class="decision-section">
-              <div class="decision-section-label">analysis_status</div>
-              <div class="decision-status-row">
-                <div class="decision-status status-complete">Completo</div>
-                <div class="decision-status status-partial">Parcial</div>
-                <div class="decision-status status-unavail">No disponible</div>
-              </div>
+            
+            <div style="display:grid; grid-template-columns:1fr 1fr 1.5fr; padding:16px 24px; border-bottom:1px solid var(--color-border); align-items:center;">
+              <div><span style="background:#dcfce7; color:#166534; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold;">safe + complete</span></div>
+              <div style="display:flex; align-items:center; gap:8px; font-weight:bold; color:#15803d;"><div style="width:12px; height:12px; background:#22c55e; border-radius:50%;"></div> Seguro</div>
+              <div style="font-size:14px; color:var(--color-text-muted);">Apertura directa permitida</div>
             </div>
-
+            
+            <div style="display:grid; grid-template-columns:1fr 1fr 1.5fr; padding:16px 24px; border-bottom:1px solid var(--color-border); align-items:center;">
+              <div><span style="background:#ffedd5; color:#9a3412; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold;">suspicious / partial</span></div>
+              <div style="display:flex; align-items:center; gap:8px; font-weight:bold; color:#c2410c;"><div style="width:12px; height:12px; background:#f97316; border-radius:50%;"></div> Sospechoso</div>
+              <div style="font-size:14px; color:var(--color-text-muted);">Aviso y confirmación explícita</div>
+            </div>
+            
+            <div style="display:grid; grid-template-columns:1fr 1fr 1.5fr; padding:16px 24px; align-items:center;">
+              <div><span style="background:#fee2e2; color:#991b1b; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold;">dangerous</span></div>
+              <div style="display:flex; align-items:center; gap:8px; font-weight:bold; color:#b91c1c;"><div style="width:12px; height:12px; background:#ef4444; border-radius:50%;"></div> Peligroso</div>
+              <div style="font-size:14px; color:var(--color-text-muted);">Alerta roja, acceso bloqueado</div>
+            </div>
           </div>
 
-          <!-- Columna derecha: reglas de actuación -->
-          <div class="decision-rules">
-            <div class="decision-rules-header">Reglas de actuación</div>
-
-            <div class="decision-rule decision-rule-safe">
-              <div class="decision-rule-condition">
-                <span class="drule-badge safe">safe</span>
-                <span class="drule-plus">+</span>
-                <span class="drule-badge complete">complete</span>
-              </div>
-              <div class="decision-rule-action">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                Apertura directa permitida
-              </div>
+          <!-- Estados Técnicos -->
+          <div style="flex:1; display:flex; flex-direction:column; gap:16px;">
+            <div style="background:var(--color-bg); padding:20px; border-radius:var(--radius-card); border:1px solid var(--color-border);">
+              <h3 style="font-size:16px; margin-bottom:16px;">Estados de Análisis</h3>
+              <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:12px; font-size:13px;">
+                <li><strong>complete:</strong> Todos los motores obligatorios han respondido correctamente.</li>
+                <li><strong>partial:</strong> Falta información o timeout en motores de análisis.</li>
+                <li><strong>unavailable:</strong> Sin base suficiente para decidir (e.g. sin conexión).</li>
+              </ul>
             </div>
-
-            <div class="decision-rule decision-rule-warn">
-              <div class="decision-rule-condition">
-                <span class="drule-badge warn">suspicious</span>
-                <span class="drule-plus">/</span>
-                <span class="drule-badge partial">partial</span>
-              </div>
-              <div class="decision-rule-action">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                Confirmación explícita del usuario
-              </div>
-            </div>
-
-            <div class="decision-rule decision-rule-danger">
-              <div class="decision-rule-condition">
-                <span class="drule-badge danger">dangerous</span>
-              </div>
-              <div class="decision-rule-action">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                Advertencia fuerte, acceso bloqueado
-              </div>
-            </div>
-
           </div>
+
         </div>
 
-        <!-- Mensaje fail-secure destacado -->
-        <div class="failsecure-banner animate-fade-up delay-4">
-          <div class="failsecure-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L3 7l9 5 9-5-9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/>
-            </svg>
-          </div>
-          <div class="failsecure-text">
-            <strong>Enfoque fail-secure:</strong>
-            Si el análisis es parcial o no concluyente, nunca se marca como seguro. Ante la duda, se alerta.
-          </div>
+        <div class="animate-fade-up delay-4" style="margin-top:32px; background:var(--color-green-bg); border:2px solid var(--color-green); color:var(--color-green-dark); padding:20px 40px; border-radius:var(--radius-card); font-size:24px; font-weight:bold; text-align:center; box-shadow:var(--shadow-card);">
+          "Nunca se marca como seguro un análisis parcial o incompleto."
         </div>
+      </section>
+
+
       </section>
 
       <!-- ─── SLIDE 11: PROTOTIPO FUNCIONAL ────────────────── -->
@@ -678,98 +564,82 @@ const slideTitles = [
           
           <!-- Pantalla 1: Escáner -->
           <PhoneMockup label="Pantalla Principal" animDelay={3}>
-            <div class="android-screen sc-scanner">
-              <div class="and-top-bar">Scanner Security</div>
-              <div class="and-camera-sim">
-                <div class="and-scanner-guide"></div>
-              </div>
-              <div class="and-bottom-sheet">
-                <div class="and-input-url">https://...</div>
-                <div class="and-fab">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                </div>
-              </div>
-            </div>
+            <img src="/screenshot-home.png" alt="Pantalla Principal" style="width:100%; height:100%; object-fit:cover; display:block; background:#e2e8f0;" />
           </PhoneMockup>
 
           <!-- Pantalla 2: Análisis (Destacada) -->
           <PhoneMockup featured={true} label="Motor de Análisis" animDelay={4}>
-            <div class="android-screen sc-analysis">
-              <div class="and-top-bar">Analizando URL</div>
-              <div class="and-content">
-                <div class="and-loader-circle"></div>
-                <div class="and-analysis-steps">
-                  <div class="and-step done">Google Web Risk</div>
-                  <div class="and-step done">IPQualityScore</div>
-                  <div class="and-step pulse">OpenPhish</div>
-                </div>
-              </div>
-            </div>
+            <img src="/screenshot-safe.png" alt="Resultado Seguro" style="width:100%; height:100%; object-fit:cover; display:block; background:#e2e8f0;" />
           </PhoneMockup>
 
-          <!-- Pantalla 3: Resultado Seguro -->
-          <PhoneMockup label="Resultado Seguro" animDelay={5}>
-            <div class="android-screen sc-result safe">
-              <div class="and-top-bar">Resultado</div>
-              <div class="and-result-header">
-                <div class="and-shield-icon">✓</div>
-                <strong class="and-risk-text">URL SEGURA</strong>
-              </div>
-              <div class="and-result-body">
-                <p>No se detectan amenazas.</p>
-                <div class="and-btn-primary">ABRIR ENLACE</div>
-                <div class="and-btn-secondary">Guardar en Historial</div>
-              </div>
-            </div>
+          <!-- Pantalla 3: Vista Previa -->
+          <PhoneMockup label="Vista Previa" animDelay={5}>
+            <img src="/screenshot-preview.png" alt="Vista Previa" style="width:100%; height:100%; object-fit:cover; display:block; background:#e2e8f0;" />
           </PhoneMockup>
 
-          <!-- Pantalla 4: Resultado Peligroso -->
-          <PhoneMockup label="Resultado Peligroso" animDelay={6}>
-            <div class="android-screen sc-result danger">
-              <div class="and-top-bar" style="background:#fef2f2; border-bottom:1px solid #fca5a5;">Peligro</div>
-              <div class="and-result-header" style="background:#fee2e2;">
-                <div class="and-shield-icon" style="background:#ef4444;">!</div>
-                <strong class="and-risk-text" style="color:#b91c1c;">PELIGROSO</strong>
-              </div>
-              <div class="and-result-body">
-                <p>Se detectó Phishing.</p>
-                <div class="and-btn-primary" style="background:#ef4444;">SALIR</div>
-                <div class="and-btn-secondary" style="border-color:#fca5a5;">Guardar en Historial</div>
-              </div>
-            </div>
+          <!-- Pantalla 4: Historial -->
+          <PhoneMockup label="Historial / Peligro" animDelay={6}>
+            <img src="/screenshot-history.png" alt="Historial" style="width:100%; height:100%; object-fit:cover; display:block; background:#e2e8f0;" />
           </PhoneMockup>
 
         </div>
       </section>
-
       <!-- ─── SLIDE 12: FLUJO DE USO Y PRIVACIDAD ────────────── -->
       <section class="slide" id="slide-12" data-slide="12" aria-label="Flujo de uso y privacidad">
-        <div class="slide-tag animate-fade-in">Experiencia de Usuario</div>
-        <h2 class="slide-title animate-fade-up delay-1">Flujo de uso y decisión del usuario</h2>
+        <div class="slide-tag animate-fade-in">Experiencia</div>
+        <h2 class="slide-title animate-fade-up delay-1">Flujo de Uso Transparente</h2>
 
-        <div class="slide-two-col animate-fade-up delay-2" style="margin-top: 32px;">
-          <!-- Flujo de uso -->
-          <div class="flow-list">
-            <h3 style="font-size: 16px; margin-bottom: 16px; color: var(--color-green-dark);">Timeline</h3>
-            <ol class="styled-list">
-              <li>Escanear QR / introducir URL.</li>
-              <li>Validación local.</li>
-              <li>Envío al backend.</li>
-              <li>Análisis de seguridad.</li>
-              <li>Resultado comprensible.</li>
-              <li>Decisión de apertura.</li>
-              <li>Historial local / reanálisis.</li>
-            </ol>
+        <!-- Timeline horizontal -->
+        <div class="timeline-horiz animate-fade-up delay-2" style="display:flex; align-items:center; gap:8px; margin-top:48px; width:100%; max-width:1100px; justify-content:space-between; position:relative;">
+          <div style="position:absolute; top:24px; left:50px; right:50px; height:2px; background:var(--color-green-light); z-index:0;"></div>
+          
+          <div style="position:relative; z-index:1; text-align:center; flex:1;">
+            <div style="width:48px; height:48px; background:var(--color-green); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">1</div>
+            <strong style="font-size:14px;">Escanear</strong>
           </div>
+          <div style="position:relative; z-index:1; text-align:center; flex:1;">
+            <div style="width:48px; height:48px; background:var(--color-green-bg); border:2px solid var(--color-green); color:var(--color-green-dark); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">2</div>
+            <strong style="font-size:14px;">Validar local</strong>
+          </div>
+          <div style="position:relative; z-index:1; text-align:center; flex:1;">
+            <div style="width:48px; height:48px; background:var(--color-green-bg); border:2px solid var(--color-green); color:var(--color-green-dark); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">3</div>
+            <strong style="font-size:14px;">Enviar API</strong>
+          </div>
+          <div style="position:relative; z-index:1; text-align:center; flex:1;">
+            <div style="width:48px; height:48px; background:var(--color-green); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">4</div>
+            <strong style="font-size:14px;">Analizar</strong>
+          </div>
+          <div style="position:relative; z-index:1; text-align:center; flex:1;">
+            <div style="width:48px; height:48px; background:var(--color-green-bg); border:2px solid var(--color-green); color:var(--color-green-dark); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">5</div>
+            <strong style="font-size:14px;">Mostrar</strong>
+          </div>
+          <div style="position:relative; z-index:1; text-align:center; flex:1;">
+            <div style="width:48px; height:48px; background:var(--color-green); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">6</div>
+            <strong style="font-size:14px;">Decidir</strong>
+          </div>
+          <div style="position:relative; z-index:1; text-align:center; flex:1;">
+            <div style="width:48px; height:48px; background:var(--color-bg); border:2px solid var(--color-border); color:var(--color-text-muted); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">7</div>
+            <strong style="font-size:14px;">Guardar</strong>
+          </div>
+        </div>
 
-          <!-- Privacidad -->
-          <div class="privacy-block">
-            <h3 style="font-size: 16px; margin-bottom: 16px; color: var(--color-green-dark);">Privacidad por diseño</h3>
-            <ul class="styled-list">
-              <li>Historial local con Room.</li>
-              <li>Sin cuenta obligatoria.</li>
-              <li>Sin sincronización en la nube.</li>
-            </ul>
+        <!-- Privacidad 3 tarjetas -->
+        <h3 style="margin-top:48px; color:var(--color-text); font-weight: 600;">Privacidad por Diseño</h3>
+        <div class="privacy-cards animate-fade-up delay-4" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-top:24px; width:100%; max-width:900px;">
+          <div style="background:#fff; border-radius:var(--radius-card); padding:20px; box-shadow:var(--shadow-card); text-align:center; border:1px solid var(--color-border);">
+            <div style="font-size:24px; margin-bottom:12px;">🗄️</div>
+            <strong>Historial Local</strong>
+            <p style="font-size:13px; color:var(--color-text-muted); margin-top:8px;">Datos guardados usando Room solo en el dispositivo.</p>
+          </div>
+          <div style="background:#fff; border-radius:var(--radius-card); padding:20px; box-shadow:var(--shadow-card); text-align:center; border:1px solid var(--color-border);">
+            <div style="font-size:24px; margin-bottom:12px;">👤</div>
+            <strong>Sin Cuenta</strong>
+            <p style="font-size:13px; color:var(--color-text-muted); margin-top:8px;">No requiere registro ni cesión de datos personales.</p>
+          </div>
+          <div style="background:#fff; border-radius:var(--radius-card); padding:20px; box-shadow:var(--shadow-card); text-align:center; border:1px solid var(--color-border);">
+            <div style="font-size:24px; margin-bottom:12px;">☁️</div>
+            <strong>Sin Nube</strong>
+            <p style="font-size:13px; color:var(--color-text-muted); margin-top:8px;">Ningún historial se sincroniza con servidores externos.</p>
           </div>
         </div>
       </section>
@@ -777,63 +647,80 @@ const slideTitles = [
       <!-- ─── SLIDE 13: VIABILIDAD Y COSTES ────────────────── -->
       <section class="slide" id="slide-13" data-slide="13" aria-label="Viabilidad y Costes">
         <div class="slide-tag animate-fade-in">Viabilidad</div>
-        <h2 class="slide-title animate-fade-up delay-1">Viabilidad y Análisis de Costes</h2>
+        <h2 class="slide-title animate-fade-up delay-1">Viabilidad y Modelo de Negocio</h2>
 
-        <div class="cost-grid animate-fade-up delay-2">
-          <!-- Coste total -->
-          <div class="cost-card cost-featured">
-            <span class="cost-label">Coste total estimado</span>
-            <span class="cost-value">12.190,75 €</span>
-            <span class="cost-sub">Proyecto completo TFC</span>
+        <div style="display:flex; gap:40px; margin-top:32px; width:100%; max-width:1100px;">
+          
+          <!-- Izquierda: Gráfico de costes (TFG reales) -->
+          <div class="animate-fade-up delay-2" style="flex:1; background:#fff; border-radius:var(--radius-card); padding:24px; box-shadow:var(--shadow-card); border:1px solid var(--color-border);">
+            <h3 style="margin-bottom:24px; font-size:18px;">Costes Estimados (MVP)</h3>
+            <div style="display:flex; align-items:flex-end; gap:16px; height:180px; padding-bottom:16px; border-bottom:1px solid var(--color-border);">
+              <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center;">
+                <div style="font-weight:bold; font-size:14px; margin-bottom:8px;">6.080€</div>
+                <div style="width:100%; background:var(--color-green-dark); border-radius:8px 8px 0 0; height:50%;"></div>
+                <span style="font-size:12px; margin-top:8px;">Personal</span>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center;">
+                <div style="font-weight:bold; font-size:14px; margin-bottom:8px;">1.700€</div>
+                <div style="width:100%; background:var(--color-green); border-radius:8px 8px 0 0; height:14%;"></div>
+                <span style="font-size:12px; margin-top:8px;">Hardware</span>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center;">
+                <div style="font-weight:bold; font-size:14px; margin-bottom:8px;">4.410€</div>
+                <div style="width:100%; background:var(--color-green-light); border-radius:8px 8px 0 0; height:36%;"></div>
+                <span style="font-size:12px; margin-top:8px;">Indirectos</span>
+              </div>
+            </div>
+            <div style="text-align:center; font-weight:900; font-size:24px; margin-top:16px; color:var(--color-green-dark);">Total: 12.190,75 €</div>
           </div>
-          <!-- Personal -->
-          <div class="cost-card">
-            <span class="cost-label">Personal</span>
-            <span class="cost-value">6.080 €</span>
-            <span class="cost-sub">Desarrollo y gestión</span>
-          </div>
-          <!-- Hardware/Mantenimiento -->
-          <div class="cost-card">
-            <span class="cost-label">Mantenimiento (Mes)</span>
-            <span class="cost-value">160–325 €</span>
-            <span class="cost-sub">+ Google Web Risk variable</span>
-          </div>
-          <!-- Modelo de negocio -->
-          <div class="cost-card">
-            <span class="cost-label">Plan Premium</span>
-            <span class="cost-value">3,99 €/mes</span>
-            <span class="cost-sub">Punto de equilibrio: ~82 suscriptores</span>
-          </div>
-        </div>
 
-        <div class="cost-note animate-fade-up delay-4">
-          Modelos de negocio previstos: Gratuito, Premium B2C, Corporativo B2B. Hardware y materiales estimados en 1.700 €.
+          <!-- Derecha: Mantenimiento y Modelos -->
+          <div class="animate-fade-up delay-3" style="flex:1; display:flex; flex-direction:column; gap:16px;">
+            <div style="background:var(--color-green-bg); border:1.5px solid var(--color-green-light); padding:20px; border-radius:var(--radius-card);">
+              <div style="font-weight:bold; font-size:16px; color:var(--color-green-dark);">Mantenimiento</div>
+              <div style="font-size:24px; font-weight:900; margin-top:8px;">160–325 €/mes</div>
+              <div style="font-size:12px; color:var(--color-text-muted); margin-top:4px;">+ Google Web Risk variable</div>
+            </div>
+            <div style="background:#fff; border:1px solid var(--color-border); padding:20px; border-radius:var(--radius-card); box-shadow:var(--shadow-card);">
+              <div style="font-weight:bold; font-size:16px; margin-bottom:12px;">Modelo de Negocio</div>
+              <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; font-size:14px;">
+                <li><strong>1. Gratuito:</strong> Funciones básicas.</li>
+                <li><strong>2. Premium B2C (3,99 €/mes):</strong> Historial en nube, reportes.</li>
+                <li><strong>3. Corporativo B2B:</strong> Licencias para empresas.</li>
+              </ul>
+              <div style="margin-top:12px; padding-top:12px; border-top:1px dashed var(--color-border); font-size:13px; font-weight:bold; color:var(--color-green-dark);">
+                Punto de equilibrio: ~82 suscriptores
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- ─── SLIDE 14: CONCLUSIÓN ─────────────────────────── -->
       <section class="slide slide-close" id="slide-14" data-slide="14" aria-label="Conclusión">
         <div class="slide-tag animate-fade-in">Cierre</div>
-        <h2 class="slide-title animate-fade-up delay-1">Conclusión</h2>
+        <h2 class="slide-title animate-fade-up delay-1" style="font-size:48px;">Menos clics a ciegas.<br/>Más seguridad antes de abrir.</h2>
 
-        <div class="slide-content animate-fade-up delay-2" style="margin-top: 40px;">
+        <div class="slide-content animate-fade-up delay-2" style="margin-top: 48px; width:100%; max-width:1100px;">
           
-          <ul class="styled-list" style="max-width: 600px; margin: 0 auto 32px auto; text-align: left; display: inline-block;">
-            <li>Validación de prototipo funcional.</li>
-            <li>Reduce riesgo antes de abrir QRs.</li>
-            <li>Orientado a usuarios no técnicos.</li>
-            <li>No garantiza seguridad absoluta.</li>
-            <li>Enfoque conservador/fail-secure.</li>
-            <li>Viabilidad técnica y económica.</li>
-          </ul>
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-bottom:48px;">
+            <div style="background:#fff; padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card); border-top:4px solid var(--color-green);">
+              <strong style="display:block; margin-bottom:12px; font-size:18px;">🎯 Qué se ha conseguido</strong>
+              <p style="font-size:14px; color:var(--color-text-muted);">Prototipo funcional que escanea, analiza con múltiples motores y advierte sobre URLs peligrosas antes de abrirlas.</p>
+            </div>
+            <div style="background:#fff; padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card); border-top:4px solid var(--color-green);">
+              <strong style="display:block; margin-bottom:12px; font-size:18px;">💡 Qué valor aporta</strong>
+              <p style="font-size:14px; color:var(--color-text-muted);">Reduce drásticamente el riesgo de phishing para usuarios no técnicos de forma rápida y sencilla.</p>
+            </div>
+            <div style="background:#fff; padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card); border-top:4px solid var(--color-green);">
+              <strong style="display:block; margin-bottom:12px; font-size:18px;">🛡️ Por qué es defendible</strong>
+              <p style="font-size:14px; color:var(--color-text-muted);">Arquitectura viable (FastAPI + Android), enfoque "fail-secure" preventivo y privacidad local total.</p>
+            </div>
+          </div>
 
-          <p class="big-quote" style="margin-top: 24px;">
-            Menos clics a ciegas.<br/>Más seguridad antes de abrir.
-          </p>
-
-          <div style="margin-top: 48px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
-            <p style="font-weight: bold; font-size: 20px;">Muchas gracias.</p>
-            <p style="color: var(--color-text-muted);">¿Preguntas?</p>
+          <div style="margin-top: 24px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <p style="font-weight: 900; font-size: 32px; color:var(--color-green-dark);">Muchas gracias por su atención.</p>
+            <p style="color: var(--color-text-muted); font-size:20px;">¿Alguna pregunta?</p>
           </div>
         </div>
       </section>
