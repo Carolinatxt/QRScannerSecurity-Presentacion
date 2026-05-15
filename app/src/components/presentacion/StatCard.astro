@@ -16,7 +16,7 @@ interface Props {
   value: string;
   label: string;
   sub?: string;
-  variant?: '' | 'orange' | 'red';
+  variant?: '' | 'orange' | 'red' | 'transparent';
   animDelay?: 1 | 2 | 3 | 4 | 5 | 6;
   icon?: string;
   percentage?: number;
@@ -42,6 +42,7 @@ const animClass = animDelay
 let barColor = 'var(--color-green)';
 if (variant === 'orange') barColor = 'var(--color-orange)';
 if (variant === 'red') barColor = 'var(--color-red)';
+if (variant === 'transparent') barColor = 'var(--color-green)';
 ---
 
 <div class={`${cardClass} ${animClass}`} style="display:flex; flex-direction:column; justify-content:center; height:100%;">
@@ -73,6 +74,18 @@ if (variant === 'red') barColor = 'var(--color-red)';
 </div>
 
 <style>
+  /* Variantes especiales */
+  .stat-card.transparent {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 16px 8px;
+  }
+  .stat-card.transparent:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
   /* Estilos locales que complementan los globales de presentacion.css */
   .stat-icon {
     font-size: 22px;

@@ -106,11 +106,12 @@ html, body {
   /* Fondo premium: base verde muy claro, radiales en esquinas y patrón sutil */
   background-color: #f6faf4;
   background-image: 
-    radial-gradient(circle at top left, rgba(22, 163, 74, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at bottom right, rgba(22, 163, 74, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at top left, rgba(22, 163, 74, 0.09) 0%, transparent 45%),
+    radial-gradient(circle at bottom right, rgba(22, 163, 74, 0.09) 0%, transparent 45%),
+    radial-gradient(ellipse at center, rgba(22, 163, 74, 0.04) 0%, transparent 60%),
     url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath fill='rgba(22, 163, 74, 0.02)' d='M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h-2v2h2v-2zm-2 2h-2v2h2v-2zm2 2h-2v2h2v-2zm-2 2h-2v2h2v-2zm4-6h-2v2h2v-2zm-2 2h-2v2h2v-2zm2 2h-2v2h2v-2z'/%3E%3C/svg%3E");
-  background-size: auto, auto, 64px 64px;
-  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: auto, auto, auto, 64px 64px;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
   opacity: 0;
   pointer-events: none;
   transform: translateX(60px);
@@ -479,7 +480,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   width: 94vw;
-  max-width: 1450px;
+  max-width: 1500px;
   gap: 32px;
 }
 
@@ -489,7 +490,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   width: 94vw;
-  max-width: 1500px;
+  max-width: 1600px;
   gap: 36px;
 }
 
