@@ -179,63 +179,30 @@ const slideTitles = [
 
       <!-- ─── SLIDE 3: EL PROBLEMA ──────────────────────── -->
       <section class="slide slide-risk" id="slide-3" data-slide="3" aria-label="El Problema">
-        <div class="slide-tag animate-fade-in">El Problema</div>
+        <div class="slide-tag animate-fade-in" style="background:var(--color-red); color:#fff; border:none;">El Problema</div>
 
-        <p class="big-quote animate-fade-up delay-1">
-          Un QR oculta la URL hasta que <em>ya lo has escaneado.</em>
-        </p>
+        <div style="display:flex; gap:48px; width:100%; max-width:1200px; margin-top:48px; align-items:center;" class="animate-fade-up delay-1">
+          
+          <!-- Lado Izquierdo -->
+          <div style="flex:1;">
+            <p style="font-size:42px; font-weight:900; line-height:1.2; color:var(--color-text);">
+              Un QR oculta la URL hasta que <span style="color:var(--color-red);">ya lo has escaneado.</span>
+            </p>
+          </div>
 
-        <!-- Protagonista: INCIBE -->
-        <div class="incibe-card animate-fade-up delay-2">
-          <div class="incibe-value">+25.000</div>
-          <div class="incibe-desc">Casos de phishing gestionados por INCIBE en España durante 2023-2024.</div>
+          <!-- Lado Derecho: INCIBE -->
+          <div style="flex:1; background:#fef2f2; border:2px solid #fca5a5; border-radius:var(--radius-card); padding:40px; text-align:center; box-shadow:var(--shadow-lg);">
+            <div style="font-size:80px; font-weight:900; color:#b91c1c; line-height:1;">+25.000</div>
+            <div style="font-size:20px; font-weight:bold; color:#7f1d1d; margin-top:16px;">casos de phishing gestionados por INCIBE en España durante 2025</div>
+          </div>
+          
         </div>
 
-        <!-- Flujo visual: QR → URL oculta → Riesgo -->
-        <div class="problem-flow animate-fade-up delay-3">
-          <div class="prob-flow-step">
-            <div class="prob-flow-icon">📱</div>
-            <span class="prob-flow-label">Escaneas QR</span>
-          </div>
-          <span class="prob-flow-arrow">→</span>
-          <div class="prob-flow-step warn">
-            <div class="prob-flow-icon">🔗</div>
-            <span class="prob-flow-label">URL Oculta</span>
-            <span class="prob-flow-sub">¿A dónde lleva?</span>
-          </div>
-          <span class="prob-flow-arrow">→</span>
-          <div class="prob-flow-step danger">
-            <div class="prob-flow-icon">⚠️</div>
-            <span class="prob-flow-label">Riesgo Real</span>
-            <span class="prob-flow-sub">Quishing / Malware</span>
-          </div>
-        </div>
-
-        <!-- Dato INCIBE destacado -->
-        <div class="incibe-banner animate-fade-up delay-4">
-          <div class="incibe-number">+25.000</div>
-          <div class="incibe-text">
-            <strong>casos de phishing gestionados por INCIBE en España durante 2023-2024</strong>
-            <span>— la principal amenaza de fraude online</span>
-          </div>
-          <div class="incibe-source">Fuente: INCIBE</div>
-        </div>
-
-        <!-- ¿Qué no ve el usuario? -->
-        <div class="prob-cards animate-fade-up delay-5" style="margin-top: 32px;">
-          <h3 style="width: 100%; text-align: center; color: var(--color-text); margin-bottom: 16px; font-size: 18px;">¿Qué no ve el usuario?</h3>
-          <div class="prob-card">
-            <strong>1. URL Oculta</strong>
-            <p>Redirecciones que enmascaran el destino real hasta que es tarde.</p>
-          </div>
-          <div class="prob-card">
-            <strong>2. Quishing Activo</strong>
-            <p>Pegatinas falsas sobre QRs legítimos en restaurantes y comercios.</p>
-          </div>
-          <div class="prob-card">
-            <strong>3. Usuario no técnico</strong>
-            <p>La víctima principal no tiene formación para evaluar una URL manualmente.</p>
-          </div>
+        <!-- Chips debajo -->
+        <div class="animate-fade-up delay-3" style="display:flex; gap:16px; margin-top:48px; justify-content:center; width:100%;">
+          <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:12px 24px; border-radius:24px; font-weight:bold; font-size:16px; box-shadow:var(--shadow-sm);">🔗 URL oculta</span>
+          <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:12px 24px; border-radius:24px; font-weight:bold; font-size:16px; box-shadow:var(--shadow-sm);">🏷️ Quishing</span>
+          <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:12px 24px; border-radius:24px; font-weight:bold; font-size:16px; box-shadow:var(--shadow-sm);">👤 Usuario no técnico</span>
         </div>
       </section>
 
@@ -590,36 +557,50 @@ const slideTitles = [
         <h2 class="slide-title animate-fade-up delay-1">Flujo de Uso Transparente</h2>
 
         <!-- Timeline horizontal -->
-        <div class="timeline-horiz animate-fade-up delay-2" style="display:flex; align-items:center; gap:8px; margin-top:48px; width:100%; max-width:1100px; justify-content:space-between; position:relative;">
+        <div class="timeline-horiz animate-fade-up delay-2" style="display:flex; align-items:flex-start; gap:8px; margin-top:48px; width:100%; max-width:1100px; justify-content:space-between; position:relative;">
           <div style="position:absolute; top:24px; left:50px; right:50px; height:2px; background:var(--color-green-light); z-index:0;"></div>
           
           <div style="position:relative; z-index:1; text-align:center; flex:1;">
             <div style="width:48px; height:48px; background:var(--color-green); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">1</div>
-            <strong style="font-size:14px;">Escanear</strong>
+            <div style="font-size:20px; margin-bottom:8px;">📷</div>
+            <strong style="font-size:14px; display:block;">Escanear</strong>
+            <span style="font-size:12px; color:var(--color-text-muted);">Cámara o imagen</span>
           </div>
           <div style="position:relative; z-index:1; text-align:center; flex:1;">
             <div style="width:48px; height:48px; background:var(--color-green-bg); border:2px solid var(--color-green); color:var(--color-green-dark); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">2</div>
-            <strong style="font-size:14px;">Validar local</strong>
+            <div style="font-size:20px; margin-bottom:8px;">✅</div>
+            <strong style="font-size:14px; display:block;">Validar</strong>
+            <span style="font-size:12px; color:var(--color-text-muted);">Formato local</span>
           </div>
           <div style="position:relative; z-index:1; text-align:center; flex:1;">
             <div style="width:48px; height:48px; background:var(--color-green-bg); border:2px solid var(--color-green); color:var(--color-green-dark); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">3</div>
-            <strong style="font-size:14px;">Enviar API</strong>
+            <div style="font-size:20px; margin-bottom:8px;">☁️</div>
+            <strong style="font-size:14px; display:block;">Enviar</strong>
+            <span style="font-size:12px; color:var(--color-text-muted);">Al backend</span>
           </div>
           <div style="position:relative; z-index:1; text-align:center; flex:1;">
             <div style="width:48px; height:48px; background:var(--color-green); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">4</div>
-            <strong style="font-size:14px;">Analizar</strong>
+            <div style="font-size:20px; margin-bottom:8px;">🔍</div>
+            <strong style="font-size:14px; display:block;">Analizar</strong>
+            <span style="font-size:12px; color:var(--color-text-muted);">Motores externos</span>
           </div>
           <div style="position:relative; z-index:1; text-align:center; flex:1;">
             <div style="width:48px; height:48px; background:var(--color-green-bg); border:2px solid var(--color-green); color:var(--color-green-dark); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">5</div>
-            <strong style="font-size:14px;">Mostrar</strong>
+            <div style="font-size:20px; margin-bottom:8px;">📱</div>
+            <strong style="font-size:14px; display:block;">Mostrar</strong>
+            <span style="font-size:12px; color:var(--color-text-muted);">Semáforo</span>
           </div>
           <div style="position:relative; z-index:1; text-align:center; flex:1;">
             <div style="width:48px; height:48px; background:var(--color-green); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">6</div>
-            <strong style="font-size:14px;">Decidir</strong>
+            <div style="font-size:20px; margin-bottom:8px;">👆</div>
+            <strong style="font-size:14px; display:block;">Decidir</strong>
+            <span style="font-size:12px; color:var(--color-text-muted);">Usuario elige</span>
           </div>
           <div style="position:relative; z-index:1; text-align:center; flex:1;">
             <div style="width:48px; height:48px; background:var(--color-bg); border:2px solid var(--color-border); color:var(--color-text-muted); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">7</div>
-            <strong style="font-size:14px;">Guardar</strong>
+            <div style="font-size:20px; margin-bottom:8px;">💾</div>
+            <strong style="font-size:14px; display:block;">Guardar</strong>
+            <span style="font-size:12px; color:var(--color-text-muted);">Historial/Reanalizar</span>
           </div>
         </div>
 
@@ -628,18 +609,18 @@ const slideTitles = [
         <div class="privacy-cards animate-fade-up delay-4" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-top:24px; width:100%; max-width:900px;">
           <div style="background:#fff; border-radius:var(--radius-card); padding:20px; box-shadow:var(--shadow-card); text-align:center; border:1px solid var(--color-border);">
             <div style="font-size:24px; margin-bottom:12px;">🗄️</div>
-            <strong>Historial Local</strong>
-            <p style="font-size:13px; color:var(--color-text-muted); margin-top:8px;">Datos guardados usando Room solo en el dispositivo.</p>
+            <strong>Room Local</strong>
+            <p style="font-size:13px; color:var(--color-text-muted); margin-top:8px;">Datos guardados solo en el dispositivo.</p>
           </div>
           <div style="background:#fff; border-radius:var(--radius-card); padding:20px; box-shadow:var(--shadow-card); text-align:center; border:1px solid var(--color-border);">
             <div style="font-size:24px; margin-bottom:12px;">👤</div>
             <strong>Sin Cuenta</strong>
-            <p style="font-size:13px; color:var(--color-text-muted); margin-top:8px;">No requiere registro ni cesión de datos personales.</p>
+            <p style="font-size:13px; color:var(--color-text-muted); margin-top:8px;">No requiere registro ni cesión de datos.</p>
           </div>
           <div style="background:#fff; border-radius:var(--radius-card); padding:20px; box-shadow:var(--shadow-card); text-align:center; border:1px solid var(--color-border);">
             <div style="font-size:24px; margin-bottom:12px;">☁️</div>
             <strong>Sin Nube</strong>
-            <p style="font-size:13px; color:var(--color-text-muted); margin-top:8px;">Ningún historial se sincroniza con servidores externos.</p>
+            <p style="font-size:13px; color:var(--color-text-muted); margin-top:8px;">Ningún historial se sincroniza fuera.</p>
           </div>
         </div>
       </section>
@@ -647,50 +628,50 @@ const slideTitles = [
       <!-- ─── SLIDE 13: VIABILIDAD Y COSTES ────────────────── -->
       <section class="slide" id="slide-13" data-slide="13" aria-label="Viabilidad y Costes">
         <div class="slide-tag animate-fade-in">Viabilidad</div>
-        <h2 class="slide-title animate-fade-up delay-1">Viabilidad y Modelo de Negocio</h2>
+        <h2 class="slide-title animate-fade-up delay-1">Viabilidad y Sostenibilidad</h2>
 
         <div style="display:flex; gap:40px; margin-top:32px; width:100%; max-width:1100px;">
           
           <!-- Izquierda: Gráfico de costes (TFG reales) -->
           <div class="animate-fade-up delay-2" style="flex:1; background:#fff; border-radius:var(--radius-card); padding:24px; box-shadow:var(--shadow-card); border:1px solid var(--color-border);">
-            <h3 style="margin-bottom:24px; font-size:18px;">Costes Estimados (MVP)</h3>
+            <h3 style="margin-bottom:24px; font-size:18px;">Inversión Inicial</h3>
             <div style="display:flex; align-items:flex-end; gap:16px; height:180px; padding-bottom:16px; border-bottom:1px solid var(--color-border);">
               <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center;">
-                <div style="font-weight:bold; font-size:14px; margin-bottom:8px;">6.080€</div>
-                <div style="width:100%; background:var(--color-green-dark); border-radius:8px 8px 0 0; height:50%;"></div>
-                <span style="font-size:12px; margin-top:8px;">Personal</span>
-              </div>
-              <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center;">
                 <div style="font-weight:bold; font-size:14px; margin-bottom:8px;">1.700€</div>
-                <div style="width:100%; background:var(--color-green); border-radius:8px 8px 0 0; height:14%;"></div>
-                <span style="font-size:12px; margin-top:8px;">Hardware</span>
+                <div style="width:100%; background:var(--color-green-light); border-radius:8px 8px 0 0; height:20%;"></div>
+                <span style="font-size:12px; margin-top:8px; text-align:center;">Hardware</span>
               </div>
               <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center;">
-                <div style="font-weight:bold; font-size:14px; margin-bottom:8px;">4.410€</div>
-                <div style="width:100%; background:var(--color-green-light); border-radius:8px 8px 0 0; height:36%;"></div>
-                <span style="font-size:12px; margin-top:8px;">Indirectos</span>
+                <div style="font-weight:bold; font-size:14px; margin-bottom:8px;">6.080€</div>
+                <div style="width:100%; background:var(--color-green-dark); border-radius:8px 8px 0 0; height:75%;"></div>
+                <span style="font-size:12px; margin-top:8px; text-align:center;">Personal</span>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center;">
+                <div style="font-weight:bold; font-size:14px; margin-bottom:8px;">280€</div>
+                <div style="width:100%; background:var(--color-green); border-radius:8px 8px 0 0; height:5%;"></div>
+                <span style="font-size:12px; margin-top:8px; text-align:center;">Gastos ind.</span>
               </div>
             </div>
             <div style="text-align:center; font-weight:900; font-size:24px; margin-top:16px; color:var(--color-green-dark);">Total: 12.190,75 €</div>
           </div>
 
-          <!-- Derecha: Mantenimiento y Modelos -->
+          <!-- Derecha: Sostenibilidad -->
           <div class="animate-fade-up delay-3" style="flex:1; display:flex; flex-direction:column; gap:16px;">
             <div style="background:var(--color-green-bg); border:1.5px solid var(--color-green-light); padding:20px; border-radius:var(--radius-card);">
-              <div style="font-weight:bold; font-size:16px; color:var(--color-green-dark);">Mantenimiento</div>
-              <div style="font-size:24px; font-weight:900; margin-top:8px;">160–325 €/mes</div>
-              <div style="font-size:12px; color:var(--color-text-muted); margin-top:4px;">+ Google Web Risk variable</div>
+              <div style="font-weight:bold; font-size:16px; color:var(--color-green-dark);">Sostenibilidad Operativa</div>
+              <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; font-size:14px; margin-top:12px;">
+                <li><strong>Mantenimiento:</strong> 160–325 €/mes + Google Web Risk</li>
+                <li><strong>Plan Premium:</strong> 3,99 €/mes</li>
+                <li><strong>Equilibrio:</strong> 82 suscriptores</li>
+              </ul>
             </div>
             <div style="background:#fff; border:1px solid var(--color-border); padding:20px; border-radius:var(--radius-card); box-shadow:var(--shadow-card);">
-              <div style="font-weight:bold; font-size:16px; margin-bottom:12px;">Modelo de Negocio</div>
+              <div style="font-weight:bold; font-size:16px; margin-bottom:12px;">Modelo Futuro</div>
               <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; font-size:14px;">
-                <li><strong>1. Gratuito:</strong> Funciones básicas.</li>
-                <li><strong>2. Premium B2C (3,99 €/mes):</strong> Historial en nube, reportes.</li>
-                <li><strong>3. Corporativo B2B:</strong> Licencias para empresas.</li>
+                <li>🟢 Gratuito (MVP Básico)</li>
+                <li>🟢 Premium B2C (Avanzado)</li>
+                <li>🟢 Corporativo B2B (Licencias)</li>
               </ul>
-              <div style="margin-top:12px; padding-top:12px; border-top:1px dashed var(--color-border); font-size:13px; font-weight:bold; color:var(--color-green-dark);">
-                Punto de equilibrio: ~82 suscriptores
-              </div>
             </div>
           </div>
         </div>
