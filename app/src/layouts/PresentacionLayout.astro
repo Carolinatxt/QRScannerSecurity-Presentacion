@@ -4,6 +4,8 @@
  * Layout dedicado para la presentación de TFC.
  * No afecta al Layout.astro original del proyecto.
  */
+import '../styles/presentacion.css';
+
 const { title = 'QR Scanner Security — Presentación TFC' } = Astro.props;
 ---
 <!doctype html>
@@ -11,11 +13,10 @@ const { title = 'QR Scanner Security — Presentación TFC' } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <meta name="robots" content="noindex" />
     <title>{title}</title>
-    <!-- Sistema de estilos de la presentación -->
-    <link rel="stylesheet" href="/presentacion.css" />
+    <!-- Sistema de estilos de la presentación importado arriba -->
   </head>
   <body>
     <slot />
