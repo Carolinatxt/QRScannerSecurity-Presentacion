@@ -246,131 +246,77 @@ const slideTitles = [
       <!-- ─── SLIDE 6: PERSONA PROTOTIPO ───────────────────── -->
       <section class="slide" id="slide-6" data-slide="6" aria-label="Persona Prototipo">
         <div class="slide-tag animate-fade-in">Usuario</div>
-        <h2 class="slide-title animate-fade-up delay-1">Persona Prototipo</h2>
+        <h2 class="slide-title animate-fade-up delay-1">Persona prototipo: usuario cotidiano</h2>
+        <p class="slide-subtitle animate-fade-up delay-2">Escanea QR a diario, pero no sabe evaluar si el enlace es seguro.</p>
 
-        <div class="ux-persona animate-fade-up delay-2">
-
-          <!-- Columna izquierda: avatar + datos clave -->
-          <div class="ux-persona-left">
-            <div class="ux-avatar" aria-label="Icono de usuario">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
+        <div class="ux-persona animate-fade-up delay-2" style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:32px; width:100%; max-width:1100px;">
+          
+          <div style="background:#fff; border:1px solid var(--color-border); padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card);">
+            <div style="font-weight:900; font-size:18px; color:var(--color-text); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+              Contexto
             </div>
-            <p class="ux-persona-name">Usuario no técnico</p>
-            <p class="ux-persona-role">Adulto 25–55 años<br/>Sin conocimientos de ciberseguridad</p>
-            <div class="ux-tags">
-              <span class="ux-tag">Restaurantes</span>
-              <span class="ux-tag">Transporte</span>
-              <span class="ux-tag">Comercios</span>
-              <span class="ux-tag">Carteles urbanos</span>
-            </div>
+            <p style="font-size:16px; color:var(--color-text-muted);">Restaurantes, transporte, comercios y carteles.</p>
           </div>
 
-          <!-- Columna derecha: tarjetas UX grandes -->
-          <div class="ux-persona-right">
-            <div class="ux-card">
-              <div class="ux-card-label">Contexto</div>
-              <div class="ux-card-value">Escanea QR a diario en entornos cotidianos: restaurantes, transporte y comercios.</div>
+          <div style="background:#fef2f2; border:1px solid #fca5a5; padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card);">
+            <div style="font-weight:900; font-size:18px; color:#b91c1c; margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Problema
             </div>
-            <div class="ux-card">
-              <div class="ux-card-label">Necesidad</div>
-              <div class="ux-card-value">Saber si puede abrir un QR sin tener que entender de ciberseguridad.</div>
-            </div>
-            <div class="ux-card ux-card-warn">
-              <div class="ux-card-label">Dolor</div>
-              <div class="ux-card-value">No sabe identificar si una URL es fiable. Abre sin pensar porque no tiene otra opción.</div>
-            </div>
-            <div class="ux-card ux-card-goal">
-              <div class="ux-card-label">Objetivo</div>
-              <div class="ux-card-value">Decidir con confianza y rapidez, sin tecnicismos.</div>
-            </div>
+            <p style="font-size:16px; color:#7f1d1d;">No sabe diferenciar un enlace legítimo de uno fraudulento.</p>
           </div>
 
+          <div style="background:#fff; border:1px solid var(--color-border); padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card);">
+            <div style="font-weight:900; font-size:18px; color:var(--color-text); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              Necesidad
+            </div>
+            <p style="font-size:16px; color:var(--color-text-muted);">Una respuesta rápida y comprensible antes de abrir.</p>
+          </div>
+
+          <div style="background:var(--color-green-bg); border:1px solid var(--color-green-light); padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card);">
+            <div style="font-weight:900; font-size:18px; color:var(--color-green-dark); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Expectativa
+            </div>
+            <p style="font-size:16px; color:var(--color-green-dark);">Ver una señal clara: seguro, sospechoso o peligroso.</p>
+          </div>
         </div>
-
-        <p class="ux-closing-quote animate-fade-up delay-4">
-          "Necesita una señal clara antes de abrir un enlace, sin tecnicismos."
-        </p>
       </section>
 
       <!-- ─── SLIDE 7: PROPUESTA DE VALOR ──────────────────── -->
       <section class="slide" id="slide-7" data-slide="7" aria-label="Propuesta de Valor">
         <div class="slide-tag animate-fade-in">Solución</div>
-        <h2 class="slide-title animate-fade-up delay-1">Escanear, analizar y decidir antes de abrir</h2>
+        <h2 class="slide-title animate-fade-up delay-1">De escanear a ciegas a decidir con información</h2>
+        <p class="slide-subtitle animate-fade-up delay-2">QR Scanner Security actúa como una capa preventiva entre el QR y el navegador.</p>
 
-        <!-- Tres bloques grandes con conectores animados -->
-        <div class="valor-flow animate-fade-up delay-2">
-
-          <!-- Bloque 1: Escanear -->
-          <div class="valor-block">
-            <div class="valor-icon">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
-                <rect x="3" y="14" width="7" height="7"/>
-                <rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/>
-                <rect x="14" y="18" width="3" height="3"/><rect x="18" y="14" width="3" height="3"/>
-              </svg>
-            </div>
-            <div class="valor-step-num">01</div>
-            <h3 class="valor-title">Escanear</h3>
-            <p class="valor-desc">El usuario apunta la cámara al QR. ZXing decodifica el contenido al instante.</p>
+        <!-- Tres pasos visuales -->
+        <div class="valor-flow animate-fade-up delay-3" style="display:flex; gap:24px; margin-top:48px; width:100%; max-width:1100px;">
+          <div style="flex:1; background:#fff; border:1px solid var(--color-border); padding:32px; border-radius:var(--radius-card); text-align:center; box-shadow:var(--shadow-card);">
+            <div style="font-size:48px; font-weight:900; color:var(--color-border); margin-bottom:16px;">1</div>
+            <h3 style="font-size:20px; font-weight:bold; margin-bottom:8px;">Captura</h3>
+            <p style="font-size:14px; color:var(--color-text-muted);">QR o URL manual.</p>
           </div>
-
-          <!-- Conector animado -->
-          <div class="valor-connector" aria-hidden="true">
-            <div class="valor-line"></div>
-            <svg class="valor-arrow-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"/>
-            </svg>
+          <div style="display:flex; align-items:center; color:var(--color-green-light);"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>
+          
+          <div style="flex:1; background:var(--color-green-bg); border:2px solid var(--color-green); padding:32px; border-radius:var(--radius-card); text-align:center; box-shadow:var(--shadow-card);">
+            <div style="font-size:48px; font-weight:900; color:var(--color-green-light); margin-bottom:16px;">2</div>
+            <h3 style="font-size:20px; font-weight:bold; color:var(--color-green-dark); margin-bottom:8px;">Análisis</h3>
+            <p style="font-size:14px; color:var(--color-green-dark);">Backend + fuentes externas + reglas locales.</p>
           </div>
+          <div style="display:flex; align-items:center; color:var(--color-green-light);"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>
 
-          <!-- Bloque 2: Analizar (destacado) -->
-          <div class="valor-block valor-block-featured">
-            <div class="valor-icon">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
-              </svg>
-            </div>
-            <div class="valor-step-num">02</div>
-            <h3 class="valor-title">Analizar</h3>
-            <p class="valor-desc">El backend consulta Google Web Risk, IPQS, OpenPhish y heurísticas locales antes de responder.</p>
+          <div style="flex:1; background:#fff; border:1px solid var(--color-border); padding:32px; border-radius:var(--radius-card); text-align:center; box-shadow:var(--shadow-card);">
+            <div style="font-size:48px; font-weight:900; color:var(--color-border); margin-bottom:16px;">3</div>
+            <h3 style="font-size:20px; font-weight:bold; margin-bottom:8px;">Decisión</h3>
+            <p style="font-size:14px; color:var(--color-text-muted);">Seguro, sospechoso o peligroso.</p>
           </div>
-
-          <!-- Conector animado -->
-          <div class="valor-connector" aria-hidden="true">
-            <div class="valor-line"></div>
-            <svg class="valor-arrow-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"/>
-            </svg>
-          </div>
-
-          <!-- Bloque 3: Decidir -->
-          <div class="valor-block">
-            <div class="valor-icon">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 2L3 7l9 5 9-5-9-5z"/>
-                <path d="M3 12l9 5 9-5"/>
-                <line x1="12" y1="17" x2="12" y2="22"/>
-              </svg>
-            </div>
-            <div class="valor-step-num">03</div>
-            <h3 class="valor-title">Decidir</h3>
-            <p class="valor-desc">La app muestra el resultado: seguro, sospechoso o peligroso. El usuario decide con información.</p>
-          </div>
-
         </div>
 
-        <!-- Banda inferior: paradigma -->
-        <div class="valor-band animate-fade-up delay-5">
-          <span class="valor-band-old">Abrir primero</span>
-          <svg width="32" height="20" viewBox="0 0 32 20" fill="none" aria-hidden="true">
-            <line x1="0" y1="10" x2="24" y2="10" stroke="currentColor" stroke-width="2"/>
-            <polyline points="18,4 26,10 18,16" stroke="currentColor" stroke-width="2" fill="none"/>
-          </svg>
-          <span class="valor-band-new">Comprobar antes</span>
+        <!-- Banda inferior -->
+        <div class="animate-fade-up delay-5" style="margin-top:48px; background:var(--color-bg); padding:24px; border-radius:var(--radius-card); font-weight:600; font-size:18px; color:var(--color-text); text-align:center; border:1px solid var(--color-border); width:100%; max-width:1100px;">
+          El usuario no necesita saber de ciberseguridad: solo necesita una señal clara antes de abrir.
         </div>
       </section>
 
@@ -379,40 +325,39 @@ const slideTitles = [
         <div class="slide-tag animate-fade-in">MVP Funcional Validado</div>
         <h2 class="slide-title animate-fade-up delay-1">MVP Operativo y Requisitos</h2>
 
-        <div class="mvp-grid animate-fade-up delay-2" style="display:flex; gap:40px; margin-top:32px; width:100%; max-width:1100px;">
+        <div class="mvp-grid animate-fade-up delay-2" style="display:flex; gap:40px; margin-top:32px; width:100%; max-width:1200px;">
           <!-- Izquierda: Funciones del MVP -->
-          <div style="flex:1; background:#fff; padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card); border:1px solid var(--color-border);">
-            <h3 style="color:var(--color-green-dark); margin-bottom:16px;">MVP Operativo</h3>
-            <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:12px; font-size:14px;">
-              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Escaneo QR con cámara</li>
-              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Entrada manual de URL</li>
-              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Validación http / https</li>
-              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Análisis antes de abrir</li>
-              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Clasificación: seguro / sospechoso / peligroso</li>
-              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Resumen comprensible para el usuario</li>
-              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Historial local de análisis</li>
-              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Reanálisis de URLs guardadas</li>
-              <li><span style="color:var(--color-green); font-weight:bold; margin-right:8px;">✓</span> Sin apertura automática de enlaces</li>
-            </ul>
+          <div style="flex:1.2;">
+            <h3 style="color:var(--color-green-dark); margin-bottom:16px; font-size:20px;">MVP Operativo</h3>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg> Escanear QR</div>
+              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/></svg> Introducir URL</div>
+              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Validar enlace</div>
+              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Analizar previo</div>
+              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Mostrar semáforo</div>
+              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Guardar historial</div>
+              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg> Reanalizar</div>
+              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Control apertura</div>
+            </div>
           </div>
           
           <!-- Derecha: Requisitos -->
           <div style="flex:1; display:flex; flex-direction:column; gap:12px;">
-            <h3 style="color:var(--color-text); margin-bottom:4px;">Requisitos Validados</h3>
+            <h3 style="color:var(--color-text); margin-bottom:4px; font-size:20px;">Requisitos Validados</h3>
             <div style="display:flex; flex-wrap:wrap; gap:8px;">
-              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:13px;"><strong>R1-F</strong> Cámara</span>
-              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:13px;"><strong>R2-F</strong> No apertura automática</span>
-              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:13px;"><strong>R3-F</strong> URL manual</span>
-              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:13px;"><strong>R4-F</strong> Validación web</span>
-              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:13px;"><strong>R5-F</strong> Clasificación</span>
-              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:13px;"><strong>R6-F</strong> Resumen y motivos</span>
-              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:13px;"><strong>R7-F</strong> Historial y reanálisis</span>
-            </div>
-            
-            <div style="margin-top:auto; padding:16px; background:var(--color-green-light); border-radius:12px; color:var(--color-green-dark); font-size:13px; font-weight:600; text-align:center;">
-              Nota: Todos los requisitos funcionales principales se validaron en la evaluación funcional.
+              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:14px; box-shadow:var(--shadow-sm);"><strong>R1-F</strong> Cámara</span>
+              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:14px; box-shadow:var(--shadow-sm);"><strong>R2-F</strong> No apertura automática</span>
+              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:14px; box-shadow:var(--shadow-sm);"><strong>R3-F</strong> URL manual</span>
+              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:14px; box-shadow:var(--shadow-sm);"><strong>R4-F</strong> Validación web</span>
+              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:14px; box-shadow:var(--shadow-sm);"><strong>R5-F</strong> Clasificación</span>
+              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:14px; box-shadow:var(--shadow-sm);"><strong>R6-F</strong> Resumen</span>
+              <span style="background:var(--color-bg); border:1px solid var(--color-border); padding:8px 12px; border-radius:8px; font-size:14px; box-shadow:var(--shadow-sm);"><strong>R7-F</strong> Historial</span>
             </div>
           </div>
+        </div>
+
+        <div class="animate-fade-up delay-4" style="margin-top:32px; padding:16px; background:var(--color-green-bg); border-radius:12px; color:var(--color-green-dark); font-size:16px; font-weight:600; text-align:center; width:100%; max-width:1200px; border:1px solid var(--color-green-light);">
+          El flujo esencial del producto quedó validado en las pruebas funcionales.
         </div>
       </section>
 
@@ -680,28 +625,39 @@ const slideTitles = [
       <!-- ─── SLIDE 14: CONCLUSIÓN ─────────────────────────── -->
       <section class="slide slide-close" id="slide-14" data-slide="14" aria-label="Conclusión">
         <div class="slide-tag animate-fade-in">Cierre</div>
-        <h2 class="slide-title animate-fade-up delay-1" style="font-size:48px;">Menos clics a ciegas.<br/>Más seguridad antes de abrir.</h2>
+        <h2 class="slide-title animate-fade-up delay-1">Conclusión: prevención comprensible antes del clic</h2>
 
         <div class="slide-content animate-fade-up delay-2" style="margin-top: 48px; width:100%; max-width:1100px;">
           
           <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-bottom:48px;">
             <div style="background:#fff; padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card); border-top:4px solid var(--color-green);">
-              <strong style="display:block; margin-bottom:12px; font-size:18px;">🎯 Qué se ha conseguido</strong>
-              <p style="font-size:14px; color:var(--color-text-muted);">Prototipo funcional que escanea, analiza con múltiples motores y advierte sobre URLs peligrosas antes de abrirlas.</p>
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="var(--color-green-dark)"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                <strong style="font-size:18px;">Se ha conseguido</strong>
+              </div>
+              <p style="font-size:16px; color:var(--color-text-muted);">Un prototipo funcional que analiza URLs antes de abrirlas.</p>
             </div>
+            
             <div style="background:#fff; padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card); border-top:4px solid var(--color-green);">
-              <strong style="display:block; margin-bottom:12px; font-size:18px;">💡 Qué valor aporta</strong>
-              <p style="font-size:14px; color:var(--color-text-muted);">Reduce drásticamente el riesgo de phishing para usuarios no técnicos de forma rápida y sencilla.</p>
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="var(--color-green-dark)"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <strong style="font-size:18px;">Aporta valor</strong>
+              </div>
+              <p style="font-size:16px; color:var(--color-text-muted);">Ayuda a usuarios no técnicos a decidir con menos riesgo.</p>
             </div>
+            
             <div style="background:#fff; padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card); border-top:4px solid var(--color-green);">
-              <strong style="display:block; margin-bottom:12px; font-size:18px;">🛡️ Por qué es defendible</strong>
-              <p style="font-size:14px; color:var(--color-text-muted);">Arquitectura viable (FastAPI + Android), enfoque "fail-secure" preventivo y privacidad local total.</p>
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="var(--color-green-dark)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <strong style="font-size:18px;">Es defendible</strong>
+              </div>
+              <p style="font-size:16px; color:var(--color-text-muted);">Arquitectura viable, enfoque conservador y privacidad local.</p>
             </div>
           </div>
 
-          <div style="margin-top: 24px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
-            <p style="font-weight: 900; font-size: 32px; color:var(--color-green-dark);">Muchas gracias por su atención.</p>
-            <p style="color: var(--color-text-muted); font-size:20px;">¿Alguna pregunta?</p>
+          <div style="margin-top: 48px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+            <p style="font-weight: 900; font-size: 42px; color:var(--color-green-dark); text-align:center; line-height:1.2;">Menos clics a ciegas.<br/>Más seguridad antes de abrir.</p>
+            <p style="color: var(--color-text-muted); font-size:18px; margin-top:24px;">Muchas gracias. ¿Preguntas?</p>
           </div>
         </div>
       </section>
