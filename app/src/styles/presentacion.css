@@ -478,8 +478,8 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 92vw;
-  max-width: 1440px;
+  width: 94vw;
+  max-width: 1450px;
   gap: 32px;
 }
 
@@ -489,7 +489,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   width: 94vw;
-  max-width: 1480px;
+  max-width: 1500px;
   gap: 36px;
 }
 
