@@ -1,979 +1,741 @@
 ---
-/**
- * presentacion.astro — Ruta: /presentacion
- * Presentación web del TFC "QR Scanner Security"
- * para defensa ante tribunal/inversores.
- *
- * Fase 5: diapositivas 3-6 con contenido real.
- */
 import PresentacionLayout from '../layouts/PresentacionLayout.astro';
-import ImpactCard  from '../components/presentacion/ImpactCard.astro';
-import StatCard    from '../components/presentacion/StatCard.astro';
-import PersonaCard from '../components/presentacion/PersonaCard.astro';
-import FlowStep    from '../components/presentacion/FlowStep.astro';
-import ArchNode    from '../components/presentacion/ArchNode.astro';
-import RiskBadge   from '../components/presentacion/RiskBadge.astro';
 import PhoneMockup from '../components/presentacion/PhoneMockup.astro';
 
 const TOTAL_SLIDES = 14;
 
-// Títulos de cada diapositiva (para el índice y el título de pestaña)
 const slideTitles = [
   'Portada',
-  'Índice',
+  'Indice',
   'El Problema',
-  'Investigación de Usuarios',
-  'Interés del Mercado',
+  'Investigacion de Usuarios',
+  'Interes del Mercado',
   'Persona Prototipo',
   'Propuesta de Valor',
   'MVP y Requisitos',
   'Arquitectura',
-  'Motor de Decisión',
+  'Motor de Decision',
   'Prototipo Funcional',
   'Flujo de Uso y Privacidad',
   'Viabilidad y Costes',
-  'Conclusión',
+  'Conclusion',
+];
+
+const iconCamera = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`;
+const iconLink = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07L11.5 5"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07L12.5 19"/></svg>`;
+const iconShield = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>`;
+const iconSearch = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>`;
+const iconClock = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>`;
+const iconSave = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg>`;
+const iconRefresh = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10"/><path d="M3.51 15A9 9 0 0 0 18.36 18.36L23 14"/></svg>`;
+const iconLock = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
+const iconLayers = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg>`;
+const iconPhone = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11.5 18h1"/></svg>`;
+const iconServer = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01"/><path d="M7 17h.01"/></svg>`;
+const iconDatabase = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7"/></svg>`;
+const iconResult = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12a9 9 0 1 1-5.2-8.2"/></svg>`;
+const iconSend = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4 20-7Z"/></svg>`;
+const iconUser = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="5"/></svg>`;
+const iconAlert = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18A2 2 0 0 0 3.53 21h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>`;
+const iconStar = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 7 1-5 4.8 1.2 6.9-6.3-3.4-6.3 3.4L6.9 14.1l-5-4.8 7-1L12 2Z"/></svg>`;
+
+const indexBlocks = [
+  { num: '01', title: 'Problema', sub: 'QR y punto ciego', goto: 3, slides: 'Slide 3' },
+  { num: '02', title: 'Usuario y mercado', sub: 'Datos y demanda', goto: 4, slides: 'Slides 4-6' },
+  { num: '03', title: 'Solucion y MVP', sub: 'Que se entrega', goto: 7, slides: 'Slides 7-8' },
+  { num: '04', title: 'Arquitectura', sub: 'Cliente, backend, fuentes', goto: 9, slides: 'Slides 9-10' },
+  { num: '05', title: 'Prototipo', sub: 'Demo Android real', goto: 11, slides: 'Slides 11-12' },
+  { num: '06', title: 'Viabilidad y cierre', sub: 'Costes y conclusion', goto: 13, slides: 'Slides 13-14' },
+];
+
+const researchStats = [
+  { value: '37', label: 'participantes', text: 'Cuestionario validado y perfil de uso cotidiano.' },
+  { value: '84%', label: 'usa QR con frecuencia', text: 'El habito ya esta normalizado en restauracion y comercios.' },
+  { value: '46%', label: 'no revisa la URL', text: 'Casi la mitad abre sin comprobar el destino.' },
+];
+
+const marketStats = [
+  { value: '68%', label: 'la usaria', text: 'Existe interes directo si el flujo es rapido.' },
+  { value: '30%', label: 'depende de la rapidez', text: 'La friccion manda en un contexto de uso casual.' },
+  { value: '49%', label: 'prioriza simplicidad', text: 'La lectura del resultado debe ser inmediata.' },
+];
+
+const personaCards = [
+  { title: 'Contexto', text: 'Restaurantes, transporte, comercios y carteles.', icon: iconUser, tone: 'neutral' },
+  { title: 'Problema', text: 'No sabe distinguir un enlace legitimo de uno fraudulento.', icon: iconAlert, tone: 'danger' },
+  { title: 'Necesidad', text: 'Una respuesta breve y entendible antes de abrir.', icon: iconClock, tone: 'neutral' },
+  { title: 'Expectativa', text: 'Ver una senal clara: seguro, sospechoso o peligroso.', icon: iconStar, tone: 'success' },
+];
+
+const valueSteps = [
+  { num: '1', title: 'Captura', text: 'QR o URL manual', tone: 'muted' },
+  { num: '2', title: 'Analisis', text: 'Backend + reglas + fuentes externas', tone: 'featured' },
+  { num: '3', title: 'Decision', text: 'Semaforo y accion del usuario', tone: 'muted' },
+];
+
+const mvpFeatures = [
+  { title: 'Escanear QR', text: 'Lectura con ZXing', icon: iconCamera },
+  { title: 'Introducir URL', text: 'Entrada manual', icon: iconLink },
+  { title: 'Validar enlace', text: 'Filtro local previo', icon: iconShield },
+  { title: 'Analizar destino', text: 'Revision remota', icon: iconSearch },
+  { title: 'Mostrar semaforo', text: 'Resultado inmediato', icon: iconClock },
+  { title: 'Guardar historial', text: 'Persistencia local', icon: iconSave },
+  { title: 'Reanalizar', text: 'Nueva consulta', icon: iconRefresh },
+  { title: 'Control de apertura', text: 'No abre solo', icon: iconLock },
+];
+
+const requirements = [
+  { id: 'R1-F', text: 'Lectura de QR con camara y decodificacion local.', icon: iconCamera },
+  { id: 'R2-F', text: 'Sin apertura automatica del enlace detectado.', icon: iconLock },
+  { id: 'R3-F', text: 'Entrada manual de URL como alternativa.', icon: iconLink },
+  { id: 'R4-F', text: 'Validacion previa del formato web.', icon: iconShield },
+  { id: 'R5-F', text: 'Clasificacion final en tres niveles de riesgo.', icon: iconLayers },
+  { id: 'R6-F', text: 'Resumen claro de por que se sugiere abrir o no.', icon: iconResult },
+  { id: 'R7-F', text: 'Historial local de analisis para consulta posterior.', icon: iconSave },
+];
+
+const architectureZones = [
+  {
+    title: 'Cliente Android',
+    text: 'Captura el QR, valida rapido y presenta la decision.',
+    chips: ['ZXing', 'Jetpack Compose', 'ViewModel', 'Room'],
+    icon: iconPhone,
+    tone: 'client',
+  },
+  {
+    title: 'Backend FastAPI',
+    text: 'Orquesta consultas, aplica reglas y devuelve una respuesta normalizada.',
+    chips: ['FastAPI', 'Python', 'Decision engine'],
+    icon: iconServer,
+    tone: 'backend',
+  },
+  {
+    title: 'Fuentes y apoyo',
+    text: 'Aportan reputacion, inteligencia de riesgo y captura visual de apoyo.',
+    chips: ['Google Web Risk', 'IPQS', 'OpenPhish', 'SnapRender'],
+    icon: iconDatabase,
+    tone: 'sources',
+  },
+  {
+    title: 'Resultado',
+    text: 'Entrega risk level, status y razones para la UX final.',
+    chips: ['safe', 'suspicious', 'dangerous', 'complete / partial'],
+    icon: iconResult,
+    tone: 'result',
+  },
+];
+
+const decisionRows = [
+  { case: 'safe + complete', result: 'Seguro', action: 'Abrir con menos friccion', tone: 'safe' },
+  { case: 'safe + partial', result: 'Sospechoso', action: 'Pedir confirmacion', tone: 'warn' },
+  { case: 'suspicious + complete', result: 'Sospechoso', action: 'Mostrar advertencia y razones', tone: 'warn' },
+  { case: 'suspicious + partial', result: 'Sospechoso', action: 'Mantener cautela por falta de cobertura', tone: 'warn' },
+  { case: 'dangerous', result: 'Peligroso', action: 'Bloqueo visual y advertencia fuerte', tone: 'danger' },
+  { case: 'unavailable', result: 'Sospechoso', action: 'Nunca promover apertura por defecto', tone: 'warn' },
+];
+
+const decisionStatuses = [
+  { label: 'complete', text: 'Hay senales suficientes para sostener la respuesta.', tone: 'complete' },
+  { label: 'partial', text: 'Falta al menos una fuente clave y se degrada la confianza.', tone: 'partial' },
+  { label: 'unavailable', text: 'No hay base tecnica para marcar el enlace como seguro.', tone: 'unavailable' },
+];
+
+const flowSteps = [
+  { num: '1', title: 'Escanear', text: 'Camara o imagen', icon: iconCamera },
+  { num: '2', title: 'Validar', text: 'Formato local', icon: iconShield },
+  { num: '3', title: 'Enviar', text: 'Solicitud al backend', icon: iconSend },
+  { num: '4', title: 'Analizar', text: 'Cruce con motores', icon: iconSearch },
+  { num: '5', title: 'Mostrar', text: 'Semaforo y razones', icon: iconPhone },
+  { num: '6', title: 'Decidir', text: 'El usuario elige', icon: iconLock },
+  { num: '7', title: 'Guardar', text: 'Historial local', icon: iconSave },
+];
+
+const costBars = [
+  { label: 'Hardware', value: '1.700 EUR', height: '28%' },
+  { label: 'Personal', value: '6.080 EUR', height: '100%' },
+  { label: 'Gastos indirectos', value: '280 EUR', height: '8%' },
+];
+
+const closingCards = [
+  { title: 'Producto', text: 'Un prototipo funcional que analiza URLs antes de abrirlas.' },
+  { title: 'Valor', text: 'Reduce clics a ciegas y mejora la decision de usuarios no tecnicos.' },
+  { title: 'Base tecnica', text: 'Arquitectura viable, decision conservadora y privacidad local.' },
 ];
 ---
 
-<PresentacionLayout title="QR Scanner Security — Presentación TFC">
-
-  <!-- =====================================================
-       WRAPPER PRINCIPAL DE LA PRESENTACIÓN
-       ===================================================== -->
+<PresentacionLayout title="QR Scanner Security - Presentacion TFC">
   <div class="presentation-wrapper" id="presentacion">
-
-    <!-- Barra de progreso (arriba) -->
     <div class="progress-bar-track" aria-hidden="true">
-      <div class="progress-bar-fill" id="progressFill" style="width: 7.14%"></div>
+      <div class="progress-bar-fill" id="progressFill" style={`width:${100 / TOTAL_SLIDES}%`}></div>
     </div>
 
-    <!-- =====================================================
-         DIAPOSITIVAS
-         ===================================================== -->
     <div class="slides-viewport" id="slidesViewport">
-
-      <!-- ─── SLIDE 1: PORTADA ──────────────────────────── -->
-      <section class="slide active" id="slide-1" data-slide="1" aria-label="Portada">
-        <div class="slide-tag animate-fade-in">TFC · Defensa ante Tribunal</div>
-
-        <!-- Icono visual central -->
-        <div class="cover-visual animate-scale delay-1" aria-hidden="true">
-          <div class="cover-shield">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
-              <path d="M40 4L8 18v22c0 18.2 13.7 35.2 32 39 18.3-3.8 32-20.8 32-39V18L40 4Z"
-                    fill="var(--color-green-light)" stroke="var(--color-green)" stroke-width="2.5"/>
-              <path d="M30 40l7 7 13-14" stroke="var(--color-green-dark)" stroke-width="3"
-                    stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+      <section class="slide active slide-cover" id="slide-1" data-slide="1" aria-label="Portada">
+        <div class="slide-shell slide-shell--narrow cover-layout">
+          <div class="slide-tag animate-fade-in">TFC · Defensa ante tribunal</div>
+          <div class="cover-mark animate-scale delay-1" aria-hidden="true">
+            <div class="cover-mark-shield" set:html={iconShield}></div>
+            <div class="cover-mark-qr">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="4" width="16" height="16" rx="2" fill="currentColor" />
+                <rect x="28" y="4" width="16" height="16" rx="2" fill="currentColor" />
+                <rect x="4" y="28" width="16" height="16" rx="2" fill="currentColor" />
+                <rect x="8" y="8" width="8" height="8" rx="1" fill="white" />
+                <rect x="32" y="8" width="8" height="8" rx="1" fill="white" />
+                <rect x="8" y="32" width="8" height="8" rx="1" fill="white" />
+                <rect x="28" y="28" width="4" height="4" rx="1" fill="currentColor" opacity=".75" />
+                <rect x="34" y="28" width="4" height="4" rx="1" fill="currentColor" opacity=".75" />
+                <rect x="28" y="34" width="4" height="4" rx="1" fill="currentColor" opacity=".75" />
+                <rect x="40" y="40" width="4" height="4" rx="1" fill="currentColor" opacity=".55" />
+              </svg>
+            </div>
           </div>
-          <div class="cover-qr" aria-label="Icono QR">
-            <!-- QR decorativo SVG simplificado -->
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
-              <rect x="4"  y="4"  width="16" height="16" rx="2" fill="var(--color-green)" opacity=".9"/>
-              <rect x="28" y="4"  width="16" height="16" rx="2" fill="var(--color-green)" opacity=".9"/>
-              <rect x="4"  y="28" width="16" height="16" rx="2" fill="var(--color-green)" opacity=".9"/>
-              <rect x="7"  y="7"  width="10" height="10" rx="1" fill="white"/>
-              <rect x="31" y="7"  width="10" height="10" rx="1" fill="white"/>
-              <rect x="7"  y="31" width="10" height="10" rx="1" fill="white"/>
-              <rect x="28" y="28" width="4"  height="4"  rx="1" fill="var(--color-green)" opacity=".8"/>
-              <rect x="34" y="28" width="4"  height="4"  rx="1" fill="var(--color-green)" opacity=".8"/>
-              <rect x="28" y="34" width="4"  height="4"  rx="1" fill="var(--color-green)" opacity=".8"/>
-              <rect x="34" y="34" width="4"  height="4"  rx="1" fill="var(--color-green)" opacity=".8"/>
-              <rect x="40" y="28" width="4"  height="4"  rx="1" fill="var(--color-green)" opacity=".5"/>
-              <rect x="40" y="40" width="4"  height="4"  rx="1" fill="var(--color-green)" opacity=".5"/>
-            </svg>
+          <h1 class="slide-title animate-fade-up delay-2">QR Scanner <span class="accent">Security</span></h1>
+          <p class="slide-subtitle animate-fade-up delay-3">Analiza antes de abrir</p>
+          <p class="cover-copy animate-fade-up delay-4">Aplicacion Android para revisar URLs de codigos QR antes de llevar al usuario al navegador.</p>
+          <div class="cover-meta animate-fade-in delay-5">
+            <span>Trabajo de fin de ciclo</span>
+            <span>2025 - 2026</span>
+            <span>Android + FastAPI</span>
           </div>
         </div>
-
-        <h1 class="slide-title animate-fade-up delay-2">
-          QR Scanner <span class="accent">Security</span>
-        </h1>
-        <p class="slide-subtitle animate-fade-up delay-3">
-          Analiza antes de abrir
-        </p>
-        <p class="cover-desc animate-fade-up delay-4">
-          Aplicación Android para el análisis preventivo de URLs en códigos QR.
-        </p>
-
-        <div class="cover-meta animate-fade-in delay-5">
-          <span>Trabajo de Fin de Ciclo</span>
-          <span class="sep">·</span>
-          <span>2025 – 2026</span>
-        </div>
       </section>
 
-      <!-- ─── SLIDE 2: ÍNDICE ──────────────────────────── -->
-      <!-- ─── SLIDE 2: ÍNDICE PREMIUM ────────────────────────── -->
-      <section class="slide" id="slide-2" data-slide="2" aria-label="Índice">
-        <div class="slide-tag animate-fade-in">Recorrido</div>
-        <h2 class="slide-title animate-fade-up delay-1">Estructura de la presentación</h2>
-
-        <!-- Línea visual de recorrido -->
-        <div class="index-timeline animate-fade-in delay-2" aria-hidden="true"></div>
-
-        <div class="index-grid premium-grid animate-fade-up delay-2" style="max-width:1500px; gap:32px;">
-
-          <!-- 01: Problema -->
-          <button class="index-block premium-block" data-goto="3">
-            <div class="index-num">01</div>
-            <div class="index-content">
-              <strong class="index-title">El Problema</strong>
-              <span class="index-sub">El riesgo oculto en los QR</span>
-            </div>
-            <div class="index-slides">Slide 3</div>
-          </button>
-
-          <!-- 02: Usuario -->
-          <button class="index-block premium-block" data-goto="4">
-            <div class="index-num">02</div>
-            <div class="index-content">
-              <strong class="index-title">Usuario y Mercado</strong>
-              <span class="index-sub">Investigación y viabilidad</span>
-            </div>
-            <div class="index-slides">Slides 4–6</div>
-          </button>
-
-          <!-- 03: Solución -->
-          <button class="index-block premium-block" data-goto="7">
-            <div class="index-num">03</div>
-            <div class="index-content">
-              <strong class="index-title">Propuesta y MVP</strong>
-              <span class="index-sub">Prevención antes de abrir</span>
-            </div>
-            <div class="index-slides">Slides 7–8</div>
-          </button>
-
-          <!-- 04: Arquitectura -->
-          <button class="index-block premium-block" data-goto="9">
-            <div class="index-num">04</div>
-            <div class="index-content">
-              <strong class="index-title">Arquitectura</strong>
-              <span class="index-sub">Flujo técnico y motor</span>
-            </div>
-            <div class="index-slides">Slides 9–10</div>
-          </button>
-
-          <!-- 05: Prototipo -->
-          <button class="index-block premium-block" data-goto="11">
-            <div class="index-num">05</div>
-            <div class="index-content">
-              <strong class="index-title">Prototipo y Flujo</strong>
-              <span class="index-sub">Demo Android nativa</span>
-            </div>
-            <div class="index-slides">Slides 11–12</div>
-          </button>
-
-          <!-- 06: Cierre -->
-          <button class="index-block premium-block" data-goto="13">
-            <div class="index-num">06</div>
-            <div class="index-content">
-              <strong class="index-title">Viabilidad y Cierre</strong>
-              <span class="index-sub">Costes, modelo y conclusión</span>
-            </div>
-            <div class="index-slides">Slides 13–14</div>
-          </button>
-
-        </div>
-      </section>
-
-      <!-- ─── SLIDE 3: EL PROBLEMA ──────────────────────── -->
-      <section class="slide slide-risk" id="slide-3" data-slide="3" aria-label="El Problema">
-        <div class="slide-tag animate-fade-in" style="background:var(--color-red); color:#fff; border:none;">El Problema</div>
-        <h2 class="slide-title animate-fade-up delay-1">El usuario escanea a ciegas</h2>
-        <p class="slide-subtitle animate-fade-up delay-1">Un código QR oculta la URL real hasta que el dispositivo la procesa.</p>
-
-        <div style="display:flex; gap:32px; width:100%; max-width:1500px; margin-top:32px; align-items:stretch;" class="animate-fade-up delay-2">
-          
-          <!-- Lado Izquierdo -->
-          <div style="flex:1; background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-card); padding:32px; box-shadow:var(--shadow-card);">
-            <h3 style="color:var(--color-text); font-size:24px; margin-bottom:16px; display:flex; align-items:center; gap:8px;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-              Situación cotidiana
-            </h3>
-            <p style="font-size:16px; color:var(--color-text-muted); margin-bottom:16px;">
-              Restaurantes, carteles, comercios, transporte o eventos.
-            </p>
-            <p style="font-size:16px; font-weight:600; color:var(--color-text);">
-              El QR parece legítimo porque aparece en un entorno físico confiable.
-            </p>
+      <section class="slide" id="slide-2" data-slide="2" aria-label="Indice">
+        <div class="slide-shell slide-shell--wide">
+          <div class="slide-header">
+            <div class="slide-tag animate-fade-in">Recorrido</div>
+            <h2 class="slide-title animate-fade-up delay-1">Seis bloques para contar el producto completo</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">Problema, oportunidad, solucion, arquitectura, demo funcional y viabilidad.</p>
           </div>
 
-          <!-- Lado Derecho -->
-          <div style="flex:1; background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-card); padding:32px; box-shadow:var(--shadow-card);">
-            <h3 style="color:#b91c1c; font-size:24px; margin-bottom:16px; display:flex; align-items:center; gap:8px;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-              Riesgo oculto
-            </h3>
-            <p style="font-size:16px; color:var(--color-text-muted); margin-bottom:16px; display:flex; align-items:center; gap:8px; font-weight:600;">
-              QR físico → URL invisible → decisión sin contexto
-            </p>
-            <p style="font-size:16px; color:var(--color-text);">
-              El enlace puede llevar a phishing, robo de credenciales o malware.
-            </p>
+          <div class="index-route animate-fade-in delay-2" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
-          
-        </div>
 
-        <!-- Banda INCIBE -->
-        <div class="animate-fade-up delay-3" style="width:100%; max-width:1500px; margin-top:32px; background:#fef2f2; border:2px solid #fca5a5; border-radius:var(--radius-card); padding:32px; text-align:center; box-shadow:var(--shadow-md); display:flex; flex-direction:column; align-items:center; justify-content:center;">
-          <div style="font-size:96px; font-weight:900; color:#b91c1c; line-height:1; letter-spacing:-0.05em;">+25.000</div>
-          <div style="font-size:24px; font-weight:bold; color:#7f1d1d; margin-top:12px;">Casos de phishing gestionados por INCIBE en España durante 2025.</div>
-        </div>
-
-        <!-- Cierre visual -->
-        <div class="animate-fade-up delay-4" style="margin-top:32px; font-size:22px; font-weight:900; color:var(--color-text); text-align:center;">
-          Antes de abrir, hace falta una capa de análisis.
-        </div>
-      </section>
-
-      <!-- ─── SLIDE 4: INVESTIGACIÓN DE USUARIOS ───────────── -->
-      <section class="slide" id="slide-4" data-slide="4" aria-label="Investigación de Usuarios">
-        <div class="slide-tag animate-fade-in">Investigación</div>
-        <h2 class="slide-title animate-fade-up delay-1">Investigación de Usuarios</h2>
-        <p class="slide-subtitle animate-fade-up delay-2">37 participantes · Cuestionario validado</p>
-
-        <!-- Tarjetas de datos -->
-        <div class="stats-grid animate-fade-up delay-2">
-          <StatCard value="37" label="participantes en el estudio" animDelay={2} percentage={100} variant="transparent" />
-          <StatCard value="84%" label="usa QR en restaurantes o cartas digitales" animDelay={3} percentage={84} interpretation="Los QR ya están normalizados en contextos cotidianos." variant="transparent" />
-          <StatCard value="46%" label="no revisa la URL antes de abrirla" animDelay={4} percentage={46} interpretation="Casi la mitad actúa sin comprobación previa." variant="transparent" />
-        </div>
-
-        <!-- Mensaje de cierre -->
-        <div class="quote-support animate-fade-up delay-5">
-          "El usuario medio necesita una ayuda clara antes de abrir un enlace."
+          <div class="index-grid animate-fade-up delay-3">
+            {indexBlocks.map((block) => (
+              <button class="index-block" data-goto={block.goto} type="button">
+                <div class="index-number">{block.num}</div>
+                <div class="index-body">
+                  <strong class="index-title">{block.title}</strong>
+                  <span class="index-sub">{block.sub}</span>
+                </div>
+                <span class="index-meta">{block.slides}</span>
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
-      <!-- ─── SLIDE 5: INTERÉS DEL MERCADO ─────────────────── -->
-      <section class="slide" id="slide-5" data-slide="5" aria-label="Interés del Mercado">
-        <div class="slide-tag animate-fade-in">Mercado</div>
-        <h2 class="slide-title animate-fade-up delay-1">Interés del Mercado</h2>
-        <p class="slide-subtitle animate-fade-up delay-2">¿Usarías una app así?</p>
+      <section class="slide" id="slide-3" data-slide="3" aria-label="El Problema">
+        <div class="slide-shell slide-shell--wide">
+          <div class="slide-header">
+            <div class="slide-tag slide-tag--danger animate-fade-in">El problema</div>
+            <h2 class="slide-title animate-fade-up delay-1">El usuario escanea a ciegas</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">El QR oculta la URL real hasta que el dispositivo ya esta preparado para abrirla.</p>
+          </div>
 
-        <div class="stats-grid animate-fade-up delay-2">
-          <StatCard value="68%" label="la usaría definitivamente" animDelay={2} percentage={68} interpretation="Existe intención real de uso." variant="transparent" />
-          <StatCard value="30%" label="la usaría si es rápida y fácil" animDelay={3} percentage={30} variant="transparent" />
-          <StatCard value="49%" label="prioriza velocidad y simplicidad" animDelay={4} percentage={49} interpretation="La rapidez es clave para que la app se use." variant="transparent" />
-        </div>
+          <div class="problem-layout animate-fade-up delay-3">
+            <article class="story-card story-card--soft">
+              <div class="story-kicker">Uso cotidiano</div>
+              <h3 class="card-title">El QR parece legitimo por su contexto fisico</h3>
+              <p class="body-text">Restaurantes, carteles, comercios, transporte o eventos convierten el escaneo en un gesto automatico.</p>
+              <div class="chip-row">
+                <span class="chip">restauracion</span>
+                <span class="chip">movilidad</span>
+                <span class="chip">retail</span>
+                <span class="chip">eventos</span>
+              </div>
+            </article>
 
-        <div class="market-insight animate-fade-up delay-5">
-          <span class="insight-bar"></span>
-          <p>"La solución debe ser <strong>rápida, clara y sin tecnicismos.</strong>"</p>
+            <article class="story-card story-card--danger">
+              <div class="story-kicker story-kicker--danger">Punto ciego</div>
+              <h3 class="card-title">QR fisico -> URL invisible -> decision sin contexto</h3>
+              <p class="body-text">Ese salto es suficiente para llevar al usuario a phishing, robo de credenciales o descarga maliciosa.</p>
+              <div class="chain-note">Antes de abrir no hay una capa clara de lectura del riesgo.</div>
+            </article>
+          </div>
+
+          <div class="problem-band animate-fade-up delay-4">
+            <div class="problem-number">+25.000</div>
+            <div class="problem-band-copy">
+              <strong>casos de phishing gestionados por INCIBE en Espana durante 2025</strong>
+              <span>El riesgo no es teorico: ya existe a escala y entra en contextos de uso diario.</span>
+            </div>
+          </div>
+
+          <div class="closing-band animate-fade-up delay-5">Antes de abrir, hace falta una capa de analisis.</div>
         </div>
       </section>
 
-      <!-- ─── SLIDE 6: PERSONA PROTOTIPO ───────────────────── -->
+      <section class="slide" id="slide-4" data-slide="4" aria-label="Investigacion de Usuarios">
+        <div class="slide-shell slide-shell--wide">
+          <div class="slide-header">
+            <div class="slide-tag animate-fade-in">Investigacion</div>
+            <h2 class="slide-title animate-fade-up delay-1">La necesidad ya aparece en el uso real</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">Los QR forman parte del dia a dia, pero la decision de abrir sigue siendo poco informada.</p>
+          </div>
+
+          <div class="metrics-grid animate-fade-up delay-3">
+            {researchStats.map((stat) => (
+              <article class="metric-card">
+                <div class="metric-number">{stat.value}</div>
+                <div class="metric-label">{stat.label}</div>
+                <p class="metric-text">{stat.text}</p>
+              </article>
+            ))}
+          </div>
+
+          <div class="quote-band animate-fade-up delay-4">El usuario medio no necesita mas tecnicismo. Necesita una lectura clara antes del clic.</div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-5" data-slide="5" aria-label="Interes del Mercado">
+        <div class="slide-shell slide-shell--wide">
+          <div class="slide-header">
+            <div class="slide-tag animate-fade-in">Mercado</div>
+            <h2 class="slide-title animate-fade-up delay-1">La oportunidad depende de rapidez y claridad</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">No basta con detectar riesgo: la solucion tiene que caber en un gesto de segundos.</p>
+          </div>
+
+          <div class="metrics-grid animate-fade-up delay-3">
+            {marketStats.map((stat) => (
+              <article class="metric-card metric-card--highlight">
+                <div class="metric-number">{stat.value}</div>
+                <div class="metric-label">{stat.label}</div>
+                <p class="metric-text">{stat.text}</p>
+              </article>
+            ))}
+          </div>
+
+          <div class="insight-panel animate-fade-up delay-4">
+            <div class="insight-bar"></div>
+            <p>La interfaz debe ser <strong>rapida, clara y sin tecnicismos</strong>. Si tarda o confunde, el usuario vuelve a abrir a ciegas.</p>
+          </div>
+        </div>
+      </section>
+
       <section class="slide" id="slide-6" data-slide="6" aria-label="Persona Prototipo">
-        <div class="slide-tag animate-fade-in">Usuario</div>
-        <h2 class="slide-title animate-fade-up delay-1">Persona prototipo: usuario cotidiano</h2>
-        <p class="slide-subtitle animate-fade-up delay-2">Escanea QR a diario, pero no sabe evaluar si el enlace es seguro.</p>
-
-        <div class="ux-persona animate-fade-up delay-2" style="display:flex; align-items:stretch; gap:40px; margin-top:32px; width:100%; max-width:1500px;">
-          
-          <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; background:#fff; padding:48px; border-radius:var(--radius-card); box-shadow:var(--shadow-card); border:1px solid var(--color-border); text-align:center;">
-             <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-             <p style="font-size:32px; font-weight:900; line-height:1.2; margin-top:32px; color:var(--color-text); letter-spacing:-0.02em;">Escanea QR a diario, pero no sabe evaluar si el enlace es seguro.</p>
+        <div class="slide-shell slide-shell--wide">
+          <div class="slide-header">
+            <div class="slide-tag animate-fade-in">Usuario</div>
+            <h2 class="slide-title animate-fade-up delay-1">Persona prototipo: usuario cotidiano</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">Escanea QR con normalidad, confia en el contexto fisico y no sabe leer la URL oculta.</p>
           </div>
 
-          <div style="flex:1.5; display:grid; grid-template-columns:1fr 1fr; gap:24px;">
-            <div style="background:#fff; border:1px solid var(--color-border); padding:32px; border-radius:var(--radius-card); box-shadow:var(--shadow-card);">
-              <div style="font-weight:900; font-size:20px; color:var(--color-text); margin-bottom:12px; display:flex; align-items:center; gap:8px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2-2v1.662"/></svg>
-                Contexto
-              </div>
-              <p style="font-size:18px; color:var(--color-text-muted); line-height:1.4;">Restaurantes, transporte, comercios y carteles.</p>
-            </div>
+          <div class="persona-layout animate-fade-up delay-3">
+            <article class="persona-hero">
+              <div class="persona-icon" set:html={iconUser}></div>
+              <p>Escanea QR a diario, pero no sabe evaluar si el enlace es seguro.</p>
+            </article>
 
-            <div style="background:#fef2f2; border:1px solid #fca5a5; padding:32px; border-radius:var(--radius-card); box-shadow:var(--shadow-card);">
-              <div style="font-weight:900; font-size:20px; color:#b91c1c; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                Problema
-              </div>
-              <p style="font-size:18px; color:#7f1d1d; line-height:1.4;">No sabe diferenciar un enlace legítimo de uno fraudulento y normalmente continúa.</p>
-            </div>
-
-            <div style="background:#fff; border:1px solid var(--color-border); padding:32px; border-radius:var(--radius-card); box-shadow:var(--shadow-card);">
-              <div style="font-weight:900; font-size:20px; color:var(--color-text); margin-bottom:12px; display:flex; align-items:center; gap:8px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                Necesidad
-              </div>
-              <p style="font-size:18px; color:var(--color-text-muted); line-height:1.4;">Una respuesta rápida y comprensible antes de abrir.</p>
-            </div>
-
-            <div style="background:var(--color-green-bg); border:1px solid var(--color-green-light); padding:32px; border-radius:var(--radius-card); box-shadow:var(--shadow-card);">
-              <div style="font-weight:900; font-size:20px; color:var(--color-green-dark); margin-bottom:12px; display:flex; align-items:center; gap:8px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                Expectativa
-              </div>
-              <p style="font-size:18px; color:var(--color-green-dark); line-height:1.4;">Ver una señal clara: seguro, sospechoso o peligroso.</p>
+            <div class="persona-grid">
+              {personaCards.map((card) => (
+                <article class={`persona-card persona-card--${card.tone}`}>
+                  <div class="mini-icon" set:html={card.icon}></div>
+                  <h3 class="card-title">{card.title}</h3>
+                  <p class="body-text">{card.text}</p>
+                </article>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ─── SLIDE 7: PROPUESTA DE VALOR ──────────────────── -->
       <section class="slide" id="slide-7" data-slide="7" aria-label="Propuesta de Valor">
-        <div class="slide-tag animate-fade-in">Solución</div>
-        <h2 class="slide-title animate-fade-up delay-1">De escanear a ciegas a decidir con información</h2>
-        <p class="slide-subtitle animate-fade-up delay-2">QR Scanner Security actúa como una capa preventiva entre el QR y el navegador.</p>
-
-        <!-- Tres pasos visuales -->
-        <div class="valor-flow animate-fade-up delay-3" style="display:flex; gap:40px; margin-top:48px; width:100%; max-width:1500px; align-items:center;">
-          <div style="flex:1; background:#fff; border:1px solid var(--color-border); padding:40px; border-radius:var(--radius-card); text-align:center; box-shadow:var(--shadow-card);">
-            <div style="font-size:64px; font-weight:900; color:var(--color-border); margin-bottom:24px;">1</div>
-            <h3 style="font-size:28px; font-weight:bold; margin-bottom:12px;">Captura</h3>
-            <p style="font-size:18px; color:var(--color-text-muted);">QR o URL manual.</p>
+        <div class="slide-shell slide-shell--wide">
+          <div class="slide-header">
+            <div class="slide-tag animate-fade-in">Solucion</div>
+            <h2 class="slide-title animate-fade-up delay-1">De escanear a ciegas a decidir con contexto</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">La aplicacion se coloca entre el QR y el navegador para dar una lectura accionable del riesgo.</p>
           </div>
-          <div style="display:flex; align-items:center; color:var(--color-green-light);"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>
-          
-          <div style="flex:1; background:var(--color-green-bg); border:3px solid var(--color-green); padding:40px; border-radius:var(--radius-card); text-align:center; box-shadow:var(--shadow-lg);">
-            <div style="font-size:64px; font-weight:900; color:var(--color-green-light); margin-bottom:24px;">2</div>
-            <h3 style="font-size:28px; font-weight:bold; color:var(--color-green-dark); margin-bottom:12px;">Análisis</h3>
-            <p style="font-size:18px; color:var(--color-green-dark);">Backend + fuentes externas + reglas locales.</p>
-          </div>
-          <div style="display:flex; align-items:center; color:var(--color-green-light);"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>
 
-          <div style="flex:1; background:#fff; border:1px solid var(--color-border); padding:40px; border-radius:var(--radius-card); text-align:center; box-shadow:var(--shadow-card);">
-            <div style="font-size:64px; font-weight:900; color:var(--color-border); margin-bottom:24px;">3</div>
-            <h3 style="font-size:28px; font-weight:bold; margin-bottom:12px;">Decisión</h3>
-            <p style="font-size:18px; color:var(--color-text-muted);">Seguro, sospechoso o peligroso.</p>
+          <div class="value-flow animate-fade-up delay-3">
+            {valueSteps.map((step, index) => (
+              <>
+                <article class={`value-card value-card--${step.tone}`}>
+                  <div class="value-number">{step.num}</div>
+                  <h3 class="card-title">{step.title}</h3>
+                  <p class="body-text">{step.text}</p>
+                </article>
+                {index < valueSteps.length - 1 && <div class="value-arrow" aria-hidden="true">→</div>}
+              </>
+            ))}
           </div>
-        </div>
 
-        <!-- Banda inferior -->
-        <div class="animate-fade-up delay-5" style="margin-top:48px; background:var(--color-bg); padding:32px; border-radius:var(--radius-card); font-weight:600; font-size:22px; color:var(--color-text); text-align:center; border:1px solid var(--color-border); width:100%; max-width:1500px;">
-          El usuario no necesita saber de ciberseguridad: solo necesita una señal clara antes de abrir.
+          <div class="closing-band animate-fade-up delay-4">El usuario no necesita saber de ciberseguridad. Solo necesita una senal clara antes de abrir.</div>
         </div>
       </section>
 
-      <!-- ─── SLIDE 8: MVP Y REQUISITOS ────────────────────── -->
-      <section class="slide slide-tech" id="slide-8" data-slide="8" aria-label="MVP y Requisitos">
-        <div class="slide-tag animate-fade-in">MVP Funcional Validado</div>
-        <h2 class="slide-title animate-fade-up delay-1">MVP Operativo y Requisitos</h2>
+      <section class="slide" id="slide-8" data-slide="8" aria-label="MVP y Requisitos">
+        <div class="slide-shell slide-shell--wide">
+          <div class="slide-header">
+            <div class="slide-tag animate-fade-in">MVP operativo</div>
+            <h2 class="slide-title animate-fade-up delay-1">MVP operativo y requisitos funcionales</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">Un flujo minimo completo, con funciones reales y requisitos separados en piezas legibles.</p>
+          </div>
 
-        <div class="mvp-grid animate-fade-up delay-2" style="display:flex; gap:40px; margin-top:32px; width:100%; max-width:1500px;">
-          <!-- Izquierda: Funciones del MVP -->
-          <div style="flex:1.2;">
-            <h3 style="color:var(--color-green-dark); margin-bottom:16px; font-size:20px;">MVP Operativo</h3>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg> Escanear QR</div>
-              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/></svg> Introducir URL</div>
-              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Validar enlace</div>
-              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Analizar previo</div>
-              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Mostrar semáforo</div>
-              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Guardar historial</div>
-              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg> Reanalizar</div>
-              <div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:600; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Control apertura</div>
+          <div class="mvp-layout animate-fade-up delay-3">
+            <div class="mvp-column">
+              <div class="section-kicker">MVP operativo</div>
+              <div class="feature-grid">
+                {mvpFeatures.map((feature) => (
+                  <article class="feature-card">
+                    <div class="mini-icon" set:html={feature.icon}></div>
+                    <h3 class="card-title">{feature.title}</h3>
+                    <p class="body-text">{feature.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div class="mvp-column">
+              <div class="section-kicker">Requisitos validados</div>
+              <div class="requirements-grid">
+                {requirements.map((req) => (
+                  <article class="requirement-chip">
+                    <div class="mini-icon mini-icon--ghost" set:html={req.icon}></div>
+                    <div>
+                      <div class="req-id">{req.id}</div>
+                      <p class="chip-copy">{req.text}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
-          
-          <!-- Derecha: Requisitos -->
-          <div style="flex:1; display:flex; flex-direction:column; gap:16px;">
-            <h3 style="color:var(--color-text); margin-bottom:4px; font-size:20px;">Requisitos Validados</h3>
-            <div style="display:flex; flex-wrap:wrap; gap:12px;">
-              <span style="background:var(--color-white); border:2px solid var(--color-border); padding:10px 16px; border-radius:12px; font-size:15px; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><strong>R1-F</strong> Cámara</span>
-              <span style="background:var(--color-white); border:2px solid var(--color-border); padding:10px 16px; border-radius:12px; font-size:15px; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><strong>R2-F</strong> No apertura aut.</span>
-              <span style="background:var(--color-white); border:2px solid var(--color-border); padding:10px 16px; border-radius:12px; font-size:15px; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><strong>R3-F</strong> URL manual</span>
-              <span style="background:var(--color-white); border:2px solid var(--color-border); padding:10px 16px; border-radius:12px; font-size:15px; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><strong>R4-F</strong> Validación web</span>
-              <span style="background:var(--color-white); border:2px solid var(--color-border); padding:10px 16px; border-radius:12px; font-size:15px; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><strong>R5-F</strong> Clasificación</span>
-              <span style="background:var(--color-white); border:2px solid var(--color-border); padding:10px 16px; border-radius:12px; font-size:15px; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><strong>R6-F</strong> Resumen</span>
-              <span style="background:var(--color-white); border:2px solid var(--color-border); padding:10px 16px; border-radius:12px; font-size:15px; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><strong>R7-F</strong> Historial</span>
-            </div>
-          </div>
-        </div>
 
-        <div class="animate-fade-up delay-4" style="margin-top:32px; padding:16px; background:var(--color-green-bg); border-radius:12px; color:var(--color-green-dark); font-size:16px; font-weight:600; text-align:center; width:100%; max-width:1500px; border:1px solid var(--color-green-light);">
-          El flujo esencial del producto quedó validado en las pruebas funcionales.
+          <div class="quote-band animate-fade-up delay-4">El flujo esencial del producto quedo validado sin convertir los requisitos en una lista plana ilegible.</div>
         </div>
       </section>
 
-      <!-- ─── SLIDE 9: ARQUITECTURA ────────────────────────── -->
       <section class="slide" id="slide-9" data-slide="9" aria-label="Arquitectura">
-        <div class="slide-tag animate-fade-in">Técnico</div>
-        <h2 class="slide-title animate-fade-up delay-1">Arquitectura de Validación</h2>
-
-        <div class="arch-zones animate-fade-up delay-2" style="display: flex; flex-wrap:wrap; gap: 16px; margin-top: 32px; width: 100%; max-width: 1500px; justify-content:center;">
-          <!-- Zona 1: Cliente Android -->
-          <div class="arch-zone" style="flex:1; min-width:260px; background:#fff; border:1.5px solid var(--color-border); border-radius:var(--radius-card); padding:24px; box-shadow:var(--shadow-sm);">
-            <h3 style="color:var(--color-green-dark); margin-bottom: 8px; font-size:18px;">Cliente Android</h3>
-            <p style="font-size:14px; color:var(--color-text-muted); margin-bottom:16px;">Captura QR, Prevalidación y UI/UX.</p>
-            <div style="display:flex; flex-wrap:wrap; gap:8px;">
-              <span style="background:var(--color-bg); color:var(--color-text); padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid var(--color-border);">ZXing</span>
-              <span style="background:var(--color-bg); color:var(--color-text); padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid var(--color-border);">Compose</span>
-              <span style="background:var(--color-bg); color:var(--color-text); padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid var(--color-border);">ViewModel</span>
-              <span style="background:var(--color-bg); color:var(--color-text); padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid var(--color-border);">Room</span>
-            </div>
-          </div>
-          
-          <!-- Zona 2: Backend FastAPI -->
-          <div class="arch-zone" style="flex:1; min-width:260px; background:var(--color-green-bg); border:1.5px solid var(--color-green); border-radius:var(--radius-card); padding:24px; box-shadow:var(--shadow-card);">
-            <h3 style="color:var(--color-green-dark); margin-bottom: 8px; font-size:18px;">Backend FastAPI</h3>
-            <p style="font-size:14px; color:var(--color-green-dark); margin-bottom:16px;">Orquestación y validación defensiva.</p>
-            <div style="display:flex; flex-wrap:wrap; gap:8px;">
-              <span style="background:#fff; color:var(--color-green-dark); padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid var(--color-green-light);">FastAPI</span>
-              <span style="background:#fff; color:var(--color-green-dark); padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid var(--color-green-light);">Python</span>
-              <span style="background:#fff; color:var(--color-green-dark); padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid var(--color-green-light);">Decisión final</span>
-            </div>
-          </div>
-          
-          <!-- Zona 3: Fuentes y apoyo -->
-          <div class="arch-zone" style="flex:1; min-width:260px; background:#fff; border:1.5px solid var(--color-border); border-radius:var(--radius-card); padding:24px; box-shadow:var(--shadow-sm);">
-            <h3 style="color:var(--color-green-dark); margin-bottom: 8px; font-size:18px;">Fuentes y apoyo</h3>
-            <p style="font-size:14px; color:var(--color-text-muted); margin-bottom:16px;">Consulta de bases de datos externas.</p>
-            <div style="display:flex; flex-wrap:wrap; gap:8px;">
-              <span style="background:var(--color-bg); color:var(--color-text); padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid var(--color-border);">Web Risk</span>
-              <span style="background:var(--color-bg); color:var(--color-text); padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid var(--color-border);">IPQualityScore</span>
-              <span style="background:var(--color-bg); color:var(--color-text); padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid var(--color-border);">OpenPhish</span>
-              <span style="background:var(--color-bg); color:var(--color-text); padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid var(--color-border);">SnapRender</span>
-            </div>
+        <div class="slide-shell slide-shell--wide">
+          <div class="slide-header">
+            <div class="slide-tag animate-fade-in">Arquitectura</div>
+            <h2 class="slide-title animate-fade-up delay-1">Cliente Android -> Backend FastAPI -> Fuentes y apoyo -> Resultado</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">Cuatro zonas con responsabilidades resumidas, chips de tecnologia y una salida pensada para la decision final.</p>
           </div>
 
-          <!-- Zona 4: Resultado -->
-          <div class="arch-zone" style="flex:1; min-width:260px; background:#fff; border:1.5px solid var(--color-border); border-radius:var(--radius-card); padding:24px; box-shadow:var(--shadow-sm);">
-            <h3 style="color:var(--color-green-dark); margin-bottom: 8px; font-size:18px;">Resultado</h3>
-            <p style="font-size:14px; color:var(--color-text-muted); margin-bottom:16px;">Normalización de la respuesta API.</p>
-            <div style="display:flex; flex-wrap:wrap; gap:8px;">
-              <span style="background:var(--color-bg); color:var(--color-text); padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid var(--color-border);">risk_level</span>
-              <span style="background:var(--color-bg); color:var(--color-text); padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid var(--color-border);">status</span>
-              <span style="background:var(--color-bg); color:var(--color-text); padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid var(--color-border);">reasons</span>
-            </div>
+          <div class="architecture-flow animate-fade-up delay-3">
+            {architectureZones.map((zone, index) => (
+              <>
+                <article class={`arch-zone arch-zone--${zone.tone}`}>
+                  <div class="mini-icon" set:html={zone.icon}></div>
+                  <h3 class="card-title">{zone.title}</h3>
+                  <p class="body-text">{zone.text}</p>
+                  <div class="chip-row">
+                    {zone.chips.map((chip) => <span class="chip chip--strong">{chip}</span>)}
+                  </div>
+                </article>
+                {index < architectureZones.length - 1 && <div class="arch-arrow" aria-hidden="true">→</div>}
+              </>
+            ))}
           </div>
-        </div>
 
-        <div class="arch-principles animate-fade-up delay-4" style="display:flex; gap: 24px; margin-top:32px; justify-content:center; width:100%; max-width:1500px;">
-          <div style="background:var(--color-bg); border:1px solid var(--color-border); padding:16px 32px; border-radius:var(--radius-card); font-weight:600; text-align:center;">
-            Claves API fuera de Android · No apertura automática · Historial local · Seguro solo con análisis suficiente
+          <div class="security-band animate-fade-up delay-4">
+            <span>Claves fuera de Android</span>
+            <span>No apertura automatica</span>
+            <span>Historial local con Room</span>
+            <span>Seguro solo con analisis suficiente</span>
           </div>
         </div>
       </section>
 
-      <!-- ─── SLIDE 10: MOTOR DE DECISIÓN ──────────────────── -->
-      <section class="slide" id="slide-10" data-slide="10" aria-label="Motor de Decisión">
-        <div class="slide-tag animate-fade-in">Seguridad</div>
-        <h2 class="slide-title animate-fade-up delay-1">Motor de decisión: seguridad sin falsa confianza</h2>
-
-        <div style="display:flex; gap:32px; margin-top:32px; width:100%; max-width:1500px;" class="animate-fade-up delay-2">
-          
-          <!-- Matriz Visual -->
-          <div style="flex:3; background:#fff; border-radius:var(--radius-card); border:1px solid var(--color-border); overflow:hidden; box-shadow:var(--shadow-card);">
-            <div style="display:grid; grid-template-columns:1fr 1fr 1.5fr; background:var(--color-bg); padding:16px 24px; font-weight:bold; border-bottom:2px solid var(--color-border);">
-              <div>Caso (risk + status)</div>
-              <div>Resultado</div>
-              <div>Acción UX</div>
-            </div>
-            
-            <div style="display:grid; grid-template-columns:1fr 1fr 1.5fr; padding:16px 24px; border-bottom:1px solid var(--color-border); align-items:center;">
-              <div><span style="background:#dcfce7; color:#166534; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold;">safe + complete</span></div>
-              <div style="display:flex; align-items:center; gap:8px; font-weight:bold; color:#15803d;"><div style="width:16px; height:16px; background:#22c55e; border-radius:50%; box-shadow: 0 0 10px rgba(34,197,94,0.5);"></div> Seguro</div>
-              <div style="font-size:14px; color:var(--color-text-muted);">Abrir directamente</div>
-            </div>
-            
-            <div style="display:grid; grid-template-columns:1fr 1fr 1.5fr; padding:16px 24px; border-bottom:1px solid var(--color-border); align-items:center;">
-              <div><span style="background:#ffedd5; color:#9a3412; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold;">suspicious o partial</span></div>
-              <div style="display:flex; align-items:center; gap:8px; font-weight:bold; color:#c2410c;"><div style="width:16px; height:16px; background:#f97316; border-radius:50%; box-shadow: 0 0 10px rgba(249,115,22,0.5);"></div> Sospechoso</div>
-              <div style="font-size:14px; color:var(--color-text-muted);">Pedir confirmación</div>
-            </div>
-            
-            <div style="display:grid; grid-template-columns:1fr 1fr 1.5fr; padding:16px 24px; align-items:center;">
-              <div><span style="background:#fee2e2; color:#991b1b; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold;">dangerous</span></div>
-              <div style="display:flex; align-items:center; gap:8px; font-weight:bold; color:#b91c1c;"><div style="width:16px; height:16px; background:#ef4444; border-radius:50%; box-shadow: 0 0 10px rgba(239,68,68,0.5);"></div> Peligroso</div>
-              <div style="font-size:14px; color:var(--color-text-muted);">Advertencia fuerte</div>
-            </div>
+      <section class="slide" id="slide-10" data-slide="10" aria-label="Motor de Decision">
+        <div class="slide-shell slide-shell--wide">
+          <div class="slide-header">
+            <div class="slide-tag animate-fade-in">Motor de decision</div>
+            <h2 class="slide-title animate-fade-up delay-1">Una matriz conservadora para no regalar falsa confianza</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">El resultado visual depende tanto del riesgo detectado como del nivel de cobertura tecnica obtenido.</p>
           </div>
 
-          <!-- Estados Técnicos -->
-          <div style="flex:1.2; display:flex; flex-direction:column; gap:16px;">
-            <div style="background:var(--color-bg); padding:20px; border-radius:var(--radius-card); border:1px solid var(--color-border);">
-              <h3 style="font-size:16px; margin-bottom:16px;">Estados de Análisis</h3>
-              <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:12px; font-size:13px;">
-                <li><strong>complete:</strong> fuentes suficientes.</li>
-                <li><strong>partial:</strong> falta alguna respuesta.</li>
-                <li><strong>unavailable:</strong> no hay base técnica suficiente.</li>
-              </ul>
-            </div>
-            
-            <!-- Semáforo grande -->
-            <div style="flex:1; background:#fff; border-radius:var(--radius-card); border:1px solid var(--color-border); padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:var(--shadow-card);">
-              <div style="background:#1f2937; padding:16px; border-radius:32px; display:flex; flex-direction:column; gap:12px; box-shadow:inset 0 4px 6px rgba(0,0,0,0.5);">
-                <div style="width:32px; height:32px; border-radius:50%; background:#ef4444; box-shadow:0 0 16px #ef4444; border:2px solid #7f1d1d;"></div>
-                <div style="width:32px; height:32px; border-radius:50%; background:#f97316; box-shadow:0 0 16px #f97316; border:2px solid #7c2d12;"></div>
-                <div style="width:32px; height:32px; border-radius:50%; background:#22c55e; box-shadow:0 0 16px #22c55e; border:2px solid #14532d;"></div>
+          <div class="decision-layout animate-fade-up delay-3">
+            <div class="decision-matrix">
+              <div class="decision-head">
+                <span>Caso</span>
+                <span>Resultado</span>
+                <span>Accion UX</span>
               </div>
+              {decisionRows.map((row) => (
+                <div class="decision-row">
+                  <div class="decision-case">{row.case}</div>
+                  <div class={`decision-result decision-result--${row.tone}`}>
+                    <span class="result-dot"></span>
+                    {row.result}
+                  </div>
+                  <div class="decision-action">{row.action}</div>
+                </div>
+              ))}
             </div>
+
+            <aside class="decision-side">
+              <div class="status-stack">
+                {decisionStatuses.map((status) => (
+                  <article class={`status-card status-card--${status.tone}`}>
+                    <strong>{status.label}</strong>
+                    <p>{status.text}</p>
+                  </article>
+                ))}
+              </div>
+
+              <div class="semaphore-card">
+                <div class="semaphore-body" aria-hidden="true">
+                  <span class="signal-dot signal-dot--red"></span>
+                  <span class="signal-dot signal-dot--amber"></span>
+                  <span class="signal-dot signal-dot--green"></span>
+                </div>
+                <p>Semaforo visual para traducir la decision tecnica a una accion comprensible.</p>
+              </div>
+            </aside>
           </div>
 
-        </div>
-
-        <div class="animate-fade-up delay-4" style="margin-top:32px; background:var(--color-green-bg); border:2px solid var(--color-green); color:var(--color-green-dark); padding:20px 40px; border-radius:var(--radius-card); font-size:24px; font-weight:bold; text-align:center; box-shadow:var(--shadow-card);">
-          "Nunca se muestra 'seguro' si el análisis no está completo."
+          <div class="closing-band closing-band--success animate-fade-up delay-4">Nunca se muestra "seguro" si el analisis no esta completo.</div>
         </div>
       </section>
 
-
-      </section>
-
-      <!-- ─── SLIDE 11: PROTOTIPO FUNCIONAL ────────────────── -->
       <section class="slide" id="slide-11" data-slide="11" aria-label="Prototipo Funcional">
-        <div class="slide-tag animate-fade-in">Demo</div>
-        <h2 class="slide-title animate-fade-up delay-1">Prototipo Funcional</h2>
-        <p class="slide-subtitle animate-fade-up delay-2">Prototipo Android funcional probado en dispositivo físico.</p>
+        <div class="slide-shell slide-shell--wide">
+          <div class="slide-header">
+            <div class="slide-tag animate-fade-in">Prototipo</div>
+            <h2 class="slide-title animate-fade-up delay-1">Prototipo Android funcional probado en dispositivo fisico</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">Cuatro pantallas grandes para mostrar el recorrido real sin reducir legibilidad.</p>
+          </div>
 
-        <div class="phones-row animate-fade-up delay-3" style="display:flex; justify-content:center; gap:24px; margin-top: 24px; width:100%; max-width:1500px; flex-wrap:wrap;">
-          
-          <!-- Pantalla 1: Escáner -->
-          <PhoneMockup label="Inicio" animDelay={3}>
-            <img src="/screenshot-home.png" alt="Pantalla Inicial" style="width:100%; height:100%; object-fit:cover; display:block; background:#e2e8f0;" />
-          </PhoneMockup>
+          <div class="prototype-grid animate-fade-up delay-3">
+            <PhoneMockup label="Escanear">
+              <div class="android-screen">
+                <div class="android-topbar">Escanear QR</div>
+                <div class="android-camera">
+                  <div class="scanner-frame"></div>
+                  <div class="scanner-line"></div>
+                </div>
+                <div class="android-bottomsheet">
+                  <div class="android-input">https://...</div>
+                  <div class="android-fab">+</div>
+                </div>
+              </div>
+            </PhoneMockup>
 
-          <!-- Pantalla 2: Análisis -->
-          <PhoneMockup label="Resultado seguro" animDelay={4}>
-            <img src="/screenshot-safe.png" alt="Resultado Seguro" style="width:100%; height:100%; object-fit:cover; display:block; background:#e2e8f0;" />
-          </PhoneMockup>
+            <PhoneMockup label="Analizar">
+              <div class="android-screen">
+                <div class="android-topbar">Analizando URL</div>
+                <div class="android-center">
+                  <div class="loader-ring"></div>
+                  <div class="analysis-list">
+                    <span class="analysis-item analysis-item--done">Validacion local completa</span>
+                    <span class="analysis-item analysis-item--live">Consultando Google Web Risk</span>
+                    <span class="analysis-item">Consultando IPQS y OpenPhish</span>
+                  </div>
+                </div>
+              </div>
+            </PhoneMockup>
 
-          <!-- Pantalla 3: Vista Previa -->
-          <PhoneMockup label="Vista previa" animDelay={5}>
-            <img src="/screenshot-preview.png" alt="Vista Previa" style="width:100%; height:100%; object-fit:cover; display:block; background:#e2e8f0;" />
-          </PhoneMockup>
+            <PhoneMockup label="Resultado">
+              <div class="android-screen">
+                <div class="android-topbar">Resultado</div>
+                <div class="android-result android-result--warn">
+                  <div class="result-badge-large">SOSPECHOSO</div>
+                  <p>Dominio nuevo y analisis parcial. Se pide confirmacion antes de abrir.</p>
+                  <button type="button" class="android-button android-button--primary">Abrir con cautela</button>
+                  <button type="button" class="android-button">Volver</button>
+                </div>
+              </div>
+            </PhoneMockup>
 
-          <!-- Pantalla 4: Historial -->
-          <PhoneMockup label="Historial" animDelay={6}>
-            <img src="/screenshot-history.png" alt="Historial" style="width:100%; height:100%; object-fit:cover; display:block; background:#e2e8f0;" />
-          </PhoneMockup>
-
-          <!-- Pantalla 5: Peligroso (Destacada opcional o normal) -->
-          <!-- 
-          <PhoneMockup featured={true} label="Resultado peligroso" animDelay={7}>
-            <img src="/screenshot-danger.png" alt="Resultado Peligroso" style="width:100%; height:100%; object-fit:cover; display:block; background:#e2e8f0;" />
-          </PhoneMockup>
-          -->
-
+            <PhoneMockup label="Historial">
+              <div class="android-screen">
+                <div class="android-topbar">Historial local</div>
+                <div class="history-list">
+                  <div class="history-row">
+                    <span class="history-signal history-signal--green"></span>
+                    <div><strong>empresa.es/menu</strong><small>safe · complete</small></div>
+                  </div>
+                  <div class="history-row">
+                    <span class="history-signal history-signal--amber"></span>
+                    <div><strong>promo-checkout.co</strong><small>suspicious · partial</small></div>
+                  </div>
+                  <div class="history-row">
+                    <span class="history-signal history-signal--red"></span>
+                    <div><strong>banking-login.link</strong><small>dangerous</small></div>
+                  </div>
+                </div>
+              </div>
+            </PhoneMockup>
+          </div>
         </div>
       </section>
-      <!-- ─── SLIDE 12: FLUJO DE USO Y PRIVACIDAD ────────────── -->
+
       <section class="slide" id="slide-12" data-slide="12" aria-label="Flujo de uso y privacidad">
-        <div class="slide-tag animate-fade-in">Experiencia</div>
-        <h2 class="slide-title animate-fade-up delay-1">Flujo de Uso Transparente</h2>
+        <div class="slide-shell slide-shell--wide">
+          <div class="slide-header">
+            <div class="slide-tag animate-fade-in">Flujo de uso</div>
+            <h2 class="slide-title animate-fade-up delay-1">Escanear -> Validar -> Enviar -> Analizar -> Mostrar -> Decidir -> Guardar</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">Timeline horizontal con verbos, iconos y microtexto para enseñar que hace el sistema en cada punto.</p>
+          </div>
 
-        <!-- Timeline horizontal -->
-        <div class="timeline-horiz animate-fade-up delay-2" style="display:flex; align-items:flex-start; gap:8px; margin-top:48px; width:100%; max-width:1500px; justify-content:space-between; position:relative;">
-          <div style="position:absolute; top:24px; left:50px; right:50px; height:2px; background:var(--color-green-light); z-index:0;"></div>
-          
-          <div style="position:relative; z-index:1; text-align:center; flex:1;">
-            <div style="width:48px; height:48px; background:var(--color-green); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">1</div>
-            <div style="margin-bottom:8px; display:flex; justify-content:center; color:var(--color-text);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
-            <strong style="font-size:14px; display:block;">Escanear</strong>
-            <span style="font-size:12px; color:var(--color-text-muted);">Cámara o imagen</span>
+          <div class="timeline animate-fade-up delay-3">
+            <div class="timeline-track" aria-hidden="true"></div>
+            {flowSteps.map((step) => (
+              <article class="timeline-step">
+                <div class="timeline-number">{step.num}</div>
+                <div class="timeline-icon" set:html={step.icon}></div>
+                <strong>{step.title}</strong>
+                <span>{step.text}</span>
+              </article>
+            ))}
           </div>
-          <div style="position:relative; z-index:1; text-align:center; flex:1;">
-            <div style="width:48px; height:48px; background:var(--color-green-bg); border:2px solid var(--color-green); color:var(--color-green-dark); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">2</div>
-            <div style="margin-bottom:8px; display:flex; justify-content:center; color:var(--color-text);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-            <strong style="font-size:14px; display:block;">Validar</strong>
-            <span style="font-size:12px; color:var(--color-text-muted);">Formato local</span>
-          </div>
-          <div style="position:relative; z-index:1; text-align:center; flex:1;">
-            <div style="width:48px; height:48px; background:var(--color-green-bg); border:2px solid var(--color-green); color:var(--color-green-dark); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">3</div>
-            <div style="margin-bottom:8px; display:flex; justify-content:center; color:var(--color-text);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
-            <strong style="font-size:14px; display:block;">Enviar</strong>
-            <span style="font-size:12px; color:var(--color-text-muted);">Al backend</span>
-          </div>
-          <div style="position:relative; z-index:1; text-align:center; flex:1;">
-            <div style="width:48px; height:48px; background:var(--color-green); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">4</div>
-            <div style="margin-bottom:8px; display:flex; justify-content:center; color:var(--color-text);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-            <strong style="font-size:14px; display:block;">Analizar</strong>
-            <span style="font-size:12px; color:var(--color-text-muted);">Motores externos</span>
-          </div>
-          <div style="position:relative; z-index:1; text-align:center; flex:1;">
-            <div style="width:48px; height:48px; background:var(--color-green-bg); border:2px solid var(--color-green); color:var(--color-green-dark); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">5</div>
-            <div style="margin-bottom:8px; display:flex; justify-content:center; color:var(--color-text);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-            <strong style="font-size:14px; display:block;">Mostrar</strong>
-            <span style="font-size:12px; color:var(--color-text-muted);">Semáforo</span>
-          </div>
-          <div style="position:relative; z-index:1; text-align:center; flex:1;">
-            <div style="width:48px; height:48px; background:var(--color-green); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">6</div>
-            <div style="margin-bottom:8px; display:flex; justify-content:center; color:var(--color-text);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 10V3a2 2 0 0 1 4 0v7"/><path d="M12 10V6a2 2 0 0 1 4 0v5"/><path d="M16 11V8a2 2 0 0 1 4 0v11.5A5.5 5.5 0 0 1 14.5 25h-4A6.5 6.5 0 0 1 4 18.5V13a2 2 0 0 1 4 0v-2"/></svg></div>
-            <strong style="font-size:14px; display:block;">Decidir</strong>
-            <span style="font-size:12px; color:var(--color-text-muted);">Usuario elige</span>
-          </div>
-          <div style="position:relative; z-index:1; text-align:center; flex:1;">
-            <div style="width:48px; height:48px; background:var(--color-bg); border:2px solid var(--color-border); color:var(--color-text-muted); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-weight:bold;">7</div>
-            <div style="margin-bottom:8px; display:flex; justify-content:center; color:var(--color-text);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></div>
-            <strong style="font-size:14px; display:block;">Guardar</strong>
-            <span style="font-size:12px; color:var(--color-text-muted);">Historial</span>
-          </div>
-        </div>
 
-        <!-- Privacidad 3 tarjetas -->
-        <h3 style="margin-top:48px; color:var(--color-text); font-weight: 600;">Privacidad por diseño</h3>
-        <div class="privacy-cards animate-fade-up delay-4" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-top:24px; width:100%; max-width:1400px;">
-          <div style="background:#fff; border-radius:var(--radius-card); padding:20px; box-shadow:var(--shadow-card); text-align:center; border:1px solid var(--color-border);">
-            <div style="margin-bottom:12px; display:flex; justify-content:center; color:var(--color-text);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
-            <strong>Room local</strong>
-            <p style="font-size:13px; color:var(--color-text-muted); margin-top:8px;">Datos guardados solo en el dispositivo.</p>
-          </div>
-          <div style="background:#fff; border-radius:var(--radius-card); padding:20px; box-shadow:var(--shadow-card); text-align:center; border:1px solid var(--color-border);">
-            <div style="margin-bottom:12px; display:flex; justify-content:center; color:var(--color-text);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-            <strong>Sin cuenta</strong>
-            <p style="font-size:13px; color:var(--color-text-muted); margin-top:8px;">No requiere registro.</p>
-          </div>
-          <div style="background:#fff; border-radius:var(--radius-card); padding:20px; box-shadow:var(--shadow-card); text-align:center; border:1px solid var(--color-border);">
-            <div style="margin-bottom:12px; display:flex; justify-content:center; color:var(--color-text);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><line x1="4" y1="4" x2="20" y2="20"/></svg></div>
-            <strong>Sin nube</strong>
-            <p style="font-size:13px; color:var(--color-text-muted); margin-top:8px;">El historial no se sincroniza.</p>
+          <div class="privacy-band animate-fade-up delay-4">
+            <span class="privacy-pill">Room local</span>
+            <span class="privacy-pill">Sin cuenta</span>
+            <span class="privacy-pill">Sin nube</span>
           </div>
         </div>
       </section>
 
-      <!-- ─── SLIDE 13: VIABILIDAD Y COSTES ────────────────── -->
       <section class="slide" id="slide-13" data-slide="13" aria-label="Viabilidad y Costes">
-        <div class="slide-tag animate-fade-in">Viabilidad</div>
-        <h2 class="slide-title animate-fade-up delay-1">Viabilidad y Sostenibilidad</h2>
-
-        <div style="display:flex; gap:40px; margin-top:32px; width:100%; max-width:1500px;">
-          
-          <!-- Izquierda: Gráfico de costes (TFG reales) -->
-          <div class="animate-fade-up delay-2" style="flex:1; background:#fff; border-radius:var(--radius-card); padding:24px; box-shadow:var(--shadow-card); border:1px solid var(--color-border);">
-            <h3 style="margin-bottom:24px; font-size:18px;">Inversión Inicial</h3>
-            <div style="display:flex; align-items:flex-end; gap:16px; height:180px; padding-bottom:16px; border-bottom:1px solid var(--color-border);">
-              <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center;">
-                <div style="font-weight:bold; font-size:14px; margin-bottom:8px;">1.700€</div>
-                <div style="width:100%; background:var(--color-green-light); border-radius:8px 8px 0 0; height:20%;"></div>
-                <span style="font-size:12px; margin-top:8px; text-align:center;">Hardware</span>
-              </div>
-              <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center;">
-                <div style="font-weight:bold; font-size:14px; margin-bottom:8px;">6.080€</div>
-                <div style="width:100%; background:var(--color-green-dark); border-radius:8px 8px 0 0; height:75%;"></div>
-                <span style="font-size:12px; margin-top:8px; text-align:center;">Personal</span>
-              </div>
-              <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center;">
-                <div style="font-weight:bold; font-size:14px; margin-bottom:8px;">280€</div>
-                <div style="width:100%; background:var(--color-green); border-radius:8px 8px 0 0; height:5%;"></div>
-                <span style="font-size:12px; margin-top:8px; text-align:center;">Gastos ind.</span>
-              </div>
-            </div>
-            <div style="text-align:center; font-weight:900; font-size:24px; margin-top:16px; color:var(--color-green-dark);">Total: 12.190,75 €</div>
+        <div class="slide-shell slide-shell--wide">
+          <div class="slide-header">
+            <div class="slide-tag animate-fade-in">Viabilidad</div>
+            <h2 class="slide-title animate-fade-up delay-1">Viabilidad: inversion inicial, sostenibilidad operativa y modelo futuro</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">La slide se apoya en un grafico protagonista y separa claramente coste inicial, operacion mensual y monetizacion.</p>
           </div>
 
-          <!-- Derecha: Sostenibilidad -->
-          <div class="animate-fade-up delay-3" style="flex:1; display:flex; flex-direction:column; gap:16px;">
-            <div style="background:var(--color-green-bg); border:1.5px solid var(--color-green-light); padding:20px; border-radius:var(--radius-card);">
-              <div style="font-weight:bold; font-size:16px; color:var(--color-green-dark);">Sostenibilidad Operativa</div>
-              <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; font-size:14px; margin-top:12px;">
-                <li><strong>Mantenimiento:</strong> 160–325 €/mes + Google Web Risk</li>
-                <li><strong>Plan Premium:</strong> 3,99 €/mes</li>
-                <li><strong>Equilibrio:</strong> 82 suscriptores</li>
-              </ul>
-            </div>
-            <div style="background:#fff; border:1px solid var(--color-border); padding:20px; border-radius:var(--radius-card); box-shadow:var(--shadow-card);">
-              <div style="font-weight:bold; font-size:16px; margin-bottom:12px;">Modelo futuro</div>
-              <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; font-size:14px;">
-                <li style="display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="var(--color-green)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Gratuito</li>
-                <li style="display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="var(--color-green)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Premium B2C</li>
-                <li style="display:flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="var(--color-green)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Corporativo B2B</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ─── SLIDE 14: CONCLUSIÓN ─────────────────────────── -->
-      <section class="slide slide-close" id="slide-14" data-slide="14" aria-label="Conclusión">
-        <div class="slide-tag animate-fade-in">Cierre</div>
-        <h2 class="slide-title animate-fade-up delay-1">Conclusión: prevención comprensible antes del clic</h2>
-
-        <div class="slide-content animate-fade-up delay-2" style="margin-top: 48px; width:100%; max-width:1500px;">
-          
-          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-bottom:48px;">
-            <div style="background:#fff; padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card); border-top:4px solid var(--color-green);">
-              <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="var(--color-green-dark)"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-                <strong style="font-size:18px;">Se ha conseguido</strong>
+          <div class="viability-layout animate-fade-up delay-3">
+            <article class="bars-card">
+              <div class="section-kicker">Inversion inicial</div>
+              <div class="bars-chart">
+                {costBars.map((bar) => (
+                  <div class="bar-group">
+                    <div class="bar-value">{bar.value}</div>
+                    <div class="bar-rail">
+                      <div class="bar-fill" style={`height:${bar.height}`}></div>
+                    </div>
+                    <div class="bar-label">{bar.label}</div>
+                  </div>
+                ))}
               </div>
-              <p style="font-size:16px; color:var(--color-text-muted);">Un prototipo funcional que analiza URLs antes de abrirlas.</p>
-            </div>
-            
-            <div style="background:#fff; padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card); border-top:4px solid var(--color-green);">
-              <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="var(--color-green-dark)"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                <strong style="font-size:18px;">Aporta valor</strong>
-              </div>
-              <p style="font-size:16px; color:var(--color-text-muted);">Reduce el riesgo antes de abrir enlaces obtenidos desde códigos QR y ayuda a usuarios no técnicos a decidir con más información.</p>
-            </div>
-            
-            <div style="background:#fff; padding:24px; border-radius:var(--radius-card); box-shadow:var(--shadow-card); border-top:4px solid var(--color-green);">
-              <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="var(--color-green-dark)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <strong style="font-size:18px;">Es defendible</strong>
-              </div>
-              <p style="font-size:16px; color:var(--color-text-muted);">Arquitectura viable, enfoque conservador y privacidad local.</p>
-            </div>
-          </div>
+              <div class="total-band">Total 12.190,75 EUR</div>
+            </article>
 
-          <div style="margin-top: 48px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
-            <p style="font-weight: 900; font-size: 52px; color:var(--color-green-dark); text-align:center; line-height:1.2; letter-spacing:-0.03em;">Menos clics a ciegas.<br/>Más seguridad antes de abrir.</p>
-            <p style="color: var(--color-text-muted); font-size:16px; margin-top:24px; opacity:0.8;">Muchas gracias. ¿Preguntas?</p>
+            <div class="economy-stack">
+              <article class="economy-card economy-card--soft">
+                <div class="section-kicker">Sostenibilidad operativa</div>
+                <div class="economy-line">
+                  <strong>Mantenimiento</strong>
+                  <span>160-325 EUR/mes</span>
+                </div>
+                <div class="economy-line">
+                  <strong>Google Web Risk</strong>
+                  <span>incluido en el rango operativo</span>
+                </div>
+                <div class="economy-line">
+                  <strong>Equilibrio</strong>
+                  <span>82 suscriptores</span>
+                </div>
+              </article>
+
+              <article class="economy-card">
+                <div class="section-kicker">Modelo futuro</div>
+                <div class="economy-line">
+                  <strong>Premium</strong>
+                  <span>3,99 EUR/mes</span>
+                </div>
+                <div class="economy-line">
+                  <strong>Escalado</strong>
+                  <span>capa B2C y via B2B para licencias</span>
+                </div>
+                <div class="economy-line">
+                  <strong>Lectura</strong>
+                  <span>coste controlado con salida de negocio clara</span>
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </section>
 
-    </div><!-- /slides-viewport -->
+      <section class="slide" id="slide-14" data-slide="14" aria-label="Conclusion">
+        <div class="slide-shell slide-shell--wide slide-shell--close">
+          <div class="slide-header">
+            <div class="slide-tag animate-fade-in">Cierre</div>
+            <h2 class="slide-title animate-fade-up delay-1">Prevencion comprensible antes del clic</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">Problema real, producto entendible, arquitectura defendible y una salida viable para evolucionar el proyecto.</p>
+          </div>
 
-    <!-- =====================================================
-         CONTROLES DE NAVEGACIÓN (parte inferior)
-         ===================================================== -->
-    <nav class="slide-controls" aria-label="Controles de presentación">
+          <div class="closing-grid animate-fade-up delay-3">
+            {closingCards.map((card) => (
+              <article class="closing-card">
+                <h3 class="card-title">{card.title}</h3>
+                <p class="body-text">{card.text}</p>
+              </article>
+            ))}
+          </div>
 
-      <!-- Hint de teclado (tooltip al hacer hover) -->
-      <span class="keyboard-hint" aria-hidden="true">
-        ← → para navegar &nbsp;·&nbsp; F para pantalla completa
-      </span>
+          <p class="closing-quote animate-fade-up delay-4">Menos clics a ciegas. Mas seguridad antes de abrir.</p>
+          <p class="closing-thanks animate-fade-in delay-5">Muchas gracias. ¿Preguntas?</p>
+        </div>
+      </section>
+    </div>
 
-      <!-- Contador numérico -->
+    <nav class="slide-controls" aria-label="Controles de presentacion">
+      <span class="keyboard-hint" aria-hidden="true">← → para navegar · F para pantalla completa</span>
       <span class="slide-counter" id="slideCounter" aria-live="polite">1 / 14</span>
-
-      <!-- Título de la slide actual -->
       <span class="slide-current-title" id="slideTitle" aria-hidden="true">Portada</span>
 
-      <!-- Centro: prev → dots → next -->
       <div class="controls-center">
-        <button class="btn-nav" id="btnPrev" aria-label="Diapositiva anterior" disabled>
-          &#8592;
-        </button>
-
-        <!-- Dots de posición (se generan por JS) -->
+        <button class="btn-nav" id="btnPrev" aria-label="Diapositiva anterior" disabled>&larr;</button>
         <div class="dots-track" id="dotsTrack" role="tablist" aria-label="Diapositivas"></div>
-
-        <button class="btn-nav" id="btnNext" aria-label="Diapositiva siguiente">
-          &#8594;
-        </button>
+        <button class="btn-nav" id="btnNext" aria-label="Diapositiva siguiente">&rarr;</button>
       </div>
 
-      <!-- Pantalla completa -->
       <button class="btn-fullscreen" id="btnFullscreen" aria-label="Activar pantalla completa">
-        <!-- Icono expand (visible cuando NO está en fullscreen) -->
-        <svg id="iconExpand" width="15" height="15" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <svg id="iconExpand" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
         </svg>
-        <!-- Icono compress (visible cuando ESTÁ en fullscreen) -->
-        <svg id="iconCompress" width="15" height="15" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
-             style="display:none">
+        <svg id="iconCompress" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
           <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
         </svg>
         <span>Pantalla completa</span>
       </button>
     </nav>
-
-  </div><!-- /presentation-wrapper -->
-
+  </div>
 </PresentacionLayout>
 
-<!-- =====================================================
-     ESTILOS ESPECÍFICOS DE ESTA PÁGINA
-     ===================================================== -->
-<style>
-  /* --- Portada --- */
-  .cover-visual {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-  .cover-shield {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100px; height: 100px;
-    border-radius: 24px;
-    background: var(--color-green-bg);
-    border: 2px solid var(--color-green-light);
-    box-shadow: var(--shadow-lg);
-  }
-  .cover-qr {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 72px; height: 72px;
-    border-radius: 16px;
-    background: var(--color-green-bg);
-    border: 1.5px solid var(--color-green-light);
-    box-shadow: var(--shadow-card);
-  }
-  .cover-desc {
-    font-size: clamp(14px, 1.5vw, 18px);
-    color: var(--color-text-muted);
-    text-align: center;
-    max-width: 540px;
-    line-height: 1.6;
-    margin-bottom: 24px;
-  }
-  .cover-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 13px;
-    color: var(--color-text-muted);
-    font-weight: 500;
-  }
-  .cover-meta .sep { opacity: 0.4; }
-
-  /* --- Índice --- */
-  .index-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    width: 100%;
-    max-width: 760px;
-    margin-top: 24px;
-  }
-  .index-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding: 20px 16px;
-    border-radius: var(--radius-card);
-    border: 1.5px solid var(--color-border);
-    background: var(--color-card);
-    box-shadow: var(--shadow-card);
-    cursor: pointer;
-    transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s, background 0.2s;
-    font-family: var(--font-main);
-    text-align: center;
-  }
-  .index-block:hover {
-    border-color: var(--color-green);
-    background: var(--color-green-bg);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
-  }
-  .index-icon { font-size: 28px; }
-  .index-block strong {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--color-text);
-  }
-  .index-slides {
-    font-size: 11px;
-    color: var(--color-text-muted);
-    font-weight: 500;
-  }
-
-  /* --- Slide genérica (fallback fondo alternado) --- */
-  .slide:nth-child(odd)  { background: var(--color-bg); }
-  .slide:nth-child(even) { background: var(--color-white); }
-
-  /* ── FASE 5: Slide 3 — Tarjetas de problema ─────────── */
-  .problem-cards {
-    display: flex;
-    gap: 16px;
-    width: 100%;
-    max-width: 840px;
-    justify-content: center;
-  }
-  .prob-card {
-    flex: 1;
-    background: var(--color-card);
-    border-radius: var(--radius-card);
-    border: 1.5px solid var(--color-border);
-    box-shadow: var(--shadow-card);
-    padding: 20px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    transition: transform 0.2s, border-color 0.2s;
-  }
-  .prob-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--color-orange);
-  }
-  .prob-icon { font-size: 26px; }
-  .prob-card strong {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--color-text);
-  }
-  .prob-card p {
-    font-size: 12px;
-    color: var(--color-text-muted);
-    line-height: 1.5;
-  }
-
-  /* ── FASE 5: Slide 5 — Market insight ───────────────── */
-  .market-insight {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: var(--color-card);
-    border-radius: var(--radius-card);
-    border: 1.5px solid var(--color-green-light);
-    box-shadow: var(--shadow-card);
-    padding: 16px 24px;
-    max-width: 600px;
-    width: 100%;
-  }
-  .insight-bar {
-    width: 4px;
-    height: 40px;
-    border-radius: 4px;
-    background: linear-gradient(180deg, var(--color-green) 0%, var(--color-green-light) 100%);
-    flex-shrink: 0;
-  }
-  .market-insight p {
-    font-size: clamp(13px, 1.4vw, 16px);
-    color: var(--color-text-muted);
-    line-height: 1.5;
-  }
-  .market-insight p strong {
-    color: var(--color-text);
-    font-weight: 700;
-  }
-</style>
-
-
-<!-- =====================================================
-     JAVASCRIPT DE NAVEGACIÓN — FASE 2
-     Transiciones bidireccionales, dots, swipe táctil,
-     fullscreen dinámico, hint de teclado.
-     ===================================================== -->
 <script>
   (() => {
-    // ─────────────────────────────────────────────────
-    // DATOS
-    // ─────────────────────────────────────────────────
     const TOTAL = 14;
-    const SLIDE_TITLES = [
-      'Portada', 'Índice', 'El Problema', 'Investigación de Usuarios',
-      'Interés del Mercado', 'Persona Prototipo', 'Propuesta de Valor',
-      'MVP y Requisitos', 'Arquitectura', 'Motor de Decisión',
-      'Prototipo Funcional', 'Flujo de Uso y Privacidad', 'Viabilidad y Costes', 'Conclusión',
-    ];
+    const SLIDE_TITLES = ["Portada","Indice","El Problema","Investigacion de Usuarios","Interes del Mercado","Persona Prototipo","Propuesta de Valor","MVP y Requisitos","Arquitectura","Motor de Decision","Prototipo Funcional","Flujo de Uso y Privacidad","Viabilidad y Costes","Conclusion"];
 
     let current = 1;
-    let isAnimating = false; // evita clics rápidos que rompan la animación
+    let isAnimating = false;
 
-    // ─────────────────────────────────────────────────
-    // SELECTORES
-    // ─────────────────────────────────────────────────
-    const counter      = document.getElementById('slideCounter');
-    const titleLabel   = document.getElementById('slideTitle');
+    const counter = document.getElementById('slideCounter');
+    const titleLabel = document.getElementById('slideTitle');
     const progressFill = document.getElementById('progressFill');
-    const btnPrev      = document.getElementById('btnPrev');
-    const btnNext      = document.getElementById('btnNext');
-    const btnFS        = document.getElementById('btnFullscreen');
-    const dotsTrack    = document.getElementById('dotsTrack');
-    const iconExpand   = document.getElementById('iconExpand');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const btnFS = document.getElementById('btnFullscreen');
+    const dotsTrack = document.getElementById('dotsTrack');
+    const iconExpand = document.getElementById('iconExpand');
     const iconCompress = document.getElementById('iconCompress');
 
-    // ─────────────────────────────────────────────────
-    // DOTS — generación dinámica
-    // ─────────────────────────────────────────────────
+    function getSlide(n) {
+      return document.getElementById(`slide-${n}`);
+    }
+
     function buildDots() {
-      for (let i = 1; i <= TOTAL; i++) {
+      for (let i = 1; i <= TOTAL; i += 1) {
         const dot = document.createElement('button');
-        dot.className = 'dot' + (i === 1 ? ' active' : '');
+        dot.className = i === 1 ? 'dot active' : 'dot';
+        dot.type = 'button';
         dot.setAttribute('role', 'tab');
         dot.setAttribute('aria-label', `Diapositiva ${i}: ${SLIDE_TITLES[i - 1]}`);
         dot.setAttribute('aria-selected', i === 1 ? 'true' : 'false');
@@ -981,23 +743,15 @@ const slideTitles = [
         dotsTrack.appendChild(dot);
       }
     }
-    buildDots();
 
-    // ─────────────────────────────────────────────────
-    // HELPER: obtiene el elemento .slide por número
-    // ─────────────────────────────────────────────────
-    function getSlide(n) {
-      return document.getElementById(`slide-${n}`);
+    function replayAnimations(slide) {
+      slide.querySelectorAll('[class*="animate-"]').forEach((el) => {
+        el.style.animation = 'none';
+        void el.offsetHeight;
+        el.style.animation = '';
+      });
     }
 
-    // ─────────────────────────────────────────────────
-    // NAVEGACIÓN PRINCIPAL
-    // ─────────────────────────────────────────────────
-    /**
-     * Navega a una diapositiva con transición bidireccional.
-     * @param {number} target     Número destino (1-based)
-     * @param {string} direction  'forward' | 'backward'
-     */
     function goTo(target, direction = 'forward') {
       if (target < 1 || target > TOTAL || target === current || isAnimating) return;
       isAnimating = true;
@@ -1005,156 +759,57 @@ const slideTitles = [
       const prevSlide = getSlide(current);
       const nextSlide = getSlide(target);
 
-      // 1. Prepara la slide entrante en la posición correcta (sin transición)
       nextSlide.style.transition = 'none';
-      if (direction === 'forward') {
-        nextSlide.classList.remove('enter-from-left');
-        nextSlide.style.transform = 'translateX(60px)';
-      } else {
-        nextSlide.classList.add('enter-from-left');
-        nextSlide.style.transform = 'translateX(-60px)';
-      }
+      nextSlide.classList.remove('enter-from-left');
       nextSlide.style.opacity = '0';
+      const mobile = window.matchMedia('(max-width: 900px)').matches;
+      nextSlide.style.transform = direction === 'forward'
+        ? (mobile ? 'translateX(40px)' : 'translate(calc(-50% + 60px), -50%)')
+        : (mobile ? 'translateX(-40px)' : 'translate(calc(-50% - 60px), -50%)');
 
-      // 2. Fuerza reflow para que el navegador aplique el estado inicial
       void nextSlide.offsetHeight;
 
-      // 3. Reactiva la transición CSS
       nextSlide.style.transition = '';
+      replayAnimations(nextSlide);
 
-      // 4. Re-dispara las animaciones CSS internas (fade-up, scale, etc.)
-      nextSlide.querySelectorAll('[class*="animate-"]').forEach(el => {
-        el.style.animation = 'none';
-        void el.offsetHeight; // reflow
-        el.style.animation = '';
-      });
-
-      // 5. Aplica clases de salida a la slide actual
       prevSlide.classList.remove('active');
       prevSlide.classList.add(direction === 'forward' ? 'exit-left' : 'exit-right');
 
-      // 6. Activa la slide entrante
       nextSlide.classList.add('active');
-      nextSlide.classList.remove('enter-from-left');
-      nextSlide.style.transform = '';
       nextSlide.style.opacity = '';
+      nextSlide.style.transform = '';
 
-      // 7. Limpieza tras la transición
-      const DURATION = 380; // Sincronizado con --transition-duration (0.35s + buffer)
-      setTimeout(() => {
+      window.setTimeout(() => {
         prevSlide.classList.remove('exit-left', 'exit-right');
+        nextSlide.style.transition = '';
         isAnimating = false;
-      }, DURATION);
+      }, 420);
 
       current = target;
       updateUI();
     }
 
-    // ─────────────────────────────────────────────────
-    // UPDATE UI — contador, progreso, dots, título
-    // ─────────────────────────────────────────────────
     function updateUI() {
-      // Contador
       counter.textContent = `${current} / ${TOTAL}`;
-
-      // Título de la slide en la barra y en el documento (A11y)
       const slideTitle = SLIDE_TITLES[current - 1];
       titleLabel.textContent = slideTitle;
-      document.title = `${slideTitle} — Presentación TFC`;
-
-      // Barra de progreso
+      document.title = `${slideTitle} - Presentacion TFC`;
       progressFill.style.width = `${(current / TOTAL) * 100}%`;
-
-      // Botones anterior / siguiente
       btnPrev.disabled = current === 1;
       btnNext.disabled = current === TOTAL;
 
-      // Dots activos
-      dotsTrack.querySelectorAll('.dot').forEach((dot, i) => {
-        const isActive = i + 1 === current;
-        dot.classList.toggle('active', isActive);
-        dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      dotsTrack.querySelectorAll('.dot').forEach((dot, index) => {
+        const active = index + 1 === current;
+        dot.classList.toggle('active', active);
+        dot.setAttribute('aria-selected', active ? 'true' : 'false');
       });
-
-      triggerSlideAnimations(current);
     }
 
-    // ─────────────────────────────────────────────────
-    // ANIMACIONES ESPECÍFICAS DE SLIDES
-    // ─────────────────────────────────────────────────
-    function triggerSlideAnimations(slideNum) {
-      // SLIDE 9: Arquitectura
-      if (slideNum === 9) {
-        const archSlide = getSlide(9);
-        const nodes = archSlide.querySelectorAll('.arch-anim');
-        
-        // Reset
-        nodes.forEach(n => n.classList.remove('visible'));
-
-        // Delay escalonado
-        nodes.forEach((node) => {
-          const idx = parseInt(node.dataset.archIndex || '0', 10);
-          setTimeout(() => {
-            node.classList.add('visible');
-          }, 300 + (idx * 300));
-        });
-      }
-    }
-
-    // ─────────────────────────────────────────────────
-    // EVENTOS DE BOTONES
-    // ─────────────────────────────────────────────────
-    btnPrev.addEventListener('click', () => goTo(current - 1, 'backward'));
-    btnNext.addEventListener('click', () => goTo(current + 1, 'forward'));
-
-    // Dots individuales
-    dotsTrack.addEventListener('click', (e) => {
-      const dot = e.target.closest('.dot');
-      if (!dot) return;
-      const target = parseInt(dot.dataset.goto, 10);
-      goTo(target, target > current ? 'forward' : 'backward');
-    });
-
-    // Índice interactivo (data-goto en cualquier elemento)
-    document.querySelectorAll('[data-goto]').forEach(btn => {
-      // Los dots ya están manejados arriba; evitar duplicados
-      if (btn.classList.contains('dot')) return;
-      btn.addEventListener('click', () => {
-        const target = parseInt(btn.dataset.goto, 10);
-        goTo(target, target > current ? 'forward' : 'backward');
-      });
-    });
-
-    // ─────────────────────────────────────────────────
-    // TECLADO
-    // ─────────────────────────────────────────────────
-    document.addEventListener('keydown', (e) => {
-      // No actuar si el foco está en un input/textarea
-      if (['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)) return;
-
-      switch (e.key) {
-        case 'ArrowRight':
-        case ' ':           e.preventDefault(); goTo(current + 1, 'forward');  break;
-        case 'ArrowLeft':   e.preventDefault(); goTo(current - 1, 'backward'); break;
-        case 'ArrowDown':   e.preventDefault(); goTo(current + 1, 'forward');  break;
-        case 'ArrowUp':     e.preventDefault(); goTo(current - 1, 'backward'); break;
-        case 'Home':        e.preventDefault(); goTo(1, 'backward');            break;
-        case 'End':         e.preventDefault(); goTo(TOTAL, 'forward');         break;
-        case 'f':
-        case 'F':           toggleFullscreen(); break;
-        case 'Escape':      /* el navegador ya sale de FS con Escape */          break;
-      }
-    });
-
-    // ─────────────────────────────────────────────────
-    // PANTALLA COMPLETA
-    // ─────────────────────────────────────────────────
     function updateFSIcon() {
-      const isFS = !!document.fullscreenElement;
-      iconExpand.style.display   = isFS ? 'none'  : '';
-      iconCompress.style.display = isFS ? ''      : 'none';
-      btnFS.querySelector('span').textContent =
-        isFS ? 'Salir pantalla completa' : 'Pantalla completa';
+      const isFS = Boolean(document.fullscreenElement);
+      iconExpand.style.display = isFS ? 'none' : '';
+      iconCompress.style.display = isFS ? '' : 'none';
+      btnFS.querySelector('span').textContent = isFS ? 'Salir pantalla completa' : 'Pantalla completa';
     }
 
     function toggleFullscreen() {
@@ -1165,36 +820,61 @@ const slideTitles = [
       }
     }
 
+    buildDots();
+    updateUI();
+
+    btnPrev.addEventListener('click', () => goTo(current - 1, 'backward'));
+    btnNext.addEventListener('click', () => goTo(current + 1, 'forward'));
     btnFS.addEventListener('click', toggleFullscreen);
+
+    dotsTrack.addEventListener('click', (event) => {
+      const dot = event.target.closest('.dot');
+      if (!dot) return;
+      const target = Number.parseInt(dot.dataset.goto, 10);
+      goTo(target, target > current ? 'forward' : 'backward');
+    });
+
+    document.querySelectorAll('[data-goto]').forEach((element) => {
+      if (element.classList.contains('dot')) return;
+      element.addEventListener('click', () => {
+        const target = Number.parseInt(element.dataset.goto, 10);
+        goTo(target, target > current ? 'forward' : 'backward');
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) return;
+
+      switch (event.key) {
+        case 'ArrowRight':
+        case 'ArrowDown':
+        case ' ':
+          event.preventDefault();
+          goTo(current + 1, 'forward');
+          break;
+        case 'ArrowLeft':
+        case 'ArrowUp':
+          event.preventDefault();
+          goTo(current - 1, 'backward');
+          break;
+        case 'Home':
+          event.preventDefault();
+          goTo(1, 'backward');
+          break;
+        case 'End':
+          event.preventDefault();
+          goTo(TOTAL, 'forward');
+          break;
+        case 'f':
+        case 'F':
+          toggleFullscreen();
+          break;
+        default:
+          break;
+      }
+    });
+
     document.addEventListener('fullscreenchange', updateFSIcon);
     document.addEventListener('webkitfullscreenchange', updateFSIcon);
-
-    // ─────────────────────────────────────────────────
-    // SWIPE TÁCTIL
-    // ─────────────────────────────────────────────────
-    let touchStartX = 0;
-    let touchStartY = 0;
-    const SWIPE_THRESHOLD = 50; // px mínimos para considerar swipe
-
-    document.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-
-    document.addEventListener('touchend', (e) => {
-      const dx = e.changedTouches[0].clientX - touchStartX;
-      const dy = e.changedTouches[0].clientY - touchStartY;
-
-      // Solo procesa si el movimiento horizontal es mayor que el vertical
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_THRESHOLD) {
-        if (dx < 0) goTo(current + 1, 'forward');  // swipe izquierda = avanzar
-        else        goTo(current - 1, 'backward'); // swipe derecha  = retroceder
-      }
-    }, { passive: true });
-
-    // ─────────────────────────────────────────────────
-    // INICIO
-    // ─────────────────────────────────────────────────
-    updateUI();
   })();
 </script>
