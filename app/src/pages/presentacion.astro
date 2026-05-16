@@ -49,28 +49,28 @@ const indexBlocks = [
 ];
 
 const researchStats = [
-  { value: '37', label: 'participantes', text: 'Cuestionario validado y perfil de uso cotidiano.' },
-  { value: '84%', label: 'usa QR con frecuencia', text: 'El habito ya esta normalizado en restauracion y comercios.' },
-  { value: '46%', label: 'no revisa la URL', text: 'Casi la mitad abre sin comprobar el destino.' },
+  { value: '37', label: 'participantes', text: 'Cuestionario validado.' },
+  { value: '84%', label: 'usa QR con frecuencia', text: 'Uso cotidiano consolidado.' },
+  { value: '46%', label: 'no revisa la URL', text: 'Abre sin comprobar el destino.' },
 ];
 
 const marketStats = [
-  { value: '68%', label: 'la usaria', text: 'Existe interes directo si el flujo es rapido.' },
-  { value: '30%', label: 'depende de la rapidez', text: 'La friccion manda en un contexto de uso casual.' },
-  { value: '49%', label: 'prioriza simplicidad', text: 'La lectura del resultado debe ser inmediata.' },
+  { value: '68%', label: 'la usaria', text: 'Hay interes directo.' },
+  { value: '30%', label: 'depende de la rapidez', text: 'La friccion penaliza.' },
+  { value: '49%', label: 'prioriza simplicidad', text: 'La lectura debe ser inmediata.' },
 ];
 
 const personaCards = [
-  { title: 'Contexto', text: 'Restaurantes, transporte, comercios y carteles.', icon: iconUser, tone: 'neutral' },
-  { title: 'Problema', text: 'No sabe distinguir un enlace legitimo de uno fraudulento.', icon: iconAlert, tone: 'danger' },
-  { title: 'Necesidad', text: 'Una respuesta breve y entendible antes de abrir.', icon: iconClock, tone: 'neutral' },
-  { title: 'Expectativa', text: 'Ver una senal clara: seguro, sospechoso o peligroso.', icon: iconStar, tone: 'success' },
+  { title: 'Contexto', text: 'Restaurantes, transporte y comercios.', icon: iconUser, tone: 'neutral' },
+  { title: 'Problema', text: 'No distingue un enlace legitimo de uno fraudulento.', icon: iconAlert, tone: 'danger' },
+  { title: 'Necesidad', text: 'Una respuesta clara antes de abrir.', icon: iconClock, tone: 'neutral' },
+  { title: 'Expectativa', text: 'Seguro, sospechoso o peligroso.', icon: iconStar, tone: 'success' },
 ];
 
 const valueSteps = [
   { num: '1', title: 'Captura', text: 'QR o URL manual', tone: 'muted' },
-  { num: '2', title: 'Analisis', text: 'Backend + reglas + fuentes externas', tone: 'featured' },
-  { num: '3', title: 'Decision', text: 'Semaforo y accion del usuario', tone: 'muted' },
+  { num: '2', title: 'Analisis', text: 'Backend, reglas y fuentes', tone: 'featured' },
+  { num: '3', title: 'Decision', text: 'Semaforo y accion', tone: 'muted' },
 ];
 
 const mvpFeatures = [
@@ -85,69 +85,66 @@ const mvpFeatures = [
 ];
 
 const requirements = [
-  { id: 'R1-F', text: 'Lectura de QR con camara y decodificacion local.', icon: iconCamera },
-  { id: 'R2-F', text: 'Sin apertura automatica del enlace detectado.', icon: iconLock },
-  { id: 'R3-F', text: 'Entrada manual de URL como alternativa.', icon: iconLink },
-  { id: 'R4-F', text: 'Validacion previa del formato web.', icon: iconShield },
-  { id: 'R5-F', text: 'Clasificacion final en tres niveles de riesgo.', icon: iconLayers },
-  { id: 'R6-F', text: 'Resumen claro de por que se sugiere abrir o no.', icon: iconResult },
-  { id: 'R7-F', text: 'Historial local de analisis para consulta posterior.', icon: iconSave },
+  { id: 'R1-F', text: 'Camara', icon: iconCamera },
+  { id: 'R2-F', text: 'No apertura automatica', icon: iconLock },
+  { id: 'R3-F', text: 'URL manual', icon: iconLink },
+  { id: 'R4-F', text: 'Validacion web', icon: iconShield },
+  { id: 'R5-F', text: 'Clasificacion', icon: iconLayers },
+  { id: 'R6-F', text: 'Resumen', icon: iconResult },
+  { id: 'R7-F', text: 'Historial', icon: iconSave },
 ];
 
 const architectureZones = [
   {
     title: 'Cliente Android',
-    text: 'Captura el QR, valida rapido y presenta la decision.',
-    chips: ['ZXing', 'Jetpack Compose', 'ViewModel', 'Room'],
+    text: 'Captura, prevalidacion, UI e historial.',
+    chips: ['ZXing', 'Compose', 'ViewModel', 'Retrofit', 'Room'],
     icon: iconPhone,
     tone: 'client',
   },
   {
     title: 'Backend FastAPI',
-    text: 'Orquesta consultas, aplica reglas y devuelve una respuesta normalizada.',
-    chips: ['FastAPI', 'Python', 'Decision engine'],
+    text: 'Valida, orquesta y decide.',
+    chips: ['FastAPI', 'Docker', 'Decision engine'],
     icon: iconServer,
     tone: 'backend',
   },
   {
-    title: 'Fuentes y apoyo',
-    text: 'Aportan reputacion, inteligencia de riesgo y captura visual de apoyo.',
-    chips: ['Google Web Risk', 'IPQS', 'OpenPhish', 'SnapRender'],
+    title: 'Fuentes',
+    text: 'Reputacion y apoyo visual.',
+    chips: ['Web Risk', 'IPQS', 'OpenPhish', 'SnapRender'],
     icon: iconDatabase,
     tone: 'sources',
   },
   {
     title: 'Resultado',
-    text: 'Entrega risk level, status y razones para la UX final.',
-    chips: ['safe', 'suspicious', 'dangerous', 'complete / partial'],
+    text: 'Salida compacta para la UX final.',
+    chips: ['risk_level', 'status', 'summary', 'reasons'],
     icon: iconResult,
     tone: 'result',
   },
 ];
 
 const decisionRows = [
-  { case: 'safe + complete', result: 'Seguro', action: 'Abrir con menos friccion', tone: 'safe' },
-  { case: 'safe + partial', result: 'Sospechoso', action: 'Pedir confirmacion', tone: 'warn' },
-  { case: 'suspicious + complete', result: 'Sospechoso', action: 'Mostrar advertencia y razones', tone: 'warn' },
-  { case: 'suspicious + partial', result: 'Sospechoso', action: 'Mantener cautela por falta de cobertura', tone: 'warn' },
-  { case: 'dangerous', result: 'Peligroso', action: 'Bloqueo visual y advertencia fuerte', tone: 'danger' },
-  { case: 'unavailable', result: 'Sospechoso', action: 'Nunca promover apertura por defecto', tone: 'warn' },
+  { case: 'safe + complete', result: 'Seguro', action: 'Abrir', tone: 'safe' },
+  { case: 'suspicious / partial / unavailable', result: 'Sospechoso', action: 'Confirmar', tone: 'warn' },
+  { case: 'dangerous', result: 'Peligroso', action: 'Advertencia fuerte', tone: 'danger' },
 ];
 
 const decisionStatuses = [
-  { label: 'complete', text: 'Hay senales suficientes para sostener la respuesta.', tone: 'complete' },
-  { label: 'partial', text: 'Falta al menos una fuente clave y se degrada la confianza.', tone: 'partial' },
-  { label: 'unavailable', text: 'No hay base tecnica para marcar el enlace como seguro.', tone: 'unavailable' },
+  { label: 'complete', text: 'Cobertura suficiente.', tone: 'complete' },
+  { label: 'partial', text: 'Cobertura parcial.', tone: 'partial' },
+  { label: 'unavailable', text: 'Sin base suficiente.', tone: 'unavailable' },
 ];
 
 const flowSteps = [
-  { num: '1', title: 'Escanear', text: 'Camara o imagen', icon: iconCamera },
-  { num: '2', title: 'Validar', text: 'Formato local', icon: iconShield },
-  { num: '3', title: 'Enviar', text: 'Solicitud al backend', icon: iconSend },
-  { num: '4', title: 'Analizar', text: 'Cruce con motores', icon: iconSearch },
-  { num: '5', title: 'Mostrar', text: 'Semaforo y razones', icon: iconPhone },
-  { num: '6', title: 'Decidir', text: 'El usuario elige', icon: iconLock },
-  { num: '7', title: 'Guardar', text: 'Historial local', icon: iconSave },
+  { num: '1', title: 'Escanear', text: 'Camara', icon: iconCamera },
+  { num: '2', title: 'Validar', text: 'Formato', icon: iconShield },
+  { num: '3', title: 'Enviar', text: 'Backend', icon: iconSend },
+  { num: '4', title: 'Analizar', text: 'Motores', icon: iconSearch },
+  { num: '5', title: 'Mostrar', text: 'Semaforo', icon: iconPhone },
+  { num: '6', title: 'Decidir', text: 'Usuario', icon: iconLock },
+  { num: '7', title: 'Guardar', text: 'Historial', icon: iconSave },
 ];
 
 const costBars = [
@@ -205,8 +202,8 @@ const closingCards = [
         <div class="slide-shell slide-shell--wide">
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">Recorrido</div>
-            <h2 class="slide-title animate-fade-up delay-1">Seis bloques para contar el producto completo</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">Problema, oportunidad, solucion, arquitectura, demo funcional y viabilidad.</p>
+            <h2 class="slide-title animate-fade-up delay-1">Seis bloques para explicar el producto</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">Problema, usuario, solucion, arquitectura, demo y viabilidad.</p>
           </div>
 
           <div class="index-route animate-fade-in delay-2" aria-hidden="true">
@@ -238,14 +235,14 @@ const closingCards = [
           <div class="slide-header">
             <div class="slide-tag slide-tag--danger animate-fade-in">El problema</div>
             <h2 class="slide-title animate-fade-up delay-1">El usuario escanea a ciegas</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">El QR oculta la URL real hasta que el dispositivo ya esta preparado para abrirla.</p>
+            <p class="slide-subtitle animate-fade-up delay-2">QR fisico -> URL invisible -> decision sin contexto.</p>
           </div>
 
           <div class="problem-layout animate-fade-up delay-3">
             <article class="story-card story-card--soft">
               <div class="story-kicker">Uso cotidiano</div>
               <h3 class="card-title">El QR parece legitimo por su contexto fisico</h3>
-              <p class="body-text">Restaurantes, carteles, comercios, transporte o eventos convierten el escaneo en un gesto automatico.</p>
+              <p class="body-text">Restaurantes, carteles, comercios y transporte convierten el escaneo en un gesto automatico.</p>
               <div class="chip-row">
                 <span class="chip">restauracion</span>
                 <span class="chip">movilidad</span>
@@ -257,7 +254,7 @@ const closingCards = [
             <article class="story-card story-card--danger">
               <div class="story-kicker story-kicker--danger">Punto ciego</div>
               <h3 class="card-title">QR fisico -> URL invisible -> decision sin contexto</h3>
-              <p class="body-text">Ese salto es suficiente para llevar al usuario a phishing, robo de credenciales o descarga maliciosa.</p>
+              <p class="body-text">Ese salto basta para llevar a phishing, robo de credenciales o descarga maliciosa.</p>
               <div class="chain-note">Antes de abrir no hay una capa clara de lectura del riesgo.</div>
             </article>
           </div>
@@ -266,7 +263,7 @@ const closingCards = [
             <div class="problem-number">+25.000</div>
             <div class="problem-band-copy">
               <strong>casos de phishing gestionados por INCIBE en Espana durante 2025</strong>
-              <span>El riesgo no es teorico: ya existe a escala y entra en contextos de uso diario.</span>
+              <span>El dato apoya un problema que ya forma parte del uso diario.</span>
             </div>
           </div>
 
@@ -279,7 +276,7 @@ const closingCards = [
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">Investigacion</div>
             <h2 class="slide-title animate-fade-up delay-1">La necesidad ya aparece en el uso real</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">Los QR forman parte del dia a dia, pero la decision de abrir sigue siendo poco informada.</p>
+            <p class="slide-subtitle animate-fade-up delay-2">Los QR ya son cotidianos, pero abrir sigue siendo una decision poco informada.</p>
           </div>
 
           <div class="metrics-grid animate-fade-up delay-3">
@@ -301,7 +298,7 @@ const closingCards = [
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">Mercado</div>
             <h2 class="slide-title animate-fade-up delay-1">La oportunidad depende de rapidez y claridad</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">No basta con detectar riesgo: la solucion tiene que caber en un gesto de segundos.</p>
+            <p class="slide-subtitle animate-fade-up delay-2">Detectar riesgo no basta si el flujo no cabe en unos pocos segundos.</p>
           </div>
 
           <div class="metrics-grid animate-fade-up delay-3">
@@ -316,7 +313,7 @@ const closingCards = [
 
           <div class="insight-panel animate-fade-up delay-4">
             <div class="insight-bar"></div>
-            <p>La interfaz debe ser <strong>rapida, clara y sin tecnicismos</strong>. Si tarda o confunde, el usuario vuelve a abrir a ciegas.</p>
+            <p>La interfaz debe ser <strong>rapida, clara y sin tecnicismos</strong>.</p>
           </div>
         </div>
       </section>
@@ -326,7 +323,7 @@ const closingCards = [
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">Usuario</div>
             <h2 class="slide-title animate-fade-up delay-1">Persona prototipo: usuario cotidiano</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">Escanea QR con normalidad, confia en el contexto fisico y no sabe leer la URL oculta.</p>
+            <p class="slide-subtitle animate-fade-up delay-2">Escanea con normalidad, confia en el contexto fisico y no sabe leer la URL oculta.</p>
           </div>
 
           <div class="persona-layout animate-fade-up delay-3">
@@ -353,7 +350,7 @@ const closingCards = [
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">Solucion</div>
             <h2 class="slide-title animate-fade-up delay-1">De escanear a ciegas a decidir con contexto</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">La aplicacion se coloca entre el QR y el navegador para dar una lectura accionable del riesgo.</p>
+            <p class="slide-subtitle animate-fade-up delay-2">La app se coloca entre el QR y el navegador para dar una lectura accionable del riesgo.</p>
           </div>
 
           <div class="value-flow animate-fade-up delay-3">
@@ -378,7 +375,7 @@ const closingCards = [
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">MVP operativo</div>
             <h2 class="slide-title animate-fade-up delay-1">MVP operativo y requisitos funcionales</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">Un flujo minimo completo, con funciones reales y requisitos separados en piezas legibles.</p>
+            <p class="slide-subtitle animate-fade-up delay-2">Flujo minimo completo, funciones reales y requisitos compactos.</p>
           </div>
 
           <div class="mvp-layout animate-fade-up delay-3">
@@ -400,18 +397,15 @@ const closingCards = [
               <div class="requirements-grid">
                 {requirements.map((req) => (
                   <article class="requirement-chip">
-                    <div class="mini-icon mini-icon--ghost" set:html={req.icon}></div>
-                    <div>
-                      <div class="req-id">{req.id}</div>
-                      <p class="chip-copy">{req.text}</p>
-                    </div>
+                    <div class="req-id">{req.id}</div>
+                    <p class="chip-copy">{req.text}</p>
                   </article>
                 ))}
               </div>
             </div>
           </div>
 
-          <div class="quote-band animate-fade-up delay-4">El flujo esencial del producto quedo validado sin convertir los requisitos en una lista plana ilegible.</div>
+          <div class="quote-band animate-fade-up delay-4">El MVP cubre el flujo esencial sin cargar la slide.</div>
         </div>
       </section>
 
@@ -419,8 +413,8 @@ const closingCards = [
         <div class="slide-shell slide-shell--wide">
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">Arquitectura</div>
-            <h2 class="slide-title animate-fade-up delay-1">Cliente Android -> Backend FastAPI -> Fuentes y apoyo -> Resultado</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">Cuatro zonas con responsabilidades resumidas, chips de tecnologia y una salida pensada para la decision final.</p>
+            <h2 class="slide-title animate-fade-up delay-1">Cliente Android -> Backend FastAPI -> Fuentes -> Resultado</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">Cuatro zonas compactas con responsabilidades y tecnologias clave.</p>
           </div>
 
           <div class="architecture-flow animate-fade-up delay-3">
@@ -452,8 +446,8 @@ const closingCards = [
         <div class="slide-shell slide-shell--wide">
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">Motor de decision</div>
-            <h2 class="slide-title animate-fade-up delay-1">Una matriz conservadora para no regalar falsa confianza</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">El resultado visual depende tanto del riesgo detectado como del nivel de cobertura tecnica obtenido.</p>
+            <h2 class="slide-title animate-fade-up delay-1">Tres reglas para no regalar falsa confianza</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">La salida combina riesgo detectado y cobertura tecnica real.</p>
           </div>
 
           <div class="decision-layout animate-fade-up delay-3">
@@ -505,11 +499,11 @@ const closingCards = [
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">Prototipo</div>
             <h2 class="slide-title animate-fade-up delay-1">Prototipo Android funcional probado en dispositivo fisico</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">Cuatro pantallas grandes para mostrar el recorrido real sin reducir legibilidad.</p>
+            <p class="slide-subtitle animate-fade-up delay-2">Ahora son mockups. El layout queda preparado para sustituirlos por capturas reales.</p>
           </div>
 
           <div class="prototype-grid animate-fade-up delay-3">
-            <PhoneMockup label="Escanear">
+            <PhoneMockup label="Inicio">
               <div class="android-screen">
                 <div class="android-topbar">Escanear QR</div>
                 <div class="android-camera">
@@ -523,33 +517,33 @@ const closingCards = [
               </div>
             </PhoneMockup>
 
-            <PhoneMockup label="Analizar">
-              <div class="android-screen">
-                <div class="android-topbar">Analizando URL</div>
-                <div class="android-center">
-                  <div class="loader-ring"></div>
-                  <div class="analysis-list">
-                    <span class="analysis-item analysis-item--done">Validacion local completa</span>
-                    <span class="analysis-item analysis-item--live">Consultando Google Web Risk</span>
-                    <span class="analysis-item">Consultando IPQS y OpenPhish</span>
-                  </div>
-                </div>
-              </div>
-            </PhoneMockup>
-
-            <PhoneMockup label="Resultado">
+            <PhoneMockup label="Resultado seguro">
               <div class="android-screen">
                 <div class="android-topbar">Resultado</div>
-                <div class="android-result android-result--warn">
-                  <div class="result-badge-large">SOSPECHOSO</div>
-                  <p>Dominio nuevo y analisis parcial. Se pide confirmacion antes de abrir.</p>
-                  <button type="button" class="android-button android-button--primary">Abrir con cautela</button>
-                  <button type="button" class="android-button">Volver</button>
+                <div class="android-result android-result--safe">
+                  <div class="result-badge-large result-badge-large--safe">SEGURO</div>
+                  <p>Analisis completo. El enlace puede abrirse.</p>
+                  <button type="button" class="android-button android-button--primary">Abrir</button>
+                  <button type="button" class="android-button">Ver detalles</button>
                 </div>
               </div>
             </PhoneMockup>
 
-            <PhoneMockup label="Historial">
+            <PhoneMockup label="Vista previa">
+              <div class="android-screen">
+                <div class="android-topbar">Vista previa</div>
+                <div class="android-center">
+                  <div class="analysis-list analysis-list--preview">
+                    <span class="analysis-item analysis-item--done">URL validada</span>
+                    <span class="analysis-item analysis-item--live">Enviando al backend</span>
+                    <span class="analysis-item">Esperando respuesta</span>
+                  </div>
+                  <button type="button" class="android-button android-button--primary">Analizar</button>
+                </div>
+              </div>
+            </PhoneMockup>
+
+            <PhoneMockup label="Historial / Peligroso">
               <div class="android-screen">
                 <div class="android-topbar">Historial local</div>
                 <div class="history-list">
@@ -576,8 +570,8 @@ const closingCards = [
         <div class="slide-shell slide-shell--wide">
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">Flujo de uso</div>
-            <h2 class="slide-title animate-fade-up delay-1">Escanear -> Validar -> Enviar -> Analizar -> Mostrar -> Decidir -> Guardar</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">Timeline horizontal con verbos, iconos y microtexto para enseñar que hace el sistema en cada punto.</p>
+            <h2 class="slide-title animate-fade-up delay-1">Flujo de uso en siete pasos</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">Timeline horizontal compacto del recorrido completo.</p>
           </div>
 
           <div class="timeline animate-fade-up delay-3">
@@ -605,7 +599,7 @@ const closingCards = [
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">Viabilidad</div>
             <h2 class="slide-title animate-fade-up delay-1">Viabilidad: inversion inicial, sostenibilidad operativa y modelo futuro</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">La slide se apoya en un grafico protagonista y separa claramente coste inicial, operacion mensual y monetizacion.</p>
+            <p class="slide-subtitle animate-fade-up delay-2">Grafico principal compacto y tres datos de negocio faciles de leer.</p>
           </div>
 
           <div class="viability-layout animate-fade-up delay-3">
@@ -634,7 +628,7 @@ const closingCards = [
                 </div>
                 <div class="economy-line">
                   <strong>Google Web Risk</strong>
-                  <span>incluido en el rango operativo</span>
+                  <span>incluido en la operacion</span>
                 </div>
                 <div class="economy-line">
                   <strong>Equilibrio</strong>
@@ -650,11 +644,11 @@ const closingCards = [
                 </div>
                 <div class="economy-line">
                   <strong>Escalado</strong>
-                  <span>capa B2C y via B2B para licencias</span>
+                  <span>B2C y opcion B2B</span>
                 </div>
                 <div class="economy-line">
                   <strong>Lectura</strong>
-                  <span>coste controlado con salida de negocio clara</span>
+                  <span>coste controlado</span>
                 </div>
               </article>
             </div>
