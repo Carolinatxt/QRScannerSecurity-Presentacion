@@ -68,30 +68,30 @@ const personaCards = [
 ];
 
 const valueSteps = [
-  { num: '1', title: 'Captura', text: 'QR o URL manual', tone: 'muted' },
+  { num: '1', title: 'Captura', text: 'QR o URL', tone: 'muted' },
   { num: '2', title: 'Analisis', text: 'Backend, reglas y fuentes', tone: 'featured' },
   { num: '3', title: 'Decision', text: 'Semaforo y accion', tone: 'muted' },
 ];
 
 const mvpFeatures = [
-  { title: 'Escanear QR', text: 'Lectura con ZXing', icon: iconCamera },
-  { title: 'Introducir URL', text: 'Entrada manual', icon: iconLink },
-  { title: 'Validar enlace', text: 'Filtro local previo', icon: iconShield },
+  { title: 'Escanear QR', text: 'Lectura ZXing', icon: iconCamera },
+  { title: 'Introducir URL', text: 'Entrada directa', icon: iconLink },
+  { title: 'Validar enlace', text: 'Filtro local', icon: iconShield },
   { title: 'Analizar destino', text: 'Revision remota', icon: iconSearch },
-  { title: 'Mostrar semaforo', text: 'Resultado inmediato', icon: iconClock },
-  { title: 'Guardar historial', text: 'Persistencia local', icon: iconSave },
+  { title: 'Mostrar semaforo', text: 'Resultado claro', icon: iconClock },
+  { title: 'Guardar historial', text: 'Room local', icon: iconSave },
   { title: 'Reanalizar', text: 'Nueva consulta', icon: iconRefresh },
-  { title: 'Control de apertura', text: 'No abre solo', icon: iconLock },
+  { title: 'Control de apertura', text: 'Apertura manual', icon: iconLock },
 ];
 
 const requirements = [
-  { id: 'R1-F', text: 'Camara', icon: iconCamera },
-  { id: 'R2-F', text: 'No apertura automatica', icon: iconLock },
+  { id: 'R1-F', text: 'Camara QR', icon: iconCamera },
+  { id: 'R2-F', text: 'Bloqueo autoapertura', icon: iconLock },
   { id: 'R3-F', text: 'URL manual', icon: iconLink },
-  { id: 'R4-F', text: 'Validacion web', icon: iconShield },
-  { id: 'R5-F', text: 'Clasificacion', icon: iconLayers },
-  { id: 'R6-F', text: 'Resumen', icon: iconResult },
-  { id: 'R7-F', text: 'Historial', icon: iconSave },
+  { id: 'R4-F', text: 'Revision web', icon: iconShield },
+  { id: 'R5-F', text: 'Risk level', icon: iconLayers },
+  { id: 'R6-F', text: 'Resumen claro', icon: iconResult },
+  { id: 'R7-F', text: 'Historial local', icon: iconSave },
 ];
 
 const architectureZones = [
@@ -105,7 +105,7 @@ const architectureZones = [
   {
     title: 'Backend FastAPI',
     text: 'Valida, orquesta y decide.',
-    chips: ['FastAPI', 'Docker', 'Decision engine'],
+    chips: ['FastAPI', 'Docker', 'Motor decision'],
     icon: iconServer,
     tone: 'backend',
   },
@@ -119,7 +119,7 @@ const architectureZones = [
   {
     title: 'Resultado',
     text: 'Salida compacta para la UX final.',
-    chips: ['risk_level', 'status', 'summary', 'reasons'],
+    chips: ['risk', 'status', 'summary', 'reasons'],
     icon: iconResult,
     tone: 'result',
   },
@@ -132,19 +132,19 @@ const decisionRows = [
 ];
 
 const decisionStatuses = [
-  { label: 'complete', text: 'Cobertura suficiente.', tone: 'complete' },
-  { label: 'partial', text: 'Cobertura parcial.', tone: 'partial' },
-  { label: 'unavailable', text: 'Sin base suficiente.', tone: 'unavailable' },
+  { label: 'complete', text: 'Cobertura suficiente', tone: 'complete' },
+  { label: 'partial', text: 'Cobertura parcial', tone: 'partial' },
+  { label: 'unavailable', text: 'Sin base suficiente', tone: 'unavailable' },
 ];
 
 const flowSteps = [
-  { num: '1', title: 'Escanear', text: 'Camara', icon: iconCamera },
-  { num: '2', title: 'Validar', text: 'Formato', icon: iconShield },
-  { num: '3', title: 'Enviar', text: 'Backend', icon: iconSend },
-  { num: '4', title: 'Analizar', text: 'Motores', icon: iconSearch },
-  { num: '5', title: 'Mostrar', text: 'Semaforo', icon: iconPhone },
-  { num: '6', title: 'Decidir', text: 'Usuario', icon: iconLock },
-  { num: '7', title: 'Guardar', text: 'Historial', icon: iconSave },
+  { num: '1', title: 'Escanear', text: 'QR o URL', icon: iconCamera },
+  { num: '2', title: 'Validar', text: 'Sintaxis OK', icon: iconShield },
+  { num: '3', title: 'Enviar', text: 'Consulta segura', icon: iconSend },
+  { num: '4', title: 'Analizar', text: 'Cruce de fuentes', icon: iconSearch },
+  { num: '5', title: 'Mostrar', text: 'Semaforo final', icon: iconPhone },
+  { num: '6', title: 'Decidir', text: 'Abrir o no', icon: iconLock },
+  { num: '7', title: 'Guardar', text: 'Room local', icon: iconSave },
 ];
 
 const costBars = [
@@ -206,26 +206,28 @@ const closingCards = [
             <p class="slide-subtitle animate-fade-up delay-2">Problema, usuario, solucion, arquitectura, demo y viabilidad.</p>
           </div>
 
-          <div class="index-route animate-fade-in delay-2" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+          <div class="slide-stack slide-stack--between animate-fade-up delay-2">
+            <div class="index-route" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
 
-          <div class="index-grid animate-fade-up delay-3">
-            {indexBlocks.map((block) => (
-              <button class="index-block" data-goto={block.goto} type="button">
-                <div class="index-number">{block.num}</div>
-                <div class="index-body">
-                  <strong class="index-title">{block.title}</strong>
-                  <span class="index-sub">{block.sub}</span>
-                </div>
-                <span class="index-meta">{block.slides}</span>
-              </button>
-            ))}
+            <div class="index-grid">
+              {indexBlocks.map((block) => (
+                <button class="index-block" data-goto={block.goto} type="button">
+                  <div class="index-number">{block.num}</div>
+                  <div class="index-body">
+                    <strong class="index-title">{block.title}</strong>
+                    <span class="index-sub">{block.sub}</span>
+                  </div>
+                  <span class="index-meta">{block.slides}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -235,39 +237,41 @@ const closingCards = [
           <div class="slide-header">
             <div class="slide-tag slide-tag--danger animate-fade-in">El problema</div>
             <h2 class="slide-title animate-fade-up delay-1">El usuario escanea a ciegas</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">QR fisico -> URL invisible -> decision sin contexto.</p>
+            <p class="slide-subtitle animate-fade-up delay-2">QR visible -> URL oculta -> decision sin contexto.</p>
           </div>
 
-          <div class="problem-layout animate-fade-up delay-3">
-            <article class="story-card story-card--soft">
-              <div class="story-kicker">Uso cotidiano</div>
-              <h3 class="card-title">El QR parece legitimo por su contexto fisico</h3>
-              <p class="body-text">Restaurantes, carteles, comercios y transporte convierten el escaneo en un gesto automatico.</p>
-              <div class="chip-row">
-                <span class="chip">restauracion</span>
-                <span class="chip">movilidad</span>
-                <span class="chip">retail</span>
-                <span class="chip">eventos</span>
-              </div>
-            </article>
+          <div class="slide-stack slide-stack--between slide-stack--problem animate-fade-up delay-3">
+            <div class="problem-layout">
+              <article class="story-card story-card--soft">
+                <div class="story-kicker">Uso cotidiano</div>
+                <h3 class="card-title">El QR parece legitimo por su contexto fisico</h3>
+                <p class="body-text">Restaurantes, carteles, comercios y transporte convierten el escaneo en un gesto automatico.</p>
+                <div class="chip-row">
+                  <span class="chip">restauracion</span>
+                  <span class="chip">movilidad</span>
+                  <span class="chip">retail</span>
+                  <span class="chip">eventos</span>
+                </div>
+              </article>
 
-            <article class="story-card story-card--danger">
-              <div class="story-kicker story-kicker--danger">Punto ciego</div>
-              <h3 class="card-title">QR fisico -> URL invisible -> decision sin contexto</h3>
-              <p class="body-text">Ese salto basta para llevar a phishing, robo de credenciales o descarga maliciosa.</p>
-              <div class="chain-note">Antes de abrir no hay una capa clara de lectura del riesgo.</div>
-            </article>
-          </div>
-
-          <div class="problem-band animate-fade-up delay-4">
-            <div class="problem-number">+25.000</div>
-            <div class="problem-band-copy">
-              <strong>casos de phishing gestionados por INCIBE en Espana durante 2025</strong>
-              <span>El dato apoya un problema que ya forma parte del uso diario.</span>
+              <article class="story-card story-card--danger">
+                <div class="story-kicker story-kicker--danger">Punto ciego</div>
+                <h3 class="card-title">QR visible -> URL oculta -> decision sin contexto</h3>
+                <p class="body-text">Ese salto basta para llevar a phishing, robo de credenciales o descarga maliciosa.</p>
+                <div class="chain-note">Antes de abrir falta una lectura clara del riesgo.</div>
+              </article>
             </div>
-          </div>
 
-          <div class="closing-band animate-fade-up delay-5">Antes de abrir, hace falta una capa de analisis.</div>
+            <div class="problem-band animate-fade-up delay-4">
+              <div class="problem-number">+25.000</div>
+              <div class="problem-band-copy">
+                <strong>casos de phishing gestionados por INCIBE en Espana en 2025</strong>
+                <span>El dato acompana el contexto, pero la idea central sigue siendo la misma: el usuario decide sin ver la URL real.</span>
+              </div>
+            </div>
+
+            <div class="closing-band animate-fade-up delay-5">Antes de abrir, hace falta una capa de analisis.</div>
+          </div>
         </div>
       </section>
 
@@ -279,17 +283,19 @@ const closingCards = [
             <p class="slide-subtitle animate-fade-up delay-2">Los QR ya son cotidianos, pero abrir sigue siendo una decision poco informada.</p>
           </div>
 
-          <div class="metrics-grid animate-fade-up delay-3">
-            {researchStats.map((stat) => (
-              <article class="metric-card">
-                <div class="metric-number">{stat.value}</div>
-                <div class="metric-label">{stat.label}</div>
-                <p class="metric-text">{stat.text}</p>
-              </article>
-            ))}
-          </div>
+          <div class="slide-stack slide-stack--between animate-fade-up delay-3">
+            <div class="metrics-grid">
+              {researchStats.map((stat) => (
+                <article class="metric-card">
+                  <div class="metric-number">{stat.value}</div>
+                  <div class="metric-label">{stat.label}</div>
+                  <p class="metric-text">{stat.text}</p>
+                </article>
+              ))}
+            </div>
 
-          <div class="quote-band animate-fade-up delay-4">El usuario medio no necesita mas tecnicismo. Necesita una lectura clara antes del clic.</div>
+            <div class="quote-band animate-fade-up delay-4">El usuario medio no necesita mas tecnicismo. Necesita una lectura clara antes del clic.</div>
+          </div>
         </div>
       </section>
 
@@ -301,19 +307,28 @@ const closingCards = [
             <p class="slide-subtitle animate-fade-up delay-2">Detectar riesgo no basta si el flujo no cabe en unos pocos segundos.</p>
           </div>
 
-          <div class="metrics-grid animate-fade-up delay-3">
-            {marketStats.map((stat) => (
-              <article class="metric-card metric-card--highlight">
-                <div class="metric-number">{stat.value}</div>
-                <div class="metric-label">{stat.label}</div>
-                <p class="metric-text">{stat.text}</p>
-              </article>
-            ))}
-          </div>
+          <div class="slide-stack slide-stack--between animate-fade-up delay-3">
+            <div class="metrics-grid metrics-grid--market">
+              {marketStats.map((stat) => (
+                <article class="metric-card metric-card--highlight">
+                  <div class="metric-number">{stat.value}</div>
+                  <div class="metric-label">{stat.label}</div>
+                  <p class="metric-text">{stat.text}</p>
+                </article>
+              ))}
+            </div>
 
-          <div class="insight-panel animate-fade-up delay-4">
-            <div class="insight-bar"></div>
-            <p>La interfaz debe ser <strong>rapida, clara y sin tecnicismos</strong>.</p>
+            <div class="insight-panel animate-fade-up delay-4">
+              <div class="insight-bar"></div>
+              <div class="insight-copy">
+                <p>La interfaz debe ser <strong>rapida, clara y sin tecnicismos</strong>.</p>
+                <div class="insight-chips">
+                  <span class="chip">respuesta en segundos</span>
+                  <span class="chip">lectura inmediata</span>
+                  <span class="chip">friccion minima</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -326,20 +341,22 @@ const closingCards = [
             <p class="slide-subtitle animate-fade-up delay-2">Escanea con normalidad, confia en el contexto fisico y no sabe leer la URL oculta.</p>
           </div>
 
-          <div class="persona-layout animate-fade-up delay-3">
-            <article class="persona-hero">
-              <div class="persona-icon" set:html={iconUser}></div>
-              <p>Escanea QR a diario, pero no sabe evaluar si el enlace es seguro.</p>
-            </article>
+          <div class="slide-stack slide-stack--center animate-fade-up delay-3">
+            <div class="persona-layout">
+              <article class="persona-hero">
+                <div class="persona-icon" set:html={iconUser}></div>
+                <p>Escanea QR a diario, pero no sabe evaluar si el enlace es seguro.</p>
+              </article>
 
-            <div class="persona-grid">
-              {personaCards.map((card) => (
-                <article class={`persona-card persona-card--${card.tone}`}>
-                  <div class="mini-icon" set:html={card.icon}></div>
-                  <h3 class="card-title">{card.title}</h3>
-                  <p class="body-text">{card.text}</p>
-                </article>
-              ))}
+              <div class="persona-grid">
+                {personaCards.map((card) => (
+                  <article class={`persona-card persona-card--${card.tone}`}>
+                    <div class="mini-icon" set:html={card.icon}></div>
+                    <h3 class="card-title">{card.title}</h3>
+                    <p class="body-text">{card.text}</p>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -353,7 +370,8 @@ const closingCards = [
             <p class="slide-subtitle animate-fade-up delay-2">La app se coloca entre el QR y el navegador para dar una lectura accionable del riesgo.</p>
           </div>
 
-          <div class="value-flow animate-fade-up delay-3">
+          <div class="slide-stack slide-stack--between animate-fade-up delay-3">
+            <div class="value-flow">
             {valueSteps.map((step, index) => (
               <>
                 <article class={`value-card value-card--${step.tone}`}>
@@ -364,9 +382,10 @@ const closingCards = [
                 {index < valueSteps.length - 1 && <div class="value-arrow" aria-hidden="true">→</div>}
               </>
             ))}
-          </div>
+            </div>
 
-          <div class="closing-band animate-fade-up delay-4">El usuario no necesita saber de ciberseguridad. Solo necesita una senal clara antes de abrir.</div>
+            <div class="closing-band animate-fade-up delay-4">El usuario no necesita saber de ciberseguridad. Solo necesita una senal clara antes de abrir.</div>
+          </div>
         </div>
       </section>
 
@@ -374,38 +393,40 @@ const closingCards = [
         <div class="slide-shell slide-shell--wide">
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">MVP operativo</div>
-            <h2 class="slide-title animate-fade-up delay-1">MVP operativo y requisitos funcionales</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">Flujo minimo completo, funciones reales y requisitos compactos.</p>
+            <h2 class="slide-title animate-fade-up delay-1">MVP operativo y requisitos clave</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">Flujo minimo completo, funciones reales y requisitos en formato compacto.</p>
           </div>
 
-          <div class="mvp-layout animate-fade-up delay-3">
-            <div class="mvp-column">
-              <div class="section-kicker">MVP operativo</div>
-              <div class="feature-grid">
-                {mvpFeatures.map((feature) => (
-                  <article class="feature-card">
-                    <div class="mini-icon" set:html={feature.icon}></div>
-                    <h3 class="card-title">{feature.title}</h3>
-                    <p class="body-text">{feature.text}</p>
-                  </article>
-                ))}
+          <div class="slide-stack slide-stack--between slide-stack--tight animate-fade-up delay-3">
+            <div class="mvp-layout">
+              <div class="mvp-column">
+                <div class="section-kicker">Funciones clave</div>
+                <div class="feature-grid feature-grid--mvp">
+                  {mvpFeatures.map((feature) => (
+                    <article class="feature-card">
+                      <div class="mini-icon" set:html={feature.icon}></div>
+                      <h3 class="card-title">{feature.title}</h3>
+                      <p class="body-text">{feature.text}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+              <div class="mvp-column mvp-column--requirements">
+                <div class="section-kicker">Requisitos validados</div>
+                <div class="requirements-grid">
+                  {requirements.map((req) => (
+                    <article class="requirement-chip">
+                      <div class="req-id">{req.id}</div>
+                      <p class="chip-copy">{req.text}</p>
+                    </article>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div class="mvp-column">
-              <div class="section-kicker">Requisitos validados</div>
-              <div class="requirements-grid">
-                {requirements.map((req) => (
-                  <article class="requirement-chip">
-                    <div class="req-id">{req.id}</div>
-                    <p class="chip-copy">{req.text}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
+            <div class="quote-band animate-fade-up delay-4">El MVP cubre el flujo esencial sin cargar la slide.</div>
           </div>
-
-          <div class="quote-band animate-fade-up delay-4">El MVP cubre el flujo esencial sin cargar la slide.</div>
         </div>
       </section>
 
@@ -413,11 +434,12 @@ const closingCards = [
         <div class="slide-shell slide-shell--wide">
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">Arquitectura</div>
-            <h2 class="slide-title animate-fade-up delay-1">Cliente Android -> Backend FastAPI -> Fuentes -> Resultado</h2>
+            <h2 class="slide-title animate-fade-up delay-1">Cliente Android, backend y fuentes en un flujo cerrado</h2>
             <p class="slide-subtitle animate-fade-up delay-2">Cuatro zonas compactas con responsabilidades y tecnologias clave.</p>
           </div>
 
-          <div class="architecture-flow animate-fade-up delay-3">
+          <div class="slide-stack slide-stack--between animate-fade-up delay-3">
+            <div class="architecture-flow">
             {architectureZones.map((zone, index) => (
               <>
                 <article class={`arch-zone arch-zone--${zone.tone}`}>
@@ -431,13 +453,14 @@ const closingCards = [
                 {index < architectureZones.length - 1 && <div class="arch-arrow" aria-hidden="true">→</div>}
               </>
             ))}
-          </div>
+            </div>
 
-          <div class="security-band animate-fade-up delay-4">
-            <span>Claves fuera de Android</span>
-            <span>No apertura automatica</span>
-            <span>Historial local con Room</span>
-            <span>Seguro solo con analisis suficiente</span>
+            <div class="security-band animate-fade-up delay-4">
+              <span>Claves fuera de Android</span>
+              <span>No apertura automatica</span>
+              <span>Historial local con Room</span>
+              <span>Seguro solo con analisis suficiente</span>
+            </div>
           </div>
         </div>
       </section>
@@ -450,8 +473,9 @@ const closingCards = [
             <p class="slide-subtitle animate-fade-up delay-2">La salida combina riesgo detectado y cobertura tecnica real.</p>
           </div>
 
-          <div class="decision-layout animate-fade-up delay-3">
-            <div class="decision-matrix">
+          <div class="slide-stack slide-stack--between slide-stack--tight animate-fade-up delay-3">
+            <div class="decision-layout">
+              <div class="decision-matrix">
               <div class="decision-head">
                 <span>Caso</span>
                 <span>Resultado</span>
@@ -467,30 +491,31 @@ const closingCards = [
                   <div class="decision-action">{row.action}</div>
                 </div>
               ))}
+              </div>
+
+              <aside class="decision-side">
+                <div class="status-stack">
+                  {decisionStatuses.map((status) => (
+                    <article class={`status-card status-card--${status.tone}`}>
+                      <strong>{status.label}</strong>
+                      <p>{status.text}</p>
+                    </article>
+                  ))}
+                </div>
+
+                <div class="semaphore-card">
+                  <div class="semaphore-body" aria-hidden="true">
+                    <span class="signal-dot signal-dot--red"></span>
+                    <span class="signal-dot signal-dot--amber"></span>
+                    <span class="signal-dot signal-dot--green"></span>
+                  </div>
+                  <p>Semaforo visual para traducir la decision tecnica a una accion comprensible.</p>
+                </div>
+              </aside>
             </div>
 
-            <aside class="decision-side">
-              <div class="status-stack">
-                {decisionStatuses.map((status) => (
-                  <article class={`status-card status-card--${status.tone}`}>
-                    <strong>{status.label}</strong>
-                    <p>{status.text}</p>
-                  </article>
-                ))}
-              </div>
-
-              <div class="semaphore-card">
-                <div class="semaphore-body" aria-hidden="true">
-                  <span class="signal-dot signal-dot--red"></span>
-                  <span class="signal-dot signal-dot--amber"></span>
-                  <span class="signal-dot signal-dot--green"></span>
-                </div>
-                <p>Semaforo visual para traducir la decision tecnica a una accion comprensible.</p>
-              </div>
-            </aside>
+            <div class="closing-band closing-band--success animate-fade-up delay-4">Seguro solo cuando la cobertura tecnica es completa.</div>
           </div>
-
-          <div class="closing-band closing-band--success animate-fade-up delay-4">Nunca se muestra "seguro" si el analisis no esta completo.</div>
         </div>
       </section>
 
@@ -499,10 +524,11 @@ const closingCards = [
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">Prototipo</div>
             <h2 class="slide-title animate-fade-up delay-1">Prototipo Android funcional probado en dispositivo fisico</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">Ahora son mockups. El layout queda preparado para sustituirlos por capturas reales.</p>
+            <p class="slide-subtitle animate-fade-up delay-2">Cuatro vistas grandes del flujo real, listas para sustituirse por capturas finales.</p>
           </div>
 
-          <div class="prototype-grid animate-fade-up delay-3">
+          <div class="slide-stack slide-stack--center animate-fade-up delay-3">
+            <div class="prototype-grid">
             <PhoneMockup label="Inicio">
               <div class="android-screen">
                 <div class="android-topbar">Escanear QR</div>
@@ -562,6 +588,7 @@ const closingCards = [
                 </div>
               </div>
             </PhoneMockup>
+            </div>
           </div>
         </div>
       </section>
@@ -574,22 +601,24 @@ const closingCards = [
             <p class="slide-subtitle animate-fade-up delay-2">Timeline horizontal compacto del recorrido completo.</p>
           </div>
 
-          <div class="timeline animate-fade-up delay-3">
-            <div class="timeline-track" aria-hidden="true"></div>
-            {flowSteps.map((step) => (
-              <article class="timeline-step">
-                <div class="timeline-number">{step.num}</div>
-                <div class="timeline-icon" set:html={step.icon}></div>
-                <strong>{step.title}</strong>
-                <span>{step.text}</span>
-              </article>
-            ))}
-          </div>
+          <div class="slide-stack slide-stack--between animate-fade-up delay-3">
+            <div class="timeline">
+              <div class="timeline-track" aria-hidden="true"></div>
+              {flowSteps.map((step) => (
+                <article class="timeline-step">
+                  <div class="timeline-number">{step.num}</div>
+                  <div class="timeline-icon" set:html={step.icon}></div>
+                  <strong>{step.title}</strong>
+                  <span>{step.text}</span>
+                </article>
+              ))}
+            </div>
 
-          <div class="privacy-band animate-fade-up delay-4">
-            <span class="privacy-pill">Room local</span>
-            <span class="privacy-pill">Sin cuenta</span>
-            <span class="privacy-pill">Sin nube</span>
+            <div class="privacy-band animate-fade-up delay-4">
+              <span class="privacy-pill">Room local</span>
+              <span class="privacy-pill">Sin cuenta</span>
+              <span class="privacy-pill">Sin nube</span>
+            </div>
           </div>
         </div>
       </section>
@@ -598,59 +627,61 @@ const closingCards = [
         <div class="slide-shell slide-shell--wide">
           <div class="slide-header">
             <div class="slide-tag animate-fade-in">Viabilidad</div>
-            <h2 class="slide-title animate-fade-up delay-1">Viabilidad: inversion inicial, sostenibilidad operativa y modelo futuro</h2>
-            <p class="slide-subtitle animate-fade-up delay-2">Grafico principal compacto y tres datos de negocio faciles de leer.</p>
+            <h2 class="slide-title animate-fade-up delay-1">Viabilidad: coste inicial, operacion y escala futura</h2>
+            <p class="slide-subtitle animate-fade-up delay-2">Grafico principal compacto y datos de negocio faciles de leer.</p>
           </div>
 
-          <div class="viability-layout animate-fade-up delay-3">
-            <article class="bars-card">
-              <div class="section-kicker">Inversion inicial</div>
-              <div class="bars-chart">
-                {costBars.map((bar) => (
-                  <div class="bar-group">
-                    <div class="bar-value">{bar.value}</div>
-                    <div class="bar-rail">
-                      <div class="bar-fill" style={`height:${bar.height}`}></div>
+          <div class="slide-stack slide-stack--center animate-fade-up delay-3">
+            <div class="viability-layout">
+              <article class="bars-card">
+                <div class="section-kicker">Inversion inicial</div>
+                <div class="bars-chart">
+                  {costBars.map((bar) => (
+                    <div class="bar-group">
+                      <div class="bar-value">{bar.value}</div>
+                      <div class="bar-rail">
+                        <div class="bar-fill" style={`height:${bar.height}`}></div>
+                      </div>
+                      <div class="bar-label">{bar.label}</div>
                     </div>
-                    <div class="bar-label">{bar.label}</div>
+                  ))}
+                </div>
+                <div class="total-band">Total 12.190,75 EUR</div>
+              </article>
+
+              <div class="economy-stack">
+                <article class="economy-card economy-card--soft">
+                  <div class="section-kicker">Sostenibilidad operativa</div>
+                  <div class="economy-line">
+                    <strong>Mantenimiento</strong>
+                    <span>160-325 EUR/mes</span>
                   </div>
-                ))}
+                  <div class="economy-line">
+                    <strong>Google Web Risk</strong>
+                    <span>incluido en la operacion</span>
+                  </div>
+                  <div class="economy-line">
+                    <strong>Equilibrio</strong>
+                    <span>82 suscriptores</span>
+                  </div>
+                </article>
+
+                <article class="economy-card">
+                  <div class="section-kicker">Modelo futuro</div>
+                  <div class="economy-line">
+                    <strong>Premium</strong>
+                    <span>3,99 EUR/mes</span>
+                  </div>
+                  <div class="economy-line">
+                    <strong>Escalado</strong>
+                    <span>B2C y opcion B2B</span>
+                  </div>
+                  <div class="economy-line">
+                    <strong>Lectura</strong>
+                    <span>coste controlado</span>
+                  </div>
+                </article>
               </div>
-              <div class="total-band">Total 12.190,75 EUR</div>
-            </article>
-
-            <div class="economy-stack">
-              <article class="economy-card economy-card--soft">
-                <div class="section-kicker">Sostenibilidad operativa</div>
-                <div class="economy-line">
-                  <strong>Mantenimiento</strong>
-                  <span>160-325 EUR/mes</span>
-                </div>
-                <div class="economy-line">
-                  <strong>Google Web Risk</strong>
-                  <span>incluido en la operacion</span>
-                </div>
-                <div class="economy-line">
-                  <strong>Equilibrio</strong>
-                  <span>82 suscriptores</span>
-                </div>
-              </article>
-
-              <article class="economy-card">
-                <div class="section-kicker">Modelo futuro</div>
-                <div class="economy-line">
-                  <strong>Premium</strong>
-                  <span>3,99 EUR/mes</span>
-                </div>
-                <div class="economy-line">
-                  <strong>Escalado</strong>
-                  <span>B2C y opcion B2B</span>
-                </div>
-                <div class="economy-line">
-                  <strong>Lectura</strong>
-                  <span>coste controlado</span>
-                </div>
-              </article>
             </div>
           </div>
         </div>
@@ -664,7 +695,8 @@ const closingCards = [
             <p class="slide-subtitle animate-fade-up delay-2">Problema real, producto entendible, arquitectura defendible y una salida viable para evolucionar el proyecto.</p>
           </div>
 
-          <div class="closing-grid animate-fade-up delay-3">
+          <div class="slide-stack slide-stack--between animate-fade-up delay-3">
+            <div class="closing-grid">
             {closingCards.map((card) => (
               <article class="closing-card">
                 <h3 class="card-title">{card.title}</h3>
@@ -675,6 +707,7 @@ const closingCards = [
 
           <p class="closing-quote animate-fade-up delay-4">Menos clics a ciegas. Mas seguridad antes de abrir.</p>
           <p class="closing-thanks animate-fade-in delay-5">Muchas gracias. ¿Preguntas?</p>
+          </div>
         </div>
       </section>
     </div>
